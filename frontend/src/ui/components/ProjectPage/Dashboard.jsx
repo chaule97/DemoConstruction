@@ -11,7 +11,8 @@ const Dashboard = props => {
                 </div>
                 <div className="box-body">
                 <table className="table table-bordered">
-                    <tr>
+                  <tbody>
+                  <tr>
                     <th style={{width: "10px"}}>#</th>
                     <th>Task</th>
                     <th>Progress</th>
@@ -57,6 +58,7 @@ const Dashboard = props => {
                     </td>
                     <td><span className="badge bg-green">90%</span></td>
                     </tr>
+                  </tbody>
                 </table>
                 </div>
                 <div className="box-footer clearfix">

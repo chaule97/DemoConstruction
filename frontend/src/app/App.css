@@ -296,6 +296,15 @@ li.L9 {
   background-color: #000 !important;
 }
 
+.main-sidebar .sidebar .sidebar-menu li a {
+  color: #b8c7ce !important;
+}
+.main-sidebar .sidebar .sidebar-menu li a:hover {
+  color: #fff !important;
+  background: #1e282c;
+}
+
+
 .color-white {
   color: white !important;
 }
@@ -306,4 +315,12 @@ li.L9 {
 
 .skin-blue .main-header .navbar .nav>li>a {
   color: #fff !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.content-header .cursor-pointer:hover {
+  color: #00a65a;
 }
