@@ -11,8 +11,8 @@ const  SideBar = props => {
                     <img src="dist/img/user2-160x160.jpg" className="img-circle"/>
                     </div>
                     <div className="pull-left info">
-                    <p>Tea Time Team</p>
-                        <a><i className="fa fa-circle text-success"></i> Online</a>
+                    <p className = "color-white">Tea Time Team</p>
+                        <a className = "color-white" ><i className="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
                 <form action="#" method="get" className="sidebar-form">
@@ -28,34 +28,37 @@ const  SideBar = props => {
                     <ul className="sidebar-menu" data-widget="tree">
                         <li className = "treeview">
                             <a >
-                                Project
+                                <i className="fa fa-codepen"></i> PROJECT
+                                <span className="pull-right-container">
+                                <i className="fa fa-angle-left pull-right"></i>
+                                </span>
                             </a>
                             <ul className="treeview-menu">
                                 <li>
                                 <Link to = {PATH.PROJECT_VIEW_URL}>
-                                    View
+                                   <i className="fa fa-circle-o"></i> View
                                 </Link>
                                 </li>
                                 <li>
                                 <Link to = {PATH.PROJECT_DASHBOARD_URL}>
-                                    Dashboard
+                                <i className="fa fa-circle-o"></i> Dashboard
                                 </Link>
                                 </li>
                                 <li>
                                 <Link to = {PATH.PROJECT_DETAIL_URL}>
-                                    Detail
+                                <i className="fa fa-circle-o"></i> Detail
                                 </Link>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <Link to = {PATH.TEAM_URL}>
-                                TEAM
+                            <i className="fa fa-user"></i> TEAM
                             </Link>
                         </li>
                         <li>
                             <Link to = {PATH.USERS_URL}>
-                                USERS
+                            <i className="fa fa-book"></i> SUPERVISOR
                             </Link>
                         </li>
                     </ul>
