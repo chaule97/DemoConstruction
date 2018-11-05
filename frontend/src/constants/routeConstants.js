@@ -9,6 +9,8 @@ export const PROJECT_VIEW_URL = "/project/view";
 // team page
 export const TEAM_URL = "/team";
 export const TEAM_ADD_URL = "/team/add";
-export const USERS_URL = "/users";
+//user page
+export const USER_URL = "/user";
+export const USER_ADD_URL = "/user/add";
 //Submit Form
 export const FORM_SUBMIT_URL = "/form/submit";

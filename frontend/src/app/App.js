@@ -24,16 +24,20 @@ class App extends Component {
                             <Route path={PATH.TEAM_ADD_URL} extact render={ () => 
                                 <h1 className = "cursor-pointer link-back" onClick = {() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
+                            <Route path={PATH.USER_ADD_URL} extact render={ () => 
+                                <h1 className = "cursor-pointer link-back" onClick = {() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
+                            } />
                             <Route path={PATH.PROJECT_URL} extact render={ () => <h1>Project</h1>} />
-                            <Route path={PATH.USERS_URL} extact render={ () => <h1>Users</h1>} />
+                            <Route path={PATH.USER_URL} extact render={ () => <h1>Supervisor</h1>} />
                             <Route path={PATH.TEAM_URL} extact render={ () => <h1>Team</h1>} />
+                            <Route path={PATH.FORM_SUBMIT_URL} extact render={ () => <h1>Submit Form</h1>} />
                         </Switch>
                     
                 </section>
                 { /**/}
                 <Switch>
                     <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
-                    <Route path={PATH.USERS_URL} extact component={UsersContainer} />
+                    <Route path={PATH.USER_URL} extact component={UsersContainer} />
                     <Route path={PATH.TEAM_URL} extact component={TeamContainer} />
                     <Route path={PATH.FORM_SUBMIT_URL} extact component={SubmitFormContainer} />
                     <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL}/>} />

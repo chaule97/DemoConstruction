@@ -9,7 +9,7 @@ const TeamPage = props => {
                     <div className="box">
                     <div className="box-header with-border">
                     <h3 className="box-title">
-                    <i className="fa fa-user m-r-5"></i>
+                    <i className="fa fa-users m-r-5"></i>
                       <i className="fa m-r-5"></i> Manage Team</h3>
                     <div className="box-tools pull-right">
                       <a className="btn btn-primary btn-sm btn-head"  title="Add Team"
@@ -47,9 +47,35 @@ const TeamPage = props => {
                             <tr>
                               <td>2</td>
                               <td>Building</td>
-                              <td>Pham Minh Cang</td>
+                              <td>Le Minh Chuong</td>
+                              <td>ESTTower</td>
+                              <td>Building ESTTower</td>
+                              <td>
+                              <div className="btn-group">
+                                <button type="button" className="btn btn-success"><i className="fa fa-edit"></i></button>
+                                <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                              </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>Building</td>
+                              <td>Tran Minh Vuong</td>
                               <td>LandMark81</td>
                               <td>Paint wall Landmark81</td>
+                              <td>
+                              <div className="btn-group">
+                                <button type="button" className="btn btn-success"><i className="fa fa-edit"></i></button>
+                                <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                              </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>Building</td>
+                              <td>Tran Bao Dai</td>
+                              <td>LandMark81</td>
+                              <td>Paint yard Landmark81</td>
                               <td>
                               <div className="btn-group">
                                 <button type="button" className="btn btn-success"><i className="fa fa-edit"></i></button>

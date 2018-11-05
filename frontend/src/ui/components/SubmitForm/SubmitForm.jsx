@@ -9,7 +9,7 @@ const SubmitForm = props => {
                     <div className="box">
                     <div className="box-header with-border">
                     <h3 className="box-title">
-                    <i className="fa fa-user m-r-5"></i>
+                    <i className="fa fa-edit m-r-5"></i>
                       <i className="fa m-r-5"></i> Daily Report</h3>
                     
                     </div>
