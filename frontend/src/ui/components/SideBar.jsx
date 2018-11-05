@@ -26,10 +26,27 @@ const  SideBar = props => {
                 </form>
                 <Router>
                     <ul className="sidebar-menu" data-widget="tree">
-                        <li>
-                            <Link to = {PATH.PROJECT_URL}>
-                                PROJECT
-                            </Link>
+                        <li className = "treeview">
+                            <a >
+                                Project
+                            </a>
+                            <ul className="treeview-menu">
+                                <li>
+                                <Link to = {PATH.PROJECT_VIEW_URL}>
+                                    View
+                                </Link>
+                                </li>
+                                <li>
+                                <Link to = {PATH.PROJECT_DASHBOARD_URL}>
+                                    Dashboard
+                                </Link>
+                                </li>
+                                <li>
+                                <Link to = {PATH.PROJECT_DETAIL_URL}>
+                                    Detail
+                                </Link>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <Link to = {PATH.TEAM_URL}>
