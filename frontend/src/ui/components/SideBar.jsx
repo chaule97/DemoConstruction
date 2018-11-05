@@ -1,4 +1,6 @@
 import React from 'react';
+import * as PATH from "../../constants/routeConstants";
+import{HashRouter as Router ,Link} from 'react-router-dom';
 
 const  SideBar = props => {
     return (
@@ -22,43 +24,25 @@ const  SideBar = props => {
                         </span>
                     </div>
                 </form>
-                <ul className="sidebar-menu" data-widget="tree">
-                    <li className="header">MAIN NAVIGATION</li>
-                    <li className="treeview">
-                        <a href="#">
-                            <span>PROJECT</span>
-                            <span className="pull-right-container">
-                            <i className="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul className="treeview-menu">
-                            <li className="active"><a ><i className="fa fa-circle-o"></i> Project 1</a></li>
-                            <li><a ><i className="fa fa-circle-o"></i> Project 2</a></li>
-                        </ul>
-                    </li>
-                    <li className="treeview">
-                        <a href="#">
-                            <span>TEAM</span>
-                            <span className="pull-right-container">
-                            <span className="label label-primary pull-right">4</span>
-                            </span>
-                        </a>
-                        <ul className="treeview-menu">
-                            <li><a ><i className="fa fa-circle-o"></i> Team 1</a></li>
-                            <li><a ><i className="fa fa-circle-o"></i> Team 2</a></li>
-                            <li><a ><i className="fa fa-circle-o"></i> Team 3</a></li>
-                            <li><a ><i className="fa fa-circle-o"></i> Team 4</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span>USER</span>
-                            <span className="pull-right-container">
-                            <small className="label pull-right bg-green">new</small>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
+                <Router>
+                    <ul className="sidebar-menu" data-widget="tree">
+                        <li>
+                            <Link to = {PATH.PROJECT_URL}>
+                                PROJECT
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = {PATH.TEAM_URL}>
+                                TEAM
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to = {PATH.USERS_URL}>
+                                USERS
+                            </Link>
+                        </li>
+                    </ul>
+                </Router>
             </section>
         </aside>
     );
