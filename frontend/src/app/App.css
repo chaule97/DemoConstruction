@@ -293,8 +293,17 @@ li.L9 {
 }
 
 .main-sidebar {
-  background-color: #e1dfdf !important;
+  background-color: #222d32 !important;
 }
+
+.main-sidebar .sidebar .sidebar-menu li a {
+  color: #b8c7ce !important;
+}
+.main-sidebar .sidebar .sidebar-menu li a:hover {
+  color: #fff !important;
+  background: #1e282c;
+}
+
 
 .color-white {
   color: white !important;

@@ -11,8 +11,8 @@ const  SideBar = props => {
                     <img src="dist/img/user2-160x160.jpg" className="img-circle" alt="User Image"/>
                     </div>
                     <div className="pull-left info">
-                    <p>Tea Time Team</p>
-                        <a href="#"><i className="fa fa-circle text-success"></i> Online</a>
+                        <p className="color-white">Tea Time Team</p>
+                        <a href="#" className="color-white"><i className="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
                 <form action="#" method="get" className="sidebar-form">
@@ -25,20 +25,20 @@ const  SideBar = props => {
                     </div>
                 </form>
                 <Router>
-                    <ul className="sidebar-menu" data-widget="tree">
+                    <ul className="sidebar-menu color-white" data-widget="tree">
                         <li>
                             <Link to = {PATH.PROJECT_URL}>
-                                PROJECT
+                               <i className="fa fa-codepen"></i> PROJECT
                             </Link>
                         </li>
                         <li>
                             <Link to = {PATH.TEAM_URL}>
-                                TEAM
+                            <i className="fa fa-user"></i> TEAM
                             </Link>
                         </li>
                         <li>
                             <Link to = {PATH.USERS_URL}>
-                                USERS
+                            <i className="fa fa-book"></i> SUPERVISOR
                             </Link>
                         </li>
                     </ul>
