@@ -61,6 +61,11 @@ const  SideBar = props => {
                             <i className="fa fa-book"></i> SUPERVISOR
                             </Link>
                         </li>
+                        <li>
+                            <Link to = {PATH.FORM_SUBMIT_URL}>
+                            <i className="fa fa-edit"></i> SUBMIT FORM
+                            </Link>
+                        </li>
                     </ul>
                 </Router>
             </section>

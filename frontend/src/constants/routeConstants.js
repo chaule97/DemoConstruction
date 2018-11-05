@@ -10,3 +10,5 @@ export const PROJECT_VIEW_URL = "/project/view";
 export const TEAM_URL = "/team";
 export const TEAM_ADD_URL = "/team/add";
 export const USERS_URL = "/users";
+//Submit Form
+export const FORM_SUBMIT_URL = "/form/submit";

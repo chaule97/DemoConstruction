@@ -12,7 +12,6 @@ class TeamPage extends Component {
     this.props.history.push('/team/add');
   }
     render() {
-      console.log('1')
         return (
           <TeamPageComponent {...this.props} addTeam = {() => this.addTeam()}/>
         );

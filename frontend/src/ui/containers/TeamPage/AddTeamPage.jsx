@@ -8,7 +8,6 @@ class AddTeamPage extends Component {
       }
 
     goBack = () => {
-        console.log(this.props)
         this.props.history.push('/team');
     }
     render() {
