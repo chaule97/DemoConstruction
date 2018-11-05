@@ -4,7 +4,6 @@ class TeamPage extends Component {
     render() {
         return (
             <div>
-                Team
             </div>
         );
     }

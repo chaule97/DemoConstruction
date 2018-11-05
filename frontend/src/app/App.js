@@ -18,14 +18,13 @@ class App extends Component {
             <SideBar/>
             <div className="content-wrapper">
                 <section className="content-header">
-                    <h1>
-                        Dashboard
-                        <small>Control panel</small>
-                    </h1>
-                    <ol className="breadcrumb">
-                        <li><a href="#"><i className="fa fa-dashboard"></i> Home</a></li>
-                        <li className="active">Dashboard</li>
-                    </ol>
+                    
+                        <Switch>
+                            <Route path={PATH.PROJECT_URL} extact render={ () => <h1>Project</h1>} />
+                            <Route path={PATH.USERS_URL} extact render={ () => <h1>Users</h1>} />
+                            <Route path={PATH.TEAM_URL} extact render={ () => <h1>Team</h1>} />
+                        </Switch>
+                    
                 </section>
                 { /**/}
                 <Switch>

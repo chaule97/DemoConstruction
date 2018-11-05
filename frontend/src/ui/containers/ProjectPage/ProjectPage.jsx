@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-
+import ProjectPageComponent from '../../components/ProjectPage/ProjectPage';
 class ProjectPage extends Component {
     render() {
         return (
-            <div>
-                Project
-            </div>
+            <ProjectPageComponent />
         );
     }
 }
