@@ -53,12 +53,12 @@ const  SideBar = props => {
                         </li>
                         <li>
                             <Link to = {PATH.TEAM_URL}>
-                            <i className="fa fa-user"></i> TEAM
+                            <i className="fa fa-users"></i> TEAM
                             </Link>
                         </li>
                         <li>
-                            <Link to = {PATH.USERS_URL}>
-                            <i className="fa fa-book"></i> SUPERVISOR
+                            <Link to = {PATH.USER_URL}>
+                            <i className="fa fa-user"></i> SUPERVISOR
                             </Link>
                         </li>
                         <li>
