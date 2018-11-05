@@ -316,3 +316,11 @@ li.L9 {
 .skin-blue .main-header .navbar .nav>li>a {
   color: #fff !important;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.content-header .cursor-pointer:hover {
+  color: #00a65a;
+}

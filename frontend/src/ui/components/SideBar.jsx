@@ -28,22 +28,25 @@ const  SideBar = props => {
                     <ul className="sidebar-menu" data-widget="tree">
                         <li className = "treeview">
                             <a >
-                                <i className="fa fa-codepen"></i> Project
+                                <i className="fa fa-codepen"></i> PROJECT
+                                <span className="pull-right-container">
+                                <i className="fa fa-angle-left pull-right"></i>
+                                </span>
                             </a>
                             <ul className="treeview-menu">
                                 <li>
                                 <Link to = {PATH.PROJECT_VIEW_URL}>
-                                    View
+                                   <i className="fa fa-circle-o"></i> View
                                 </Link>
                                 </li>
                                 <li>
                                 <Link to = {PATH.PROJECT_DASHBOARD_URL}>
-                                    Dashboard
+                                <i className="fa fa-circle-o"></i> Dashboard
                                 </Link>
                                 </li>
                                 <li>
                                 <Link to = {PATH.PROJECT_DETAIL_URL}>
-                                    Detail
+                                <i className="fa fa-circle-o"></i> Detail
                                 </Link>
                                 </li>
                             </ul>
