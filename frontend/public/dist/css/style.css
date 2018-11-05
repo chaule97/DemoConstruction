@@ -1,0 +1,20 @@
+.treeview a {
+    color: #7e7fa9;
+    cursor: context-menu;
+}
+
+.treeview a:hover {
+    color: white;
+}
+
+.sidebar-menu a {
+    color: #7e7fa9;
+}
+
+.sidebar-menu a:hover {
+    color: white;
+}
+
+.pull-left p {
+    color: #7e7fa9;
+}

@@ -27,23 +27,23 @@ const  SideBar = props => {
                 <Router>
                     <ul className="sidebar-menu" data-widget="tree">
                         <li className = "treeview">
-                            <a >
-                                Project
+                            <a>
+                                PROJECT
                             </a>
                             <ul className="treeview-menu">
                                 <li>
                                 <Link to = {PATH.PROJECT_VIEW_URL}>
-                                    View
+                                    VIEW
                                 </Link>
                                 </li>
                                 <li>
                                 <Link to = {PATH.PROJECT_DASHBOARD_URL}>
-                                    Dashboard
+                                    DASHBOARD
                                 </Link>
                                 </li>
                                 <li>
                                 <Link to = {PATH.PROJECT_DETAIL_URL}>
-                                    Detail
+                                    DETAIL
                                 </Link>
                                 </li>
                             </ul>
