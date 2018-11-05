@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Dashboard = props => {
     return (
@@ -61,11 +61,11 @@ const Dashboard = props => {
                 </div>
                 <div className="box-footer clearfix">
                 <ul className="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
+                    <li><a >&laquo;</a></li>
+                    <li><a >1</a></li>
+                    <li><a >2</a></li>
+                    <li><a >3</a></li>
+                    <li><a >&raquo;</a></li>
                 </ul>
                 </div>
             </div>

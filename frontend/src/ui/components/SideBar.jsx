@@ -1,6 +1,6 @@
 import React from 'react';
 import * as PATH from "../../constants/routeConstants";
-import{HashRouter as Router ,Link} from 'react-router-dom';
+import { HashRouter as Router, Link} from 'react-router-dom';
 
 const  SideBar = props => {
     return (
@@ -8,11 +8,11 @@ const  SideBar = props => {
             <section className="sidebar">
                 <div className="user-panel">
                     <div className="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" className="img-circle" alt="User Image"/>
+                    <img src="dist/img/user2-160x160.jpg" className="img-circle"/>
                     </div>
                     <div className="pull-left info">
                     <p>Tea Time Team</p>
-                        <a href="#"><i className="fa fa-circle text-success"></i> Online</a>
+                        <a><i className="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
                 <form action="#" method="get" className="sidebar-form">
