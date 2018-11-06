@@ -28,7 +28,7 @@ class App extends Component {
                                 <h1 className = "cursor-pointer link-back" onClick = {() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
                             <Route path={PATH.PROJECT_URL} extact render={ () => <h1>Project</h1>} />
-                            <Route path={PATH.USER_URL} extact render={ () => <h1>Supervisor</h1>} />
+                            <Route path={PATH.USER_URL} extact render={ () => <h1>User</h1>} />
                             <Route path={PATH.TEAM_URL} extact render={ () => <h1>Team</h1>} />
                             <Route path={PATH.FORM_SUBMIT_URL} extact render={ () => <h1>Submit Form</h1>} />
                         </Switch>

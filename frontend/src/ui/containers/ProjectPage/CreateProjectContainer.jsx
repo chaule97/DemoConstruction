@@ -17,8 +17,8 @@ class CreateProjectContainer extends Component {
         api.apiGet(urlApi.getListUser).then(res =>
             {
                 const admins = res.data.filter(item => item.is_staff === true)
-                project.admin = admins[0].id;
-                this.setState({project})
+                // project.admin = admins[0].id;
+                // this.setState({project})
                 this.setState({admins});
         })
     }

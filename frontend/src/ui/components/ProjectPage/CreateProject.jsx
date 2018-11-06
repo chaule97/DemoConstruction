@@ -29,6 +29,7 @@ const CreateProject = props => {
                                 <select  className="form-control"
                                     onChange = {(e) => props.changeProjectDetailValue('admin', e.target.value)} 
                                 >
+                                    <option value="" >-- Select Admin --</option>
                                     {(props.listAdmin || []).map((item, index) => {
                                         return (
                                             <option key = {index} value={item.id}>{item.username}</option>

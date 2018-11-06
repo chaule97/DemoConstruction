@@ -19,28 +19,48 @@ const SubmitForm = props => {
                         
                             <div className="form-group col-lg-6">
                                 <label>Project: <span style={{color: "red"}}>*</span></label>
-                                <select  className="form-control"  >
+                                <select  className="form-control" onChange = {(e) => props.changeSubmitFormValue('projects', e.target.value)} >
                                 <option value="" >-- Select Project --</option>
-                                <option value="">Landmark81</option>
-                                <option value="">VinHome</option>
+                                {((props.projects || []).map((item, index) => {
+                                    return (
+                                        <option key = {index} value={item.id}>{item.name}</option>
+                                    )
+                                }))}
                                 </select>
                             </div>
                             <div className="form-group col-lg-6">
                                 <label>Team: <span style={{color: "red"}}>*</span></label>
-                                <select  className="form-control"  >
+                                <select  className="form-control" 
+                                    onChange = {(e) => props.changeSubmitFormValue('team', e.target.value)}
+                                >
                                     <option value="" >-- Select Team --</option>
-                                    <option value="">Paint</option>
-                                    <option value="">Building</option>
+                                    {((props.teams || []).map((item, index) => {
+                                    return (
+                                        <option key = {index} value={item.id}>{item.name}</option>
+                                    )
+                                }))}
                                 </select>
                                 </div>
-                            <div className="form-group col-lg-6">
-                                <label>Report Content:</label>
-                                <textarea rows="4" autoComplete="off" className="form-control" ></textarea>
-                            </div>
+                                <div className="form-group col-lg-6">
+                                    <label>Report Content:</label>
+                                    <textarea rows="4" autoComplete="off" className="form-control"
+                                        value = {props.data.content}
+                                        onChange = {(e) => props.changeSubmitFormValue('content', e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group col-lg-6">
+                                    <label>Note:</label>
+                                    <textarea rows="4" autoComplete="off" className="form-control"
+                                        value = {props.data.note}
+                                        onChange = {(e) => props.changeSubmitFormValue('note', e.target.value)}
+                                    />
+                                </div>
                             </div>
                         </form>
                             <div className="form-group col-lg-12">
-                                <button className="btn btn-success pull-right">Submit</button>
+                                <button className="btn btn-success pull-right"
+                                    onClick = {() => props.submit()}
+                                >Submit</button>
                             </div>
                       </div>
                     </div>

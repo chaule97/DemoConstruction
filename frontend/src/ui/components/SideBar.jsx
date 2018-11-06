@@ -55,7 +55,7 @@ const SideBar = props => {
                         </li>
                         <li>
                             <Link to={PATH.USER_URL}>
-                                <i className="fa fa-user"></i> SUPERVISOR
+                                <i className="fa fa-user"></i> USER
                             </Link>
                         </li>
                         <li>

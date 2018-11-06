@@ -12,7 +12,7 @@ const ListUserPage = props => {
               <div className="box-header with-border">
               <h3 className="box-title">
               <i className="fa fa-user m-r-5"></i>
-                <i className="fa m-r-5"></i> Manage Supervisor</h3>
+                <i className="fa m-r-5"></i> Manage User</h3>
               <div className="box-tools pull-right">
                 <a className="btn btn-primary btn-sm btn-head"  title="Add User"
                   onClick = {() => props.addUser()}
@@ -27,7 +27,7 @@ const ListUserPage = props => {
                         <th>User Name</th>
                         <th>Full Name</th>
                         <th>Email</th>                                
-                        <th>Status</th>                                
+                        <th>Group</th>                                
                         <th>Action</th>
                       </tr>
                     </thead>
