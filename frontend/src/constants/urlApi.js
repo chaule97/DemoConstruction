@@ -8,4 +8,5 @@ export default {
     getListProject: serverUrl + "/api/project",
     createProject: serverUrl + "/api/project",
     submitProcess: serverUrl + "/api/submit/",
+    getListSubmit: serverUrl + "/api/submit/",
 }

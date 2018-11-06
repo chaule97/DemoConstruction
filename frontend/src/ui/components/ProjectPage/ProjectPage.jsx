@@ -11,13 +11,7 @@ class ProjectPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: [
-                {
-                    start: new Date(),
-                    end: new Date(moment().add(1, "days")),
-                    title: "Click here to open modal"
-                }
-            ],
+            events: [],
             activeTab: '1',
             projects: [],
             admins: []
@@ -26,9 +20,16 @@ class ProjectPage extends React.Component {
     }
 
     componentWillMount() {
-        api.apiGet(urlApi.getListProject)
+        api.apiGet(urlApi.getListSubmit)
         .then(res =>
-          this.setState({projects: res.data})
+            {
+                let events = res.data.map(item => ({
+                    start: moment(item.date),
+                    end: moment(item.date),
+                    title: `${item.content} ${item.note}`
+                }))
+                this.setState({events})
+            }
         )
         // api.apiGet(urlApi.getListUser)
         // .then(res =>
