@@ -72,7 +72,7 @@ class ProjectPage extends React.Component {
                 <div className="row">
                     {listProjects.map((item, index) => {
                         return (
-                            <span className="cursor-pointer" onClick = {() => this.viewDashboard()}>
+                            <span key={index} className="cursor-pointer" onClick = {() => this.viewDashboard()}>
                             <div key={index} className="col-md-3 col-sm-6 col-xs-12">
                                 <Link to={'/project/detail'}>
                                     <div className="info-box">
