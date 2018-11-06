@@ -1,80 +1,157 @@
 import React from 'react';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
+import Calendar from 'react-big-calendar';
+import moment from 'moment';
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import * as api from '../../../api/api';
+import urlApi from '../../../constants/urlApi';
+import ViewDetailProcessModal from './ViewDetailProcessModal';
+const localizer = Calendar.momentLocalizer(moment);
+class Dashboard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            events: [],
+            activeTab: '1',
+            projects: [],
+            admins: [],
+            projects: [],
+            openModal: false,
+        };
+        this.toggle = this.toggle.bind(this);
+    }
 
-const Dashboard = props => {
-    return (
-        <section className="content">
-        <div className="row">
-            <div className="col-md-6">
-            <div className="box">
-                <div className="box-header with-border">
-                <h3 className="box-title">Bordered Table</h3>
-                </div>
-                <div className="box-body">
-                <table className="table table-bordered">
-                  <tbody>
-                  <tr>
-                    <th style={{width: "10px"}}>#</th>
-                    <th>Task</th>
-                    <th>Progress</th>
-                    <th style={{width: "40px"}}>Label</th>
-                    </tr>
-                    <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td>
-                        <div className="progress progress-xs">
-                        <div className="progress-bar progress-bar-danger" style={{width: "55%"}}></div>
-                        </div>
-                    </td>
-                    <td><span className="badge bg-red">55%</span></td>
-                    </tr>
-                    <tr>
-                    <td>2.</td>
-                    <td>Clean database</td>
-                    <td>
-                        <div className="progress progress-xs">
-                        <div className="progress-bar progress-bar-yellow" style={{width: "70%"}}></div>
-                        </div>
-                    </td>
-                    <td><span className="badge bg-yellow">70%</span></td>
-                    </tr>
-                    <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td>
-                        <div className="progress progress-xs progress-striped active">
-                        <div className="progress-bar progress-bar-primary" style={{width: "30%"}}></div>
-                        </div>
-                    </td>
-                    <td><span className="badge bg-light-blue">30%</span></td>
-                    </tr>
-                    <tr>
-                    <td>4.</td>
-                    <td>Fix and squish bugs</td>
-                    <td>
-                        <div className="progress progress-xs progress-striped active">
-                        <div className="progress-bar progress-bar-success" style={{width: "90%"}}></div>
-                        </div>
-                    </td>
-                    <td><span className="badge bg-green">90%</span></td>
-                    </tr>
-                  </tbody>
-                </table>
-                </div>
-                <div className="box-footer clearfix">
-                <ul className="pagination pagination-sm no-margin pull-right">
-                    <li><a >&laquo;</a></li>
-                    <li><a >1</a></li>
-                    <li><a >2</a></li>
-                    <li><a >3</a></li>
-                    <li><a >&raquo;</a></li>
-                </ul>
-                </div>
-            </div>
-            </div>
-            </div>
-          </section>
-    );
+    componentWillMount() {
+        this.getProject()
+        this.getDetail()
+    }
+
+    getProject = () => {
+        api.apiGet(urlApi.getListProject).then(res => {
+            if (res) {
+                this.setState({ projects: res.data })
+            }
+        }
+        )
+    }
+
+    getDetail = () => {
+        api.apiGet(urlApi.getListSubmit)
+            .then(res => {
+                let events = res.data.map(item => ({
+                    start: moment(item.date),
+                    end: moment(item.date).add(1, 'day'),
+                    title: `${item.content} ${item.note}`
+                }))
+                this.setState({ events })
+            }
+            )
+    }
+
+    toggle(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
+
+    openModal = (event) => {
+        this.setState({ openModal: true })
+    }
+    closeModal = (event) => {
+        this.setState({ openModal: false })
+    }
+
+    eventStyleGetter = () => {
+        return {
+            style: {
+                backgroundColor: '#ff9f89',
+                borderRadius: '0px',
+                opacity: 0.8,
+                color: 'black',
+                border: '0px',
+                display: 'block'
+            }
+        }
+    }
+
+    render() {
+        const { projects, openModal, dataOfModal = {} } = this.state;
+        console.log(projects)
+        return (
+            <span>
+
+                <section className="content">
+                    <Nav tabs>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({ active: this.state.activeTab === '1' })}
+                                onClick={() => { this.toggle('1'); }}
+                                style={{ color: 'black', cursor: 'pointer' }}
+                            >
+                                Dashboard
+                        </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({ active: this.state.activeTab === '2' })}
+                                onClick={() => { this.toggle('2'); }}
+                                style={{ color: 'black', cursor: 'pointer' }}
+                            >
+                                Detail
+            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <TabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId="1">
+                            <div className="row" style={{ marginTop: '10px' }}>
+                                {(projects || []).map((item, index) => {
+                                    return (
+                                        <div className="col-md-3 col-sm-6 col-xs-12">
+                                            <div className="info-box">
+                                                <span className="info-box-icon bg-aqua"><i className="fa  fa-cogs"></i></span>
+
+                                                <div className="info-box-content">
+                                                    <span className="info-box-text">{item.name}</span>
+                                                    <span className="info-box-number">{item.admin.username}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            <div className="right">
+                                <Button onClick={() => this.props.createProject()}>Create Project</Button>
+                            </div>
+                        </TabPane>
+                        <TabPane tabId="2">
+                            <Row style={{ marginTop: '10px' }}>
+                                <Col sm="12">
+                                    <Calendar
+                                        localizer={localizer}
+                                        defaultDate={new Date()}
+                                        defaultView="month"
+                                        events={this.state.events}
+                                        style={{ height: "100vh" }}
+                                        onSelectEvent={(event) => this.openModal(event)}
+                                        eventPropGetter={(this.eventStyleGetter)}
+                                    />
+                                </Col>
+                            </Row>
+                        </TabPane>
+                    </TabContent>
+
+                </section>
+                <ViewDetailProcessModal
+                    openModal={openModal}
+                    data={dataOfModal}
+                    close={this.closeModal}
+                />
+            </span>
+        );
+    }
 }
 
 export default Dashboard;

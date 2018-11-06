@@ -29,8 +29,9 @@ const AddTeamPage = props => {
                                 <select  className="form-control" onChange = {(e) => props.changeAddTeamProject('name', (e.target.value))} >
                                 <option value="" >-- Select Project --</option>
                                 {((props.projects || []).map((item, index) => {
+                                    console.log(item)
                                     return (
-                                        <option key = {index} value={item.name}>{item.name}</option>
+                                        <option key = {index} value={item.id}>{item.name}</option>
                                     )
                                 }))}
                                 </select>

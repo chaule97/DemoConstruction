@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 const ListUserPage = props => {
   const {listUsers} = props;
-    console.log(props.listUsers)
   return (
       <div>             
           <section className="content">
