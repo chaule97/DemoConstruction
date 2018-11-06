@@ -293,7 +293,7 @@ li.L9 {
 }
 
 .main-sidebar {
-  background-color: #222d32 !important;
+  background-color: #000 !important;
 }
 
 .main-sidebar .sidebar .sidebar-menu li a {
@@ -310,7 +310,7 @@ li.L9 {
 }
 
 .bg-steelblue {
-  background-color: steelblue !important;
+  background-color: #1a355b !important;
 }
 
 .skin-blue .main-header .navbar .nav>li>a {
@@ -323,4 +323,8 @@ li.L9 {
 
 .content-header .cursor-pointer:hover {
   color: #00a65a;
+}
+
+.right {
+  float: right !important;
 }

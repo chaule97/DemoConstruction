@@ -4,7 +4,7 @@ import './App.css';
 import * as PATH from '../constants/routeConstants';
 import Header from '../ui/containers/Header';
 import SideBar from '../ui/containers/SideBar';
-import ProjectContainer from '../ui/containers/ProjectPage/ProjectPage';
+import ProjectContainer from '../ui/containers/ProjectPage/ProjectPageRoutes';
 import TeamContainer from '../ui/containers/TeamPage/TeamPageRoutes';
 import UserContainer from '../ui/containers/ListUserPage/UserPageRoutes';
 import SubmitFormContainer from '../ui/containers/SubmitForm/SubmitForm';
