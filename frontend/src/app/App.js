@@ -6,7 +6,7 @@ import Header from '../ui/containers/Header';
 import SideBar from '../ui/containers/SideBar';
 import ProjectContainer from '../ui/containers/ProjectPage/ProjectPageRoutes';
 import TeamContainer from '../ui/containers/TeamPage/TeamPageRoutes';
-import UsersContainer from '../ui/containers/ListUserPage/ListUserPage';
+import UserContainer from '../ui/containers/ListUserPage/UserPageRoutes';
 import SubmitFormContainer from '../ui/containers/SubmitForm/SubmitForm';
 
 
@@ -37,7 +37,7 @@ class App extends Component {
                 { /**/}
                 <Switch>
                     <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
-                    <Route path={PATH.USER_URL} extact component={UsersContainer} />
+                    <Route path={PATH.USER_URL} extact component={UserContainer} />
                     <Route path={PATH.TEAM_URL} extact component={TeamContainer} />
                     <Route path={PATH.FORM_SUBMIT_URL} extact component={SubmitFormContainer} />
                     <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL}/>} />
