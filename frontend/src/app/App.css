@@ -324,3 +324,7 @@ li.L9 {
 .content-header .cursor-pointer:hover {
   color: #00a65a;
 }
+
+.right {
+  float: right !important;
+}

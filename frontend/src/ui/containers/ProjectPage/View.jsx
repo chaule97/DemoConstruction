@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
+import * as PATH from '../../../constants/routeConstants';
 import ViewComponent from  '../../components/ProjectPage/ProjectPage';
 import ViewDetailProcessModal from '../../components/ProjectPage/ViewDetailProcessModal';
 class View extends Component {
@@ -19,11 +21,18 @@ class View extends Component {
         this.setState({openModal: false})
     }
 
+    createProject = () => {
+        this.props.history.push(PATH.PROJECT_CREATE_URL)
+    }
+
     render() {
         const {openModal, dataOfModal} = this.state;
         return (
             <span>
-                <ViewComponent openModal = {event => this.openModal(event)}/>
+                <ViewComponent 
+                    openModal = {event => this.openModal(event)}
+                    createProject = {() => this.createProject()}
+                />
                 <ViewDetailProcessModal 
                     openModal= {openModal} 
                     data = {dataOfModal}
@@ -34,4 +43,4 @@ class View extends Component {
     }
 }
 
-export default View;
+export default withRouter(View);

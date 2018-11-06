@@ -115,6 +115,9 @@ class ProjectPage extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="right">
+                            <Button onClick = {() => this.props.createProject()}>Create Project</Button>
+                        </div>
                     </TabPane>
                     <TabPane tabId="2">
                         <Row style={{ marginTop: '10px' }}>
