@@ -52,7 +52,7 @@ class SubmitForm extends Component {
         api.apiPost(urlApi.submitProcess, data).then(res =>
             {
                 if(res) {
-                    console.log(res)
+                    // console.log(res)
                     this.props.history.push(PATH.PROJECT_VIEW_URL);
                 }
             }
@@ -68,7 +68,7 @@ class SubmitForm extends Component {
                 teamable.push(item);
             }
         });
-        console.log(data)
+        // console.log(data)
         return (
           <SubmitFormComponent
             projects = {projects} 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const AddTeamPage = props => {
-    console.log(props)
+    // console.log(props)
         return (
             <div>
                 <section className="content">
@@ -29,7 +29,7 @@ const AddTeamPage = props => {
                                 <select  className="form-control" onChange = {(e) => props.changeAddTeamProject('name', (e.target.value))} >
                                 <option value="" >-- Select Project --</option>
                                 {((props.projects || []).map((item, index) => {
-                                    console.log(item)
+                                    // console.log(item)
                                     return (
                                         <option key = {index} value={item.id}>{item.name}</option>
                                     )
