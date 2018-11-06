@@ -27,6 +27,12 @@ class App extends Component {
                             <Route path={PATH.USER_ADD_URL} extact render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
+                            <Route path={PATH.PROJECT_CREATE_URL} extact render={() =>
+                                <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
+                            } />
+                            <Route path={PATH.PROJECT_DETAIL_URL} extact render={() =>
+                                <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
+                            } />
                             <Route path={PATH.PROJECT_URL} extact render={() => <h1>Project</h1>} />
                             <Route path={PATH.PROJECT_DETAIL_URL } render={() => <h1>Detail</h1>} />
                             <Route path={PATH.USER_URL} extact render={() => <h1>User</h1>} />
