@@ -3,7 +3,7 @@ import DetailComponent from '../../components/ProjectPage/Detail';
 class Detail extends Component {
 
     openModal = (data) => {
-        console.log(data)
+        // console.log(data)
     }
     render() {
         return (

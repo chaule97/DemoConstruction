@@ -34,7 +34,7 @@ class AddUserPage extends Component {
 
     render() {
         const  {data} = this.state;
-        console.log(data)
+        // console.log(data)
         return (
           <AddUserPageComponent
             changeDataValue = {(key, value) => this.changeDataValue(key, value)}

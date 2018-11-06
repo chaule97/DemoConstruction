@@ -79,7 +79,7 @@ class Dashboard extends React.Component {
 
     render() {
         const { projects, openModal, dataOfModal = {} } = this.state;
-        console.log(projects)
+        // console.log(projects)
         return (
             <span>
 
@@ -122,9 +122,7 @@ class Dashboard extends React.Component {
                                     )
                                 })}
                             </div>
-                            <div className="right">
-                                <Button onClick={() => this.props.createProject()}>Create Project</Button>
-                            </div>
+                            
                         </TabPane>
                         <TabPane tabId="2">
                             <Row style={{ marginTop: '10px' }}>

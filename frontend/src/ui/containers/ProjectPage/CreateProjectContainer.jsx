@@ -43,7 +43,7 @@ class CreateProjectContainer extends Component {
 
     render() {
         const {admins, project} = this.state;
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <CreateProjectComponent 
             project = {project} 

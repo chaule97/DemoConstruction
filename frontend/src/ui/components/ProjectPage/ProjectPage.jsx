@@ -2,18 +2,19 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
 import * as PATH from '../../../constants/routeConstants';
 const localizer = Calendar.momentLocalizer(moment);
 class ProjectPage extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
             events: [],
             activeTab: '1',
-            projects: [],
             admins: [],
             projects: []
         };
@@ -87,6 +88,9 @@ class ProjectPage extends React.Component {
                             </span>
                         )
                     })}
+                </div>
+                <div className="right">
+                    <Button onClick={() => this.props.createProject()}>Create Project</Button>
                 </div>
             </section>
         );
