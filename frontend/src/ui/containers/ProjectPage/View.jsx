@@ -3,6 +3,8 @@ import {withRouter} from 'react-router-dom';
 import * as PATH from '../../../constants/routeConstants';
 import ViewComponent from  '../../components/ProjectPage/ProjectPage';
 import ViewDetailProcessModal from '../../components/ProjectPage/ViewDetailProcessModal';
+import * as api from '../../../api/api';
+import urlApi from '../../../constants/urlApi';
 class View extends Component {
 
     constructor(props) {
@@ -10,8 +12,16 @@ class View extends Component {
         this.state = {
             openModal: false,
             dataOfModal: {},
+            projects: [],
         }
     }
+    
+      componentWillMount() {
+        api.apiGet(urlApi.getListProject)
+        .then(res =>
+          this.setState({projects: res.data})
+          )
+        }
     
     openModal = (event) => {
         this.setState({openModal: true, dataOfModal: event})
@@ -26,10 +36,11 @@ class View extends Component {
     }
 
     render() {
-        const {openModal, dataOfModal} = this.state;
+        const {openModal, dataOfModal, projects} = this.state;
         return (
             <span>
-                <ViewComponent 
+                <ViewComponent
+                    listProjects = {projects}
                     openModal = {event => this.openModal(event)}
                     createProject = {() => this.createProject()}
                 />
