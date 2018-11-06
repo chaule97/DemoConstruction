@@ -84,7 +84,7 @@ class ProjectPage extends React.Component {
                         <NavLink
                             className={classnames({ active: this.state.activeTab === '1' })}
                             onClick={() => { this.toggle('1'); }}
-                            style={{ color: 'black' }}
+                            style={{ color: 'black' , cursor: 'pointer'}}
                         >
                             Dashboard
                         </NavLink>
@@ -93,7 +93,7 @@ class ProjectPage extends React.Component {
                         <NavLink
                             className={classnames({ active: this.state.activeTab === '2' })}
                             onClick={() => { this.toggle('2'); }}
-                            style={{ color: 'black' }}
+                            style={{ color: 'black' , cursor: 'pointer'}}
                         >
                             Detail
             </NavLink>
