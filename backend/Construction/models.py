@@ -8,7 +8,7 @@ class Project(models.Model):
     address = models.CharField(max_length=15)
     construction_items = models.CharField(max_length=15)
     position = models.CharField(max_length=15)
-    admin = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='projects')
+    supervisor = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='projects')
 
     def __str__(self):
         return self.name
