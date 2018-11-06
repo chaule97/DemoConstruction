@@ -11,3 +11,11 @@ export const apiGet = (url) => {
         return error
       })
 }
+export const apiPost = (url, data) => {
+    return axios.post(url, data).then((response) => {
+        return (response)
+      })
+      .catch( (error) => {
+        return error
+      })
+}

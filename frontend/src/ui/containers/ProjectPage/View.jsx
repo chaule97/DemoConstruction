@@ -37,6 +37,7 @@ class View extends Component {
 
     render() {
         const {openModal, dataOfModal, projects} = this.state;
+        
         return (
             <span>
                 <ViewComponent

@@ -8,6 +8,7 @@ import router from './router.js';
 // import 'jquery';
 // import 'popper.js/dist/umd/popper';
 // import 'bootstrap/dist/js/bootstrap.min.js';
+import './stylesheets/main.scss';
 const store = createStore(
     appReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

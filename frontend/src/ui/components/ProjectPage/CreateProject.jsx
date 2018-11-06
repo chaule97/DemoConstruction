@@ -1,6 +1,7 @@
 import React from 'react';
 
 const CreateProject = props => {
+    // console.log(props)
     return (
         <div>
                 <section className="content">
@@ -18,24 +19,36 @@ const CreateProject = props => {
                             <div>
                             <div className="form-group col-lg-6">
                                 <label>Project Name: <span style={{color: "red"}}>*</span></label>
-                                <input type="text" autoComplete="off" className="form-control"/>
+                                <input type="text" autoComplete="off" className="form-control"
+                                    value = {props.project.name}
+                                    onChange = {(e) => props.changeProjectDetailValue('name', e.target.value)}
+                                />
                             </div>
                             <div className="form-group col-lg-6">
                                 <label>Admin: <span style={{color: "red"}}>*</span></label>
-                                <select  className="form-control"  >
-                                    <option value="" >-- Select Admin --</option>
-                                    <option value="">Admin 1</option>
-                                    <option value="">Admin 2</option>
+                                <select  className="form-control"
+                                    onChange = {(e) => props.changeProjectDetailValue('admin', e.target.value)} 
+                                >
+                                    {(props.listAdmin || []).map((item, index) => {
+                                        return (
+                                            <option key = {index} value={item.id}>{item.username}</option>
+                                        )
+                                    })}
                                 </select>
                                 </div>
                             <div className="form-group col-lg-6">
                                 <label>Description:</label>
-                                <textarea rows="4" autoComplete="off" className="form-control" ></textarea>
+                                <textarea rows="4" autoComplete="off" className="form-control" 
+                                     value = {props.project.description}
+                                     onChange = {(e) => props.changeProjectDetailValue('description', e.target.value)}
+                                />
                             </div>
                             </div>
                         </form>
                             <div className="form-group col-lg-12">
-                                <button className="btn btn-success pull-right">Add</button>
+                                <button className="btn btn-success pull-right"
+                                    onClick = {() => props.createProject()}
+                                >Add</button>
                             </div>
                       </div>
                     </div>

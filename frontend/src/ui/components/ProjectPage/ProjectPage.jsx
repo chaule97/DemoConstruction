@@ -19,7 +19,8 @@ class ProjectPage extends React.Component {
                 }
             ],
             activeTab: '1',
-            projects: []
+            projects: [],
+            admins: []
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -28,8 +29,12 @@ class ProjectPage extends React.Component {
         api.apiGet(urlApi.getListProject)
         .then(res =>
           this.setState({projects: res.data})
-          )
-        }
+        )
+        // api.apiGet(urlApi.getListUser)
+        // .then(res =>
+        //   this.setState({projects: res.data})
+        // )
+    }
 
     toggle(tab) {
         if (this.state.activeTab !== tab) {

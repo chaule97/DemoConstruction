@@ -40,8 +40,8 @@ const ListUserPage = props => {
                           <td>{item.email}</td>
                           <td>
                             {item.is_staff ?
-                            <span className="label label-success">Active</span>
-                              :<span className="label label-danger">Inactive</span>
+                            <span className="label label-success">Admin</span>
+                              :<span className="label label-danger">Supervisor</span>
                             }
                             
                             </td>

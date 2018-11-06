@@ -4,4 +4,5 @@ export default {
     getListUser: serverUrl + "/api/user/",
     getListTeam: serverUrl + "/api/team/",
     getListProject: serverUrl + "/api/project",
+    createProject: serverUrl + "/api/project",
 }
