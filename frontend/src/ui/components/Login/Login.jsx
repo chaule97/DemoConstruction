@@ -5,12 +5,12 @@ const Login = props => {
     return (
         <div class="login-box">
             <div class="login-logo">
-                <a href="../../index2.html"><b>Management</b> Admin</a>
+                <a ><b>Management</b> Admin</a>
             </div>
             <div class="login-box-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="../../index2.html" method="post">
+                <form >
                     <div class="form-group has-feedback">
                         <input type="email" class="form-control" placeholder="Email"/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -28,8 +28,9 @@ const Login = props => {
                         </div>
                         </div>
                         <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat"
-                        ><Link to = {PATH.HOME_URL}><span className = "color-white">Sign In</span> </Link></button>
+                        <button class="btn btn-primary btn-block btn-flat"
+                            onClick = {() => props.login()}
+                        ><Link to = {PATH.PROJECT_VIEW_URL}><span className = "color-white">Sign In</span> </Link></button>
                         </div>
                     </div>
                 </form>

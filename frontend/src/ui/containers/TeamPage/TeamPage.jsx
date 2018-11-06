@@ -14,8 +14,10 @@ class TeamPage extends Component {
 
   componentWillMount() {
     api.apiGet(urlApi.getListTeam)
-    .then(res =>
-      this.setState({teams: res.data})
+    .then(res => { 
+      if(res) {
+        this.setState({teams: res.data})}
+      }
       )
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { Switch, Route, Redirect} from "react-router-dom";
 import './App.css';
 import * as PATH from '../constants/routeConstants';
 import Header from '../ui/containers/Header';
@@ -8,11 +8,28 @@ import ProjectContainer from '../ui/containers/ProjectPage/ProjectPageRoutes';
 import TeamContainer from '../ui/containers/TeamPage/TeamPageRoutes';
 import UserContainer from '../ui/containers/ListUserPage/UserPageRoutes';
 import SubmitFormContainer from '../ui/containers/SubmitForm/SubmitForm';
+import { withRouter } from "react-router";
 
 
 
 class App extends Component {
+
+    componentWillMount() {
+        this.getLoginStatus()
+    }
+
+    getLoginStatus = () => {
+        const status = localStorage.getItem('login');
+        // console.log(status)
+        if(status) {
+            return;
+        } else {
+            this.props.history.push(PATH.LOGIN_URL);
+        }
+    }
+
     render() {
+        // console.log(this.props)
         return (
             <div>
                 <Header />

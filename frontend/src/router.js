@@ -10,4 +10,4 @@ export default (
         <Route path={PATH.HOME_URL} component={App} />
       </Switch>
     </Router>
-  );
+);
