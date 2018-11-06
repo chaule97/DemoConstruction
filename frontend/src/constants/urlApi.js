@@ -5,8 +5,8 @@ export default {
     createUser: serverUrl + "/api/user/",
     getListTeam: serverUrl + "/api/team/",
     createTeam: serverUrl + "/api/team/",
-    getListProject: serverUrl + "/api/project",
-    createProject: serverUrl + "/api/project",
+    getListProject: serverUrl + "/api/project/",
+    createProject: serverUrl + "/api/project/",
     submitProcess: serverUrl + "/api/submit/",
     getListSubmit: serverUrl + "/api/submit/",
 }
