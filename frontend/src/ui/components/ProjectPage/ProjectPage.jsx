@@ -14,12 +14,28 @@ class ProjectPage extends React.Component {
             events: [],
             activeTab: '1',
             projects: [],
-            admins: []
+            admins: [],
+            projects: []
         };
         this.toggle = this.toggle.bind(this);
     }
 
     componentWillMount() {
+        this.getProject()
+        this.getDetail()
+    }
+
+    getProject = () => {
+        api.apiGet(urlApi.getListProject).then(res => 
+            {
+                if(res) {
+                    this.setState({projects : res.data})
+                }
+            }
+        )
+    }
+
+    getDetail = () => {
         api.apiGet(urlApi.getListSubmit)
         .then(res =>
             {
@@ -31,10 +47,6 @@ class ProjectPage extends React.Component {
                 this.setState({events})
             }
         )
-        // api.apiGet(urlApi.getListUser)
-        // .then(res =>
-        //   this.setState({projects: res.data})
-        // )
     }
 
     toggle(tab) {
@@ -49,8 +61,22 @@ class ProjectPage extends React.Component {
         this.props.openModal(event)
     }
 
+    eventStyleGetter = () => {
+        return {
+            style : {
+                backgroundColor: '#ff9f89',
+                borderRadius: '0px',
+                opacity: 0.8,
+                color: 'black',
+                border: '0px',
+                display: 'block'
+            }
+        }
+    }
+
     render() {
-        const {projects} = this.state
+        const {projects} = this.state;
+        console.log(projects)
         return (
             <section className="content">
                 <Nav tabs>
@@ -76,7 +102,7 @@ class ProjectPage extends React.Component {
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="1">
                         <div className="row" style={{ marginTop: '10px' }}>
-                            {projects.map((item, index) => {
+                            {(projects || []).map((item, index) => {
                                 return(
                                     <div className="col-md-3 col-sm-6 col-xs-12">
                                         <div className="info-box">
@@ -105,6 +131,7 @@ class ProjectPage extends React.Component {
                                     events={this.state.events}
                                     style={{ height: "100vh" }}
                                     onSelectEvent = {(event) => this.openModal(event)}
+                                    eventPropGetter={(this.eventStyleGetter)}
                                 />
                             </Col>
                         </Row>

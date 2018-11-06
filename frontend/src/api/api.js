@@ -8,7 +8,7 @@ export const apiGet = (url) => {
         return (response)
       })
       .catch( (error) => {
-        return error
+        return {}
       })
 }
 export const apiPost = (url, data) => {
