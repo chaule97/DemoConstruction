@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import * as PATH from '../../../constants/routeConstants';
 import ProjectPageComponent from './View';
 import DashboardComponent from '../../components/ProjectPage/Dashboard';
-import DetailContainer from './Detail';
+import DetailContainer from '../../components/ProjectPage/Detail';
 import CreateProjectContainer from './CreateProjectContainer';
 class ProjectPage extends Component {
     render() {
