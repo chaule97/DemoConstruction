@@ -10,7 +10,7 @@ class ListUserPage extends Component {
   }
 
   componentWillMount() {
-    // api.apiGet(urlApi.getListUser)
+    api.apiGet(urlApi.getListUser)
     // .then(res =>
     //   console.log(res))
   }

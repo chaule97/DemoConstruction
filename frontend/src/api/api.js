@@ -10,17 +10,25 @@ const params = {
     format: 'json'
 }
 
+const headers = {
+    "Access-Control-Allow-Origin" : "*",
+    "Access-Control-Allow-Methods" : "GET, OPTIONS",
+    "Access-Control-Max-Age" : "1000",
+    "Access-Control-Allow-Headers" : "X-Requested-With, Content-Type"
+}
+
 export const apiGet = (url) => {
-    axios.get(url).then( (response) => {
-        console.log(response) 
-      })
-      .catch( (error) => {
-        console.log(error) 
-      })
-      
+    // axios.get(url).then( (response) => {
+    //     console.log(response) 
+    //   })
+    //   .catch( (error) => {
+    //     console.log(error) 
+    //   })
+
     const data = new Promise((resolve, reject) => {
       request.get({
-        url: url
+        url: url,
+        // headers: headers,
       }, (error, response, body) => {
         if (response.statusCode == 200 && body && !error) {
           body = JSON.parse(body);
