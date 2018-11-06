@@ -40,10 +40,11 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('id','url','username', 'password','email','last_name','is_staff')
+        fields = ('id','url','username', 'password','email', 'is_superuser')
         extra_kwargs = {
              "password": {"write_only": True},
              "is_staff": {"read_only": True},
+             "is_superuser": {"read_only": True},
         }
 
     def create(self, validated_data):
@@ -66,19 +67,21 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('id','name', 'admin')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'admin')
         extra_kwargs = {
              "admin": {"read_only": True}
         }
+
 class Project_Team_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields = ('id','name')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position')
+
 class CreateProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('id', 'name','admin')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'admin')
 
 
 class CreateTeamSerializer(serializers.ModelSerializer):
@@ -97,4 +100,4 @@ class TeamSerializer(serializers.ModelSerializer):
 class SubmitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submit
-        fields = ('id','url','projects', 'team', 'date', 'content','note','job_tomorrow')
+        fields = ('id','url','projects', 'team', 'date', 'task_name','worker_number','process', 'content', 'proposed_materials', 'job_tomorrow')
