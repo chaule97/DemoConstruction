@@ -5,7 +5,6 @@ import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = Calendar.momentLocalizer(moment);
-
 class ProjectPage extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +13,7 @@ class ProjectPage extends React.Component {
                 {
                     start: new Date(),
                     end: new Date(moment().add(1, "days")),
-                    title: "Some title"
+                    title: "Click here to open modal"
                 }
             ],
             activeTab: '1'
@@ -29,6 +28,11 @@ class ProjectPage extends React.Component {
             });
         }
     }
+
+    openModal = (event) => {
+        this.props.openModal(event)
+    }
+
     render() {
         return (
             <section className="content">
@@ -121,6 +125,7 @@ class ProjectPage extends React.Component {
                                     defaultView="month"
                                     events={this.state.events}
                                     style={{ height: "100vh" }}
+                                    onSelectEvent = {(event) => this.openModal(event)}
                                 />
                             </Col>
                         </Row>
