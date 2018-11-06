@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
+import * as PATH from '../../../constants/routeConstants';
 const Login = props => {
     return (
         <div class="login-box">
@@ -27,7 +28,8 @@ const Login = props => {
                         </div>
                         </div>
                         <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat"
+                        ><Link to = {PATH.HOME_URL}><span className = "color-white">Sign In</span> </Link></button>
                         </div>
                     </div>
                 </form>
