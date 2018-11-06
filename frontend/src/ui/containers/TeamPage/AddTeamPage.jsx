@@ -37,7 +37,7 @@ class AddTeamPage extends Component {
 
     changeAddTeamProject = (key, value) => {
         let {data} = this.state;
-        data.project[key] = value;
+        data.project = value;
         this.setState({data})
     }
 
