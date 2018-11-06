@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Project, Team, Submit
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from rest_framework.serializers import SerializerMethodField
 
 class LoginSerializer(serializers.ModelSerializer):
     access =  serializers.BooleanField(read_only=True)
@@ -38,10 +39,11 @@ class LoginSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User 
-        fields = ('id','url','username', 'password')
+        model = User
+        fields = ('id','url','username', 'password','email','last_name','is_staff')
         extra_kwargs = {
              "password": {"write_only": True},
+             "is_staff": {"read_only": True},
         }
 
     def create(self, validated_data):
@@ -51,17 +53,48 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         user.save()
         return user
 
-class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+class AdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','username', 'is_staff')
+        extra_kwargs = {
+             "is_staff": {"read_only": True},
+        }
+
+class ProjectSerializer(serializers.ModelSerializer):
+    admin = AdminSerializer(many=False)
+
     class Meta:
         model = Project
-        fields = ('id','url','name', 'admin')
+        fields = ('id','name', 'admin')
+        extra_kwargs = {
+             "admin": {"read_only": True}
+        }
+class Project_Team_Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('id','name')
+class CreateProjectSerializer(serializers.ModelSerializer):
 
-class TeamSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Project
+        fields = ('id', 'name','admin')
+
+
+class CreateTeamSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Team
-        fields = ('id','url','name')
+        fields = ('id','name','project')
+
+class TeamSerializer(serializers.ModelSerializer):
+    project = Project_Team_Serializer(many=False)
+    class Meta:
+        model = Team
+        fields = ('id','name','project')
+
 
 class SubmitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submit
-        fields = ('id','url','projects', 'team', 'date', 'content')
+        fields = ('id','url','projects', 'team', 'date', 'content','note','job_tomorrow')
