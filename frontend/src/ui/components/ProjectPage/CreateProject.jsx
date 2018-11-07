@@ -57,5 +57,4 @@ const CreateProject = props => {
         </div>
     );
 }
-
 export default CreateProject;
