@@ -10,7 +10,7 @@ const ListProjectPage = props => {
               <div className="box-header with-border">
                 <h3 className="box-title">
                   <i className="fa fa-user m-r-5"></i>
-                  <i className="fa m-r-5"></i> Dự án</h3>
+                  <i className="fa m-r-5"></i> Công việc</h3>
 
               </div>
               <div className="box-body">
@@ -18,7 +18,7 @@ const ListProjectPage = props => {
                   <thead>
                     <tr>
                       <th>Tên dự án</th>
-                      <th>Giám sát</th>
+                      <th>Nhóm làm việc</th>
                       <th>Ngày khởi tạo</th>
                       <th></th>
                     </tr>

@@ -22,7 +22,7 @@ class SubmitForm extends Component {
     componentWillMount() {
         this.getProjectDetail(this.getProjectId());
         this.getTeam();
-        
+        console.log(this.state);
     }
     
     getProjectDetail = (id) => {
@@ -47,7 +47,11 @@ class SubmitForm extends Component {
         this.setState({data});
     }
     getProjectId = () => {
-       return this.props.location.pathname.split("id=")[1]
+       const id =  this.props.location.pathname.split("id=")[1];
+       let {data} = this.state;
+       data.projects = id;
+       this.setState({data});
+       return id;
     }
     submit = () => {
         const {data} = this.state;
@@ -70,7 +74,7 @@ class SubmitForm extends Component {
         //         teamable.push(item);
         //     }
         // });
-        console.log(this.props)
+        console.log(this.state)
         return (
           <SubmitFormComponent
             projects = {projects} 
