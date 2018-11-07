@@ -133,6 +133,7 @@ class ProjectPage extends React.Component {
                        </thead>
                        <tbody>
                        {(listProjects || []).map((item, index) => {
+                           console.log(item)
                         return (
                             <tr key={index}>
                                 <td>{item.name}</td>
@@ -140,7 +141,7 @@ class ProjectPage extends React.Component {
                                 <td>{moment().format("DD-MM-YYYY")}</td>
                                 <td>
                                     <Button color={'info'}>Chi tiết</Button> &nbsp;
-                                    <Button color={'success'}>Báo cáo</Button>
+                                    <Link to = {`${PATH.FORM_SUBMIT_URL}/id=${item.id}`}><Button color={'success'}>Báo cáo</Button></Link>
                                 </td>
                             </tr>
                         )

@@ -17,7 +17,7 @@ const SubmitForm = props => {
                       <form>
                             <div>
                         
-                            <div className="form-group col-lg-6">
+                            {/* <div className="form-group col-lg-6">
                                 <label>Tên dự án: <span style={{color: "red"}}>*</span></label>
                                 <select  className="form-control" onChange = {(e) => props.changeSubmitFormValue('projects', e.target.value)} >
                                 <option value="" >-- Select Project --</option>
@@ -27,9 +27,9 @@ const SubmitForm = props => {
                                     )
                                 }))}
                                 </select>
-                            </div>
-                            <div className="form-group col-lg-6">
-                                <label>Nhóm: <span style={{color: "red"}}>*</span></label>
+                            </div> */}
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                <label>Nhóm thi công: <span style={{color: "red"}}>*</span></label>
                                 <select  className="form-control" 
                                     onChange = {(e) => props.changeSubmitFormValue('team', e.target.value)}
                                 >
@@ -40,8 +40,50 @@ const SubmitForm = props => {
                                     )
                                 }))}
                                 </select>
-                                </div>
-                                <div className="form-group col-lg-6">
+                            </div>
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                    <label>Công việc: <span style={{color: "red"}}>*</span></label>
+                                    <textarea rows="3" autoComplete="off" className="form-control"
+                                        value = {props.data.task_name}
+                                        onChange = {(e) => props.changeSubmitFormValue('task_name', e.target.value)}
+                                    />
+                            </div>
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                    <label>Số lượng công nhân:</label>
+                                    <input type= "number" autoComplete="off" className="form-control"
+                                        value = {props.data.worker_number}
+                                        onChange = {(e) => props.changeSubmitFormValue('worker_number', e.target.value)}
+                                    />
+                            </div>
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                    <label>Tiến độ đạt được: </label>
+                                    <input type= "number" autoComplete="off" className="form-control"
+                                        value = {props.data.process}
+                                        onChange = {(e) => props.changeSubmitFormValue('process', e.target.value)}
+                                    />
+                            </div>
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                    <label>Ghi chú, đề xuất: <span style={{color: "red"}}>*</span></label>
+                                    <textarea rows="3" autoComplete="off" className="form-control"
+                                        value = {props.data.content}
+                                        onChange = {(e) => props.changeSubmitFormValue('content', e.target.value)}
+                                    />
+                            </div>
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                    <label>Đề xuất vật tư: <span style={{color: "red"}}>*</span></label>
+                                    <textarea rows="2" autoComplete="off" className="form-control"
+                                        value = {props.data.proposed_materials}
+                                        onChange = {(e) => props.changeSubmitFormValue('proposed_materials', e.target.value)}
+                                    />
+                            </div>
+                            <div className="form-group col-sm-12 col-md-4 col-lg-4">
+                                    <label>Các công việc cần chuẩn bị: <span style={{color: "red"}}>*</span></label>
+                                    <textarea rows="3" autoComplete="off" className="form-control"
+                                        value = {props.data.job_tomorrow}
+                                        onChange = {(e) => props.changeSubmitFormValue('job_tomorrow', e.target.value)}
+                                    />
+                            </div>
+                                {/* <div className="form-group col-lg-6">
                                     <label>Nội dung:</label>
                                     <textarea rows="4" autoComplete="off" className="form-control"
                                         value = {props.data.content}
@@ -54,7 +96,7 @@ const SubmitForm = props => {
                                         value = {props.data.note}
                                         onChange = {(e) => props.changeSubmitFormValue('note', e.target.value)}
                                     />
-                                </div>
+                                </div> */}
                             </div>
                         </form>
                             <div className="form-group col-lg-12">

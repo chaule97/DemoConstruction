@@ -15,18 +15,18 @@ class SubmitForm extends Component {
             teamable: [],
             data: {
                 date: moment().format('YYYY-MM-DD'),
-                job_tomorrow: 'test'
             },
         }
     }
 
     componentWillMount() {
-        this.getProject();
+        this.getProjectDetail(this.getProjectId());
         this.getTeam();
+        
     }
     
-    getProject = () => {
-        api.apiGet(urlApi.getListProject).then(res => {
+    getProjectDetail = (id) => {
+        api.apiGet(urlApi.getListProject + id).then(res => {
             if(res) {
                 this.setState({projects: res.data})
             }
@@ -46,7 +46,9 @@ class SubmitForm extends Component {
         data[key] = value;
         this.setState({data});
     }
-
+    getProjectId = () => {
+       return this.props.location.pathname.split("id=")[1]
+    }
     submit = () => {
         const {data} = this.state;
         api.apiPost(urlApi.submitProcess, data).then(res =>
@@ -68,7 +70,7 @@ class SubmitForm extends Component {
         //         teamable.push(item);
         //     }
         // });
-        // console.log(data)
+        console.log(this.props)
         return (
           <SubmitFormComponent
             projects = {projects} 
