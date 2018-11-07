@@ -54,7 +54,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         user.save()
         return user
 
-class AdminSerializer(serializers.ModelSerializer):
+class SupervisorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username', 'is_staff')
@@ -63,13 +63,13 @@ class AdminSerializer(serializers.ModelSerializer):
         }
 
 class ProjectSerializer(serializers.ModelSerializer):
-    admin = AdminSerializer(many=False)
+    supervisor = SupervisorSerializer(many=False)
 
     class Meta:
         model = Project
-        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'admin')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'supervisor')
         extra_kwargs = {
-             "admin": {"read_only": True}
+             "supervisor": {"read_only": True}
         }
 
 class Project_Team_Serializer(serializers.HyperlinkedModelSerializer):
@@ -81,7 +81,7 @@ class CreateProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'admin')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'supervisor')
 
 
 class CreateTeamSerializer(serializers.ModelSerializer):

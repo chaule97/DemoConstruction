@@ -50,11 +50,11 @@ class App extends Component {
                             <Route path={PATH.PROJECT_DETAIL_URL} extact render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.PROJECT_URL} extact render={() => <h1>Project</h1>} />
-                            <Route path={PATH.PROJECT_DETAIL_URL } render={() => <h1>Detail</h1>} />
-                            <Route path={PATH.USER_URL} extact render={() => <h1>User</h1>} />
-                            <Route path={PATH.TEAM_URL} extact render={() => <h1>Team</h1>} />
-                            <Route path={PATH.FORM_SUBMIT_URL} extact render={() => <h1>Submit Form</h1>} />
+                            <Route path={PATH.PROJECT_URL} extact render={() => <h1>Dự án</h1>} />
+                            <Route path={PATH.PROJECT_DETAIL_URL } render={() => <h1>Chi tiết</h1>} />
+                            <Route path={PATH.USER_URL} extact render={() => <h1>Giám sát</h1>} />
+                            <Route path={PATH.TEAM_URL} extact render={() => <h1>Đội</h1>} />
+                            <Route path={PATH.FORM_SUBMIT_URL} extact render={() => <h1>Báo cáo</h1>} />
                         </Switch>
 
                     </section>

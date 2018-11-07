@@ -86,7 +86,7 @@ class DeatailProject extends React.Component {
                             onClick={() => { this.toggle('1'); }}
                             style={{ color: 'black' , cursor: 'pointer'}}
                         >
-                            Dashboard
+                            Tổng quan
                         </NavLink>
                     </NavItem>
                     <NavItem>
@@ -95,7 +95,7 @@ class DeatailProject extends React.Component {
                             onClick={() => { this.toggle('2'); }}
                             style={{ color: 'black' , cursor: 'pointer'}}
                         >
-                            Detail
+                            Chi tiết
             </NavLink>
                     </NavItem>
                 </Nav>
@@ -118,7 +118,7 @@ class DeatailProject extends React.Component {
                             })}
                         </div>
                         <div className="right">
-                            <Button onClick = {() => this.props.createProject()}>Create Project</Button>
+                            <Button onClick = {() => this.props.createProject()}>Tạo dự án</Button>
                         </div>
                     </TabPane>
                     <TabPane tabId="2">

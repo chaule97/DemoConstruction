@@ -27,12 +27,11 @@ class ProjectPage extends React.Component {
     }
 
     getProject = () => {
-        api.apiGet(urlApi.getListProject).then(res => 
-            {
-                if(res) {
-                    this.setState({projects : res.data})
-                }
+        api.apiGet(urlApi.getListProject).then(res => {
+            if (res) {
+                this.setState({ projects: res.data })
             }
+        }
         )
     }
 
@@ -72,25 +71,25 @@ class ProjectPage extends React.Component {
                 <div className="row">
                     {listProjects.map((item, index) => {
                         return (
-                            <span key={index} className="cursor-pointer" onClick = {() => this.viewDashboard()}>
-                            <div key={index} className="col-md-3 col-sm-6 col-xs-12">
-                                <Link to={'/project/detail'}>
-                                    <div className="info-box">
-                                        <span className="info-box-icon bg-aqua"><i className="fa fa-cogs"></i></span>
+                            <span key={index} className="cursor-pointer" onClick={() => this.viewDashboard()}>
+                                <div className="col-md-3 col-sm-6 col-xs-12">
+                                    <Link to={'/project/detail'}>
+                                        <div className="info-box">
+                                            <span className="info-box-icon bg-aqua"><i className="fa fa-cogs"></i></span>
 
-                                        <div className="info-box-content">
-                                            <span className="info-box-text">{item.name}</span>
-                                            <span className="info-box-number">{item.admin.username}</span>
+                                            <div className="info-box-content">
+                                                <span className="info-box-text">{item.name}</span>
+                                                <span className="info-box-number">{item.supervisor.username}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            </div>
+                                    </Link>
+                                </div>
                             </span>
                         )
                     })}
                 </div>
                 <div className="right">
-                    <Button onClick={() => this.props.createProject()}>Create Project</Button>
+                    <Button onClick={() => this.props.createProject()}>Tạo dự án</Button>
                 </div>
             </section>
         );

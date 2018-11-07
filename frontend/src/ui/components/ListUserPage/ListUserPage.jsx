@@ -11,23 +11,23 @@ const ListUserPage = props => {
               <div className="box-header with-border">
               <h3 className="box-title">
               <i className="fa fa-user m-r-5"></i>
-                <i className="fa m-r-5"></i> Manage User</h3>
+                <i className="fa m-r-5"></i> Quản lý giám sát</h3>
               <div className="box-tools pull-right">
                 <a className="btn btn-primary btn-sm btn-head"  title="Add User"
                   onClick = {() => props.addUser()}
                 >
-                  <i className="glyphicon glyphicon-plus margin-r-5"></i>Add</a>
+                  <i className="glyphicon glyphicon-plus margin-r-5"></i>Thêm</a>
               </div>
               </div>
                 <div className="box-body">
                   <table className="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>User Name</th>
-                        <th>Full Name</th>
+                        <th>Tên</th>
+                        <th>Tên đầy đủ</th>
                         <th>Email</th>                                
-                        <th>Group</th>                                
-                        <th>Action</th>
+                        <th>Nhóm</th>                                
+                        <th>Chỉnh sửa</th>
                       </tr>
                     </thead>
                     <tbody>
