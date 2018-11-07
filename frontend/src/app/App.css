@@ -392,3 +392,12 @@ li.L9 {
 .color-red {
   color: red;
 }
+.fixed {
+  position:fixed;
+  z-index: 999;
+}
+.submit-frame {
+  border: 1px #ddd solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

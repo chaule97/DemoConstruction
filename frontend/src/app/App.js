@@ -46,17 +46,17 @@ class App extends Component {
                     <section className="content-header">
 
                         <Switch>
-                            <Route path={PATH.PROJECT_SUBMIT_URL} extact render={() =>
+                            <Route path={PATH.PROJECT_SUBMIT_URL}  render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.PROJECT_URL} extact render={() => <h1>Dự án</h1>} />
+                            <Route path={PATH.PROJECT_URL}  render={() => <h1>Dự án</h1>} />
                         </Switch>
 
                     </section>
                     <Switch>
-                        <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
-                        <Route path={PATH.PROJECT_SUBMIT_URL} extact component={SubmitFormContainer} />
-                        <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL} />} />
+                        <Route path={PATH.PROJECT_SUBMIT_URL}  component={SubmitFormContainer} />
+                        <Route path={PATH.PROJECT_URL}  component={ProjectContainer} />
+                        <Route path={PATH.HOME_URL}  render={() => <Redirect to={PATH.PROJECT_URL} />} />
                     </Switch>
                     </div>
             </div>

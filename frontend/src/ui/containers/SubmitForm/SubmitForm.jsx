@@ -13,9 +13,8 @@ class SubmitForm extends Component {
             projects: [],
             teams: [],
             teamable: [],
-            data: {
-                date: moment().format('YYYY-MM-DD'),
-            },
+            submitValue: [],
+            data: {}
         }
     }
 
@@ -66,20 +65,33 @@ class SubmitForm extends Component {
         )
     }
 
+    changeSelectedTeam = (id) => {
+        const {submitValue, teams} = this.state;
+        const teamDataDetail = teams.find(item => item.id == id);
+        submitValue.push({
+            team: id,
+            teamDataDetail
+        })
+        let teamAfterFilter = teams.filter(item => item.id != id)
+        this.setState({submitValue, teams: teamAfterFilter})
+    }
+
     render() {
-        const {projects, teams, data} = this.state;
+        const {projects, teams, data, submitValue} = this.state;
         let teamable = [];
         // teams.map(item => {
         //     if(item.project.id == data.projects) {
         //         teamable.push(item);
         //     }
         // });
-        console.log(this.state)
+        // console.log(this.state)
         return (
           <SubmitFormComponent
             projects = {projects} 
             teams = {teams}
             data = {data}
+            submitValue = {submitValue}
+            changeSelectedTeam = {( value) => this.changeSelectedTeam(value)}
             changeSubmitFormValue = {(key, value) => this.changeSubmitFormValue(key, value)}
             submit = {() => this.submit()}
           />
