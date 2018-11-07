@@ -38,7 +38,7 @@ const ListUserPage = props => {
                           <td>{item.last_name}</td>
                           <td>{item.email}</td>
                           <td>
-                            {item.is_staff ?
+                            {item.is_superuser ?
                             <span className="label label-success">Admin</span>
                               :<span className="label label-danger">Supervisor</span>
                             }

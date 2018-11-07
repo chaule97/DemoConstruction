@@ -39,8 +39,8 @@ const AddTeamPage = props => {
                                         <div className="form-group col-lg-6">
                                             <label>Mô tả:</label>
                                             <textarea rows="4" autoComplete="off" className="form-control"
-                                                value={props.data.description}
-                                                onChange={(e) => props.changeAddTeamName('description', e.target.value)}
+                                                value={props.data.note}
+                                                onChange={(e) => props.changeAddTeamName('note', e.target.value)}
                                             />
                                         </div>
                                     </div>

@@ -63,16 +63,16 @@ class SubmitForm extends Component {
     render() {
         const {projects, teams, data} = this.state;
         let teamable = [];
-        teams.map(item => {
-            if(item.project.id == data.projects) {
-                teamable.push(item);
-            }
-        });
+        // teams.map(item => {
+        //     if(item.project.id == data.projects) {
+        //         teamable.push(item);
+        //     }
+        // });
         // console.log(data)
         return (
           <SubmitFormComponent
             projects = {projects} 
-            teams = {teamable}
+            teams = {teams}
             data = {data}
             changeSubmitFormValue = {(key, value) => this.changeSubmitFormValue(key, value)}
             submit = {() => this.submit()}

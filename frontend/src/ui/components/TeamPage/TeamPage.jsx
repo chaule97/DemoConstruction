@@ -25,7 +25,6 @@ const TeamPage = props => {
                     <tr>
                       <th>#</th>
                       <th>Tên đội</th>
-                      {/* <th>Supervisor</th> */}
                       <th>Tên dự án</th>
                       <th>Mô tả</th>
                       <th>Chỉnh sửa</th>
@@ -35,10 +34,10 @@ const TeamPage = props => {
                     {listTeams.map((item, index) => {
                       return (
                         <tr key={index}>
-                          <td>{item.project.id}</td>
-                          <td>{item.project.name}</td>
-                          <td>{item.project.name}</td>
-                          <td>{item.project.description}</td>
+                          <td>{item.id}</td>
+                          <td>{item.name}</td>
+                          <td>{(item.project || {}).name}</td>
+                          <td>{item.note}</td>
                           <td>
                             <div className="btn-group">
                               <button type="button" className="btn btn-success"><i className="fa fa-edit"></i></button>
