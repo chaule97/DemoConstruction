@@ -4,8 +4,14 @@ const Header = props => {
     return (
         <header className="main-header bg-steelblue">
             <a href="#" className="logo color-white">
-                <span className="logo-mini"><b>Admin</b></span>
-                <span className="logo-lg"><b>Admin</b> Management</span>
+                {props.type === 'admin' ?
+                <span>
+                    <span className="logo-mini"><b>Admin</b></span>
+                    <span className="logo-lg"><b>Admin</b> Management</span>
+                </span>
+                :
+                <span className="logo-lg"><b>Giám sát</b></span>
+            }
             </a>
             <nav className="navbar navbar-static-top">
                 <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">

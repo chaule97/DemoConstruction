@@ -24,6 +24,7 @@ class ProjectPage extends React.Component {
     }
 
     componentWillMount() {
+        this.setState({type: localStorage.getItem('type')})
         this.getProject()
         this.getDetail()
     }
@@ -73,7 +74,7 @@ class ProjectPage extends React.Component {
     onShowListView = () => {
         this.setState({ viewGridStatus: false })
     }
-    render() {
+    renderForAdmin() {
         const { viewGridStatus } = this.state;
         const { listProjects } = this.props;
         return (
@@ -171,6 +172,27 @@ class ProjectPage extends React.Component {
                     </div>}
             </div>
         );
+    }
+
+    renderForSupervisor() {
+        return (
+            <div>
+
+            </div>
+        )
+    }
+
+    render() {
+        const {type} = this.state
+        return (
+            <div>
+                {type === 'admin' ? 
+                this.renderForAdmin()
+                :
+                this.renderForSupervisor()
+                }
+            </div>
+        )
     }
 }
 
