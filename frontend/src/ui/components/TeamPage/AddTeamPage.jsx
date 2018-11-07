@@ -11,14 +11,14 @@ const AddTeamPage = props => {
                             <div className="box-header with-border">
                                 <h3 className="box-title">
                                     <i className="fa fa-users m-r-5"></i>
-                                    <i className="fa m-r-5"></i>Thêm đội</h3>
+                                    <i className="fa m-r-5"></i> Thêm nhóm</h3>
 
                             </div>
                             <div className="box-body">
                                 <form>
                                     <div>
                                         <div className="form-group col-lg-6">
-                                            <label>Tên đội: <span style={{ color: "red" }}>*</span></label>
+                                            <label>Tên nhóm: <span style={{ color: "red" }}>*</span></label>
                                             <input type="text" autoComplete="off" className="form-control"
                                                 value={props.data.name}
                                                 onChange={(e) => props.changeAddTeamName('name', e.target.value)}

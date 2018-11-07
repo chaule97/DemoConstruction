@@ -29,7 +29,7 @@ const SubmitForm = props => {
                                 </select>
                             </div>
                             <div className="form-group col-lg-6">
-                                <label>Đội: <span style={{color: "red"}}>*</span></label>
+                                <label>Nhóm: <span style={{color: "red"}}>*</span></label>
                                 <select  className="form-control" 
                                     onChange = {(e) => props.changeSubmitFormValue('team', e.target.value)}
                                 >

@@ -11,12 +11,12 @@ const TeamPage = props => {
               <div className="box-header with-border">
                 <h3 className="box-title">
                   <i className="fa fa-users m-r-5"></i>
-                  <i className="fa m-r-5"></i>&nbsp;Quản lý đội</h3>
+                  <i className="fa m-r-5"></i>&nbsp;Quản lý nhóm</h3>
                 <div className="box-tools pull-right">
                   <a className="btn btn-primary btn-sm btn-head" title="Add Team"
                     onClick={() => props.addTeam()}
                   >
-                    <i className="glyphicon glyphicon-plus margin-r-5"></i>Thêm đội</a>
+                    <i className="glyphicon glyphicon-plus margin-r-5"></i>Thêm nhóm</a>
                 </div>
               </div>
               <div className="box-body">
@@ -24,14 +24,14 @@ const TeamPage = props => {
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Tên đội</th>
+                      <th>Tên nhóm</th>
                       <th>Tên dự án</th>
                       <th>Mô tả</th>
                       <th>Chỉnh sửa</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {listTeams.map((item, index) => {
+                    {(listTeams || []).map((item, index) => {
                       return (
                         <tr key={index}>
                           <td>{item.id}</td>

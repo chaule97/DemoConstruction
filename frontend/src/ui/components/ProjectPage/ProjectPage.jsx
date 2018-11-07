@@ -89,7 +89,7 @@ class ProjectPage extends React.Component {
             { viewGridStatus ? 
             <section className="content">
                 <div className="row">
-                    {listProjects.map((item, index) => {
+                    {(listProjects || []).map((item, index) => {
                         return (
                             <span key={index} className="cursor-pointer" onClick={() => this.viewDashboard()}>
                                 <div className="col-md-3 col-sm-6 col-xs-12">
@@ -132,7 +132,7 @@ class ProjectPage extends React.Component {
                          </tr>
                        </thead>
                        <tbody>
-                       {listProjects.map((item, index) => {
+                       {(listProjects || []).map((item, index) => {
                         return (
                             <tr key={index}>
                                 <td>{item.name}</td>
