@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend\\__pycache__",
+    "\\Construction",
+    "\\Construction\\migrations"
+  ],
+  "SelectedNode": "\\Construction\\serializers.py",
+  "PreviewInSolutionExplorer": false
+}

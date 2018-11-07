@@ -40,10 +40,11 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('id','url','username', 'password','email','last_name','is_staff')
+        fields = ('id','url','username', 'password','email', 'is_superuser')
         extra_kwargs = {
              "password": {"write_only": True},
              "is_staff": {"read_only": True},
+             "is_superuser": {"read_only": True},
         }
 
     def create(self, validated_data):
@@ -53,7 +54,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         user.save()
         return user
 
-class AdminSerializer(serializers.ModelSerializer):
+class SupervisorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username', 'is_staff')
@@ -62,23 +63,25 @@ class AdminSerializer(serializers.ModelSerializer):
         }
 
 class ProjectSerializer(serializers.ModelSerializer):
-    admin = AdminSerializer(many=False)
+    supervisor = SupervisorSerializer(many=False)
 
     class Meta:
         model = Project
-        fields = ('id','name', 'admin')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'supervisor')
         extra_kwargs = {
-             "admin": {"read_only": True}
+             "supervisor": {"read_only": True}
         }
+
 class Project_Team_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields = ('id','name')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position')
+
 class CreateProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('id', 'name','admin')
+        fields = ('id','name', 'contruction_name', 'address', 'construction_items','position', 'supervisor')
 
 
 class CreateTeamSerializer(serializers.ModelSerializer):
@@ -97,4 +100,4 @@ class TeamSerializer(serializers.ModelSerializer):
 class SubmitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submit
-        fields = ('id','url','projects', 'team', 'date', 'content','note','job_tomorrow')
+        fields = ('id','url','projects', 'team', 'date', 'task_name','worker_number','process', 'content', 'proposed_materials', 'job_tomorrow')
