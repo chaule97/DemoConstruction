@@ -80,10 +80,10 @@ class ProjectPage extends React.Component {
                 <div className="pull-right m-t-s25 m-r-20 ">
                     <button  className={viewGridStatus ? "btn-transparent font-25": "btn-transparent"} 
                         onClick = {() => this.onShowGridView()}
-                    ><i class="fa fa-th-large"></i></button>
+                    ><i className="fa fa-th-large"></i></button>
                     <button  className={!viewGridStatus ? "btn-transparent font-25": "btn-transparent"}
                          onClick = {() => this.onShowListView()}
-                    ><i class="fa fa-list"></i></button>
+                    ><i className="fa fa-list"></i></button>
     
                 </div>
             { viewGridStatus ? 
@@ -154,8 +154,8 @@ class ProjectPage extends React.Component {
              </div>
              </section>
          </div>}
-         <div className="right">
-                    <Button color={'success'} onClick={() => this.props.createProject()}>Tạo dự án</Button>
+         <div className="right m-r-20">
+                    <Button color={'success'} onClick={() => this.props.createProject()}><i className="glyphicon glyphicon-plus margin-r-5"></i>Tạo dự án</Button>
                 </div> 
          </div>
         );
