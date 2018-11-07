@@ -16,12 +16,13 @@ class View extends Component {
         }
     }
     
-      componentWillMount() {
+    componentWillMount() {
+        this.setState({type: localStorage.getItem('type')})
         api.apiGet(urlApi.getListProject)
         .then(res =>
-          this.setState({projects: res.data})
-          )
-        }
+            this.setState({projects: res.data})
+            )
+    }
     
     openModal = (event) => {
         this.setState({openModal: true, dataOfModal: event})
@@ -36,11 +37,12 @@ class View extends Component {
     }
 
     render() {
-        const {openModal, dataOfModal, projects} = this.state;
+        const {openModal, dataOfModal, projects, type} = this.state;
         
         return (
             <span>
                 <ViewComponent
+                    type = {type}
                     listProjects = {projects}
                     openModal = {event => this.openModal(event)}
                     createProject = {() => this.createProject()}
