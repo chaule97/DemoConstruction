@@ -17,7 +17,7 @@ const Header = props => {
                             <a  className="dropdown-toggle cursor-pointer" data-toggle="dropdown"
                                 onClick = {() => props.logout()}
                             >
-                                <span >Logout</span>
+                                <span >Đăng xuất</span>
                             </a>
                         </li>
                     </ul>

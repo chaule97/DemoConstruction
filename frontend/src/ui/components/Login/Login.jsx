@@ -8,7 +8,7 @@ const Login = props => {
                 <a ><b>Management</b> Admin</a>
             </div>
             <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
 
                 <form >
                     <div class="form-group has-feedback">
@@ -23,14 +23,14 @@ const Login = props => {
                         <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label>
-                            <input type="checkbox"/> Remember Me
+                            <input type="checkbox"/> Ghi nhớ tài khoản
                             </label>
                         </div>
                         </div>
                         <div class="col-xs-4">
                         <button class="btn btn-primary btn-block btn-flat"
                             onClick = {() => props.login()}
-                        ><Link to = {PATH.PROJECT_VIEW_URL}><span className = "color-white">Sign In</span> </Link></button>
+                        ><Link to = {PATH.PROJECT_VIEW_URL}><span className = "color-white">Đăng nhập</span> </Link></button>
                         </div>
                     </div>
                 </form>

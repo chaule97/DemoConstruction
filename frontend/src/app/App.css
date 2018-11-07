@@ -328,3 +328,23 @@ li.L9 {
 .right {
   float: right !important;
 }
+
+.m-t-s25 {
+  margin-top: -25px;
+}
+.m-r-20  {
+  margin-right: 20px;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  position: relative;
+}
+.btn-transparent:hover {
+ font-size: 30px;
+}
+.font-25{
+  font-size: 25px;
+}

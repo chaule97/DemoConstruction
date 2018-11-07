@@ -16,7 +16,8 @@ class ProjectPage extends React.Component {
             events: [],
             activeTab: '1',
             admins: [],
-            projects: []
+            projects: [],
+            viewGridStatus: true,
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -64,9 +65,28 @@ class ProjectPage extends React.Component {
         this.props.history.push(PATH.PROJECT_DETAIL_URL)
     }
 
+    onShowGridView = () => {
+        this.setState({viewGridStatus: true})
+    }
+
+    onShowListView = () => {
+        this.setState({viewGridStatus: false})
+    }
     render() {
+        const {viewGridStatus} = this.state;
         const { listProjects } = this.props;
         return (
+            <div>
+                <div className="pull-right m-t-s25 m-r-20 ">
+                    <button  className={viewGridStatus ? "btn-transparent font-25": "btn-transparent"} 
+                        onClick = {() => this.onShowGridView()}
+                    ><i class="fa fa-th-large"></i></button>
+                    <button  className={!viewGridStatus ? "btn-transparent font-25": "btn-transparent"}
+                         onClick = {() => this.onShowListView()}
+                    ><i class="fa fa-list"></i></button>
+    
+                </div>
+            { viewGridStatus ? 
             <section className="content">
                 <div className="row">
                     {listProjects.map((item, index) => {
@@ -88,10 +108,56 @@ class ProjectPage extends React.Component {
                         )
                     })}
                 </div>
-                <div className="right">
-                    <Button onClick={() => this.props.createProject()}>Tạo dự án</Button>
-                </div>
             </section>
+            :
+             <div>             
+             <section className="content">
+             <div className="row">
+               <div className="col-xs-12">
+                 <div className="box">
+                 <div className="box-header with-border">
+                 <h3 className="box-title">
+                 <i className="fa fa-user m-r-5"></i>
+                   <i className="fa m-r-5"></i> Dự án</h3>
+              
+                 </div>
+                   <div className="box-body">
+                     <table className="table table-bordered table-striped">
+                       <thead>
+                         <tr>
+                           <th>Tên dự án</th>
+                           <th>Giám sát</th>
+                           <th>Ngày khởi tạo</th>
+                           <th></th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                       {listProjects.map((item, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>{item.name}</td>
+                                <td>{item.supervisor.username}</td>
+                                <td>{moment().format("DD-MM-YYYY")}</td>
+                                <td>
+                                    <Button color={'info'}>Chi tiết</Button> &nbsp;
+                                    <Button color={'success'}>Báo cáo</Button>
+                                </td>
+                            </tr>
+                        )
+                        })}
+                          
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             </section>
+         </div>}
+         <div className="right">
+                    <Button color={'success'} onClick={() => this.props.createProject()}>Tạo dự án</Button>
+                </div> 
+         </div>
         );
     }
 }
