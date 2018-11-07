@@ -24,7 +24,7 @@ const ListProjectPage = props => {
                     </tr>
                   </thead>
                   <tbody>
-                    {listProjects.map((item, index) => {
+                    {(listProjects || []).map((item, index) => {
                       return (
                         <tr key={index}>
                           <td>{item.name}</td>

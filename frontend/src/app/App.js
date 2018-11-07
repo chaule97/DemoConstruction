@@ -53,7 +53,7 @@ class App extends Component {
                             <Route path={PATH.PROJECT_URL} extact render={() => <h1>Dự án</h1>} />
                             <Route path={PATH.PROJECT_DETAIL_URL } render={() => <h1>Chi tiết</h1>} />
                             <Route path={PATH.USER_URL} extact render={() => <h1>Giám sát</h1>} />
-                            <Route path={PATH.TEAM_URL} extact render={() => <h1>Đội</h1>} />
+                            <Route path={PATH.TEAM_URL} extact render={() => <h1>Nhóm</h1>} />
                             <Route path={PATH.FORM_SUBMIT_URL} extact render={() => <h1>Báo cáo</h1>} />
                         </Switch>
 

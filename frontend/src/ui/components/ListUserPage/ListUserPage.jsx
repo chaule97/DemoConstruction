@@ -23,15 +23,15 @@ const ListUserPage = props => {
                   <table className="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Tên</th>
-                        <th>Tên đầy đủ</th>
+                        <th>Tài khoản</th>
+                        <th>Họ tên</th>
                         <th>Email</th>                                
                         <th>Nhóm</th>                                
                         <th>Chỉnh sửa</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {listUsers.map((item, index) => {
+                      {(listUsers || []).map((item, index) => {
                         return (
                           <tr key = {index}>
                           <td>{item.username}</td>

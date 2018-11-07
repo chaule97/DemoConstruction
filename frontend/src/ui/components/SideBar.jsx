@@ -50,7 +50,7 @@ const SideBar = props => {
                             </ul> */}
                         <li>
                             <Link to={PATH.TEAM_URL}>
-                                <i className="fa fa-users"></i> ĐỘI
+                                <i className="fa fa-users"></i> NHÓM
                             </Link>
                         </li>
                         <li>
