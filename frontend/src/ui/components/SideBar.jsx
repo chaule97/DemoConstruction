@@ -28,7 +28,7 @@ const SideBar = props => {
                     <ul className="sidebar-menu" data-widget="tree">
                         <li>
                             <Link to={PATH.PROJECT_VIEW_URL} >
-                                <i className="fa fa-codepen"></i> PROJECT
+                                <i className="fa fa-codepen"></i> DỰ ÁN
                             </Link>
                         </li>
                             {/* <ul className="treeview-menu">
@@ -50,17 +50,17 @@ const SideBar = props => {
                             </ul> */}
                         <li>
                             <Link to={PATH.TEAM_URL}>
-                                <i className="fa fa-users"></i> TEAM
+                                <i className="fa fa-users"></i> ĐỘI
                             </Link>
                         </li>
                         <li>
                             <Link to={PATH.USER_URL}>
-                                <i className="fa fa-user"></i> USER
+                                <i className="fa fa-user"></i> GIÁM SÁT
                             </Link>
                         </li>
                         <li>
                             <Link to={PATH.FORM_SUBMIT_URL}>
-                                <i className="fa fa-edit"></i> SUBMIT FORM
+                                <i className="fa fa-edit"></i> BÁO CÁO
                             </Link>
                         </li>
                     </ul>

@@ -10,13 +10,13 @@ const CreateProject = props => {
                             <div className="box-header with-border">
                                 <h3 className="box-title">
                                     <i className="fa fa-users m-r-5"></i>
-                                    <i className="fa m-r-5"></i> Add Project</h3>
+                                    <i className="fa m-r-5"></i> Thêm dự án</h3>
                             </div>
                             <div className="box-body">
                                 <form>
                                     <div>
                                         <div className="form-group col-lg-6">
-                                            <label>Project Name: <span style={{ color: "red" }}>*</span></label>
+                                            <label>Tên dự án: <span style={{ color: "red" }}>*</span></label>
                                             <input type="text" autoComplete="off" className="form-control"
                                                 value={props.project.name}
                                                 onChange={(e) => props.changeProjectDetailValue('name', e.target.value)}
@@ -36,7 +36,7 @@ const CreateProject = props => {
                                             </select>
                                         </div>
                                         <div className="form-group col-lg-6">
-                                            <label>Description:</label>
+                                            <label>Mô tả:</label>
                                             <textarea rows="4" autoComplete="off" className="form-control"
                                                 value={props.project.description}
                                                 onChange={(e) => props.changeProjectDetailValue('description', e.target.value)}
@@ -47,7 +47,7 @@ const CreateProject = props => {
                                 <div className="form-group col-lg-12">
                                     <button className="btn btn-success pull-right"
                                         onClick={() => props.createProject()}
-                                    >Add</button>
+                                    >Thêm</button>
                                 </div>
                             </div>
                         </div>

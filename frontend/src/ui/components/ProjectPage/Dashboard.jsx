@@ -91,7 +91,7 @@ class Dashboard extends React.Component {
                                 onClick={() => { this.toggle('1'); }}
                                 style={{ color: 'black', cursor: 'pointer' }}
                             >
-                                Dashboard
+                                Tổng quan
                         </NavLink>
                         </NavItem>
                         <NavItem>
@@ -100,7 +100,7 @@ class Dashboard extends React.Component {
                                 onClick={() => { this.toggle('2'); }}
                                 style={{ color: 'black', cursor: 'pointer' }}
                             >
-                                Detail
+                                Chi tiết
             </NavLink>
                         </NavItem>
                     </Nav>
@@ -108,21 +108,22 @@ class Dashboard extends React.Component {
                         <TabPane tabId="1">
                             <div className="row" style={{ marginTop: '10px' }}>
                                 {(projects || []).map((item, index) => {
+                                    console.log(item);
                                     return (
-                                        <div className="col-md-3 col-sm-6 col-xs-12">
+                                        <div key={index} className="col-md-3 col-sm-6 col-xs-12">
                                             <div className="info-box">
                                                 <span className="info-box-icon bg-aqua"><i className="fa  fa-cogs"></i></span>
 
                                                 <div className="info-box-content">
                                                     <span className="info-box-text">{item.name}</span>
-                                                    <span className="info-box-number">{item.admin.username}</span>
+                                                    <span className="info-box-number">{item.supervisor.username}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     )
                                 })}
                             </div>
-                            
+
                         </TabPane>
                         <TabPane tabId="2">
                             <Row style={{ marginTop: '10px' }}>
