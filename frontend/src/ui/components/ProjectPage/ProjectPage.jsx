@@ -7,6 +7,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
 import * as PATH from '../../../constants/routeConstants';
+
 const localizer = Calendar.momentLocalizer(moment);
 class ProjectPage extends React.Component {
 
@@ -80,29 +81,38 @@ class ProjectPage extends React.Component {
                 <div className="pull-right m-t-s25 m-r-20 ">
                     <button className={viewGridStatus ? "btn-transparent font-25" : "btn-transparent"}
                         onClick={() => this.onShowGridView()}
-                    ><i class="fa fa-th-large"></i></button>
+                    ><i className="fa fa-th-large"></i></button>
                     <button className={!viewGridStatus ? "btn-transparent font-25" : "btn-transparent"}
                         onClick={() => this.onShowListView()}
-                    ><i class="fa fa-list"></i></button>
+                    ><i className="fa fa-list"></i></button>
 
                 </div>
                 {viewGridStatus ?
                     <section className="content">
+                        <br />
                         <div className="row">
+                            <div onClick={() => this.props.createProject()} className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project" style={{ cursor: 'pointer' }}>
+                                <div className="card">
+                                    <div className="card-body">
+                                        <div className="icon-add" style={{ zIndex: '10' }}>
+                                            <i className="glyphicon glyphicon-plus"></i>
+                                            <span style={{ paddingTop: '5px' }}>Thêm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {listProjects.map((item, index) => {
                                 return (
                                     <span key={index} className="cursor-pointer" onClick={() => this.viewDashboard()}>
-                                        <div className="col-md-3 col-sm-6 col-xs-12">
-                                            <Link to={'/project/detail'}>
-                                                <div className="info-box">
-                                                    <span className="info-box-icon bg-aqua"><i className="fa fa-cogs"></i></span>
-
-                                                    <div className="info-box-content">
-                                                        <span className="info-box-text">{item.name}</span>
-                                                        <span className="info-box-number">{item.supervisor.username}</span>
+                                        <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project" style={{ paddingBottom: '10px' }}>
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <div className="project-content" style={{ zIndex: '10' }}>
+                                                        <h3 class="card-title">{item.name}</h3>
+                                                        <h4 class="card-subtitle mb-2 text-muted">{item.supervisor.username}</h4>
                                                     </div>
                                                 </div>
-                                            </Link>
+                                            </div>
                                         </div>
                                     </span>
                                 )
@@ -140,7 +150,7 @@ class ProjectPage extends React.Component {
                                                                 <td>{moment().format("DD-MM-YYYY")}</td>
                                                                 <td>
                                                                     <Button color={'info'}>Chi tiết</Button> &nbsp;
-                                    <Button color={'success'}>Báo cáo</Button>
+                                                                    <Button color={'success'}>Báo cáo</Button>
                                                                 </td>
                                                             </tr>
                                                         )
@@ -154,9 +164,6 @@ class ProjectPage extends React.Component {
                             </div>
                         </section>
                     </div>}
-                <div className="right">
-                    <Button color={'success'} onClick={() => this.props.createProject()}>Tạo dự án</Button>
-                </div>
             </div>
         );
     }

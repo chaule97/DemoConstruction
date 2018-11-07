@@ -76,7 +76,6 @@ class DeatailProject extends React.Component {
 
     render() {
         const {projects} = this.state;
-        // console.log(projects)
         return (
             <section className="content">
                 <Nav tabs>
