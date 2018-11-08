@@ -29,17 +29,12 @@ class AddTeamPage extends Component {
         this.props.history.push();
     }
 
-    changeAddTeamName = (key, value) => {
+    changeAddTeam = (key, value) => {
         let {data} = this.state;
         data[key] = value;
         this.setState({data})
     }
 
-    changeAddTeamProject = (key, value) => {
-        let {data} = this.state;
-        data.project = value;
-        this.setState({data})
-    }
 
     createTeam = () => {
         const {data} = this.state;
@@ -57,10 +52,8 @@ class AddTeamPage extends Component {
         return (
           <AddTeamPageComponent 
             data = {data}
-            projects = {projects}
             goBack = {() => this.goBack()}
-            changeAddTeamName = {(key, value) => this.changeAddTeamName(key, value)}
-            changeAddTeamProject = {(key, value) => this.changeAddTeamProject(key, value)}
+            changeAddTeam = {(key, value) => this.changeAddTeam(key, value)}
             createTeam = {() => this.createTeam()}
           />
         );

@@ -10,6 +10,7 @@ import Loader from '../ui/components/Loader/Loader';
 
 import ProjectContainer from '../ui/containers/ProjectPage/ProjectPageRoutes'
 import TeamContainer from '../ui/containers/TeamPage/TeamPageRoutes'
+import EditTeamContainer from '../ui/containers/TeamPage/EditTeamPage'
 import UserContainer from '../ui/containers/ListUserPage/UserPageRoutes'
 
 
@@ -100,6 +101,7 @@ class App extends Component {
                         <Switch>
                             <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
                             <Route path={PATH.USER_URL} extact component={UserContainer} />
+                            <Route path={PATH.TEAM_EDIT_URL} extact component={EditTeamContainer} />
                             <Route path={PATH.TEAM_URL} extact component={TeamContainer} />
                             <Route path={PATH.FORM_SUBMIT_URL} component={SubmitFormContainer} />
                             <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL} />} />

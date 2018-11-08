@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import {Button} from 'reactstrap';
 import * as PATH from '../../../constants/routeConstants';
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
@@ -54,13 +55,17 @@ class TeamPage extends Component {
               </div>
               {(listTeams || []).map((item, index) => {
                 return (
-                  <span key={index} className="cursor-pointer" onClick={() => this.viewTeamDetail(item.id)}>
+                  <span key={index} className="cursor-pointer"  >
                     <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project" style={{ paddingBottom: '10px' }}>
                       <div className="card">
                         <div className="card-body">
-                          <div className="project-content" style={{ zIndex: '10' }}>
+                          <div className="project-content" style={{ zIndex: '10' }} onClick={() => this.viewTeamDetail(item.id)} >
                             <h3 className="card-title">{item.name}</h3>
                             <h4 className="card-subtitle mb-2 text-muted">{item.note}</h4>
+                          </div>
+                          <div className = "pull-right">
+                            <Link to = {`${PATH.TEAM_EDIT_URL}/id=${item.id}`}><Button>Sửa</Button></Link>&nbsp;&nbsp;&nbsp;
+                            <Button onClick = {() => this.props.delete(item.id)}>X</Button>
                           </div>
                         </div>
                       </div>
@@ -108,8 +113,8 @@ class TeamPage extends Component {
                               <td>{item.note}</td>
                               <td>
                                 <div className="btn-group">
-                                  <button type="button" className="btn btn-success"><i className="fa fa-edit"></i></button>
-                                  <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i></button>
+                                  <Link to = {`${PATH.TEAM_EDIT_URL}/id=${item.id}`}><button type="button" className="btn btn-success"><i className="fa fa-edit"></i></button></Link>
+                                  <button type="button" className="btn btn-danger" onClick = {() => this.props.delete(item.id)}><i className="fa fa-trash"></i></button>
                                 </div>
                               </td>
                             </tr>)
