@@ -13,17 +13,29 @@ class TeamPage extends Component {
   }
 
   componentWillMount() {
+    this.getTeam();
+  }
+
+  getTeam = () => {
     api.apiGet(urlApi.getListTeam)
       .then(res => {
         if (res) {
           this.setState({ teams: res.data })
         }
-      }
-      )
+      })
   }
 
   addTeam = () => {
     this.props.history.push('/team/add');
+  }
+
+  delete = (id) => {
+    api.apiDelete(urlApi.getListTeam + id + '/')
+      .then(res => {
+        if (res) {
+          this.getTeam()
+        }
+      })
   }
 
   render() {
@@ -33,6 +45,7 @@ class TeamPage extends Component {
         {...this.props}
         listTeams={teams}
         addTeam={() => this.addTeam()}
+        delete = {(id) => this.delete(id)}
       />
     );
   }
