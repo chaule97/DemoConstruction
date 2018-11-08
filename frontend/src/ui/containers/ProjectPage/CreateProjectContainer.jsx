@@ -8,7 +8,10 @@ class CreateProjectContainer extends Component {
         super(props);
         this.state = {
             admins: [],
-            project: {},
+            project: {
+                team: [1],
+                supervisor: localStorage.getItem('id')
+            },
         }
     }
 

@@ -40,7 +40,7 @@ class Login extends Component {
                     this.setState({failLogin: false});
                     localStorage.setItem('login', true);
                     localStorage.setItem('type', res.data.type_user);
-                    localStorage.setItem('userId', res.data.id);
+                    localStorage.setItem('id', res.data.id);
                     this.props.history.push(PATH.HOME_URL)
                 } else {
                     this.setState({failLogin: true});

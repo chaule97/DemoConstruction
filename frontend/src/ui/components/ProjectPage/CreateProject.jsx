@@ -23,6 +23,41 @@ const CreateProject = props => {
                                             />
                                         </div>
                                         <div className="form-group col-lg-6">
+                                            <label>Tên công trình: <span style={{ color: "red" }}>*</span></label>
+                                            <input type="text" autoComplete="off" className="form-control"
+                                                value={props.project.contruction_name}
+                                                onChange={(e) => props.changeProjectDetailValue('contruction_name', e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="form-group col-lg-6">
+                                            <label>Địa chỉ: <span style={{ color: "red" }}>*</span></label>
+                                            <input type="text" autoComplete="off" className="form-control"
+                                                value={props.project.address}
+                                                onChange={(e) => props.changeProjectDetailValue('address', e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="form-group col-lg-6">
+                                            <label>Chủ đầu tư: <span style={{ color: "red" }}>*</span></label>
+                                            <input type="text" autoComplete="off" className="form-control"
+                                                value={props.project.investor}
+                                                onChange={(e) => props.changeProjectDetailValue('investor', e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="form-group col-lg-6">
+                                            <label>Vật tư thi công: <span style={{ color: "red" }}>*</span></label>
+                                            <textarea rows="2" type="text" autoComplete="off" className="form-control"
+                                                value={props.project.construction_items}
+                                                onChange={(e) => props.changeProjectDetailValue('construction_items', e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="form-group col-lg-6">
+                                            <label>Vị trí: <span style={{ color: "red" }}>*</span></label>
+                                            <textarea rows="2" type="text" autoComplete="off" className="form-control"
+                                                value={props.project.position}
+                                                onChange={(e) => props.changeProjectDetailValue('position', e.target.value)}
+                                            />
+                                        </div>
+                                        {/* <div className="form-group col-lg-6">
                                             <label>Admin: <span style={{ color: "red" }}>*</span></label>
                                             <select className="form-control"
                                                 onChange={(e) => props.changeProjectDetailValue('admin', e.target.value)}
@@ -34,14 +69,14 @@ const CreateProject = props => {
                                                     )
                                                 })}
                                             </select>
-                                        </div>
-                                        <div className="form-group col-lg-6">
+                                        </div> */}
+                                        {/* <div className="form-group col-lg-6">
                                             <label>Mô tả:</label>
                                             <textarea rows="4" autoComplete="off" className="form-control"
                                                 value={props.project.description}
                                                 onChange={(e) => props.changeProjectDetailValue('description', e.target.value)}
                                             />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </form>
                                 <div className="form-group col-lg-12">
