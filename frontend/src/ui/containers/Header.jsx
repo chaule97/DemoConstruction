@@ -4,14 +4,23 @@ import * as PATH from '../../constants/routeConstants';
 import HeaderComponent from '../components/Header';
 class Header extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            type: localStorage.getItem('type'),
+        }
+    }
+    
     logout = () => {
         localStorage.removeItem('login');
         this.props.history.push(PATH.LOGIN_URL)
     }
+
     render() {
+        const {type} = this.state;
         return (
             <div>
-                <HeaderComponent logout = {() => this.logout()}/>
+                <HeaderComponent type = {type} logout = {() => this.logout()}/>
             </div>
         );
     }

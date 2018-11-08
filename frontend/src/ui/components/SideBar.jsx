@@ -58,11 +58,7 @@ const SideBar = props => {
                                 <i className="fa fa-user"></i> GIÁM SÁT
                             </Link>
                         </li>
-                        <li>
-                            <Link to={PATH.FORM_SUBMIT_URL}>
-                                <i className="fa fa-edit"></i> BÁO CÁO
-                            </Link>
-                        </li>
+            
                     </ul>
                 </Router>
             </section>

@@ -13,20 +13,19 @@ class SubmitForm extends Component {
             projects: [],
             teams: [],
             teamable: [],
-            data: {
-                date: moment().format('YYYY-MM-DD'),
-                job_tomorrow: 'test'
-            },
+            submitValue: [],
+            data: {}
         }
     }
 
     componentWillMount() {
-        this.getProject();
+        this.getProjectDetail(this.getProjectId());
         this.getTeam();
+        console.log(this.state);
     }
     
-    getProject = () => {
-        api.apiGet(urlApi.getListProject).then(res => {
+    getProjectDetail = (id) => {
+        api.apiGet(urlApi.getListProject + id).then(res => {
             if(res) {
                 this.setState({projects: res.data})
             }
@@ -46,7 +45,13 @@ class SubmitForm extends Component {
         data[key] = value;
         this.setState({data});
     }
-
+    getProjectId = () => {
+       const id =  this.props.location.pathname.split("id=")[1];
+       let {data} = this.state;
+       data.projects = id;
+       this.setState({data});
+       return id;
+    }
     submit = () => {
         const {data} = this.state;
         api.apiPost(urlApi.submitProcess, data).then(res =>
@@ -60,20 +65,33 @@ class SubmitForm extends Component {
         )
     }
 
+    changeSelectedTeam = (id) => {
+        const {submitValue, teams} = this.state;
+        const teamDataDetail = teams.find(item => item.id == id);
+        submitValue.push({
+            team: id,
+            teamDataDetail
+        })
+        let teamAfterFilter = teams.filter(item => item.id != id)
+        this.setState({submitValue, teams: teamAfterFilter})
+    }
+
     render() {
-        const {projects, teams, data} = this.state;
+        const {projects, teams, data, submitValue} = this.state;
         let teamable = [];
         // teams.map(item => {
         //     if(item.project.id == data.projects) {
         //         teamable.push(item);
         //     }
         // });
-        // console.log(data)
+        // console.log(this.state)
         return (
           <SubmitFormComponent
             projects = {projects} 
             teams = {teams}
             data = {data}
+            submitValue = {submitValue}
+            changeSelectedTeam = {( value) => this.changeSelectedTeam(value)}
             changeSubmitFormValue = {(key, value) => this.changeSubmitFormValue(key, value)}
             submit = {() => this.submit()}
           />

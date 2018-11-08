@@ -14,6 +14,14 @@ import { withRouter } from "react-router";
 
 class App extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+    
+
     componentWillMount() {
         this.getLoginStatus()
     }
@@ -22,13 +30,39 @@ class App extends Component {
         const status = localStorage.getItem('login');
         // console.log(status)
         if(status) {
+            const type = localStorage.getItem('type');
+            this.setState({type})
             return;
         } else {
             this.props.history.push(PATH.LOGIN_URL);
         }
     }
 
-    render() {
+    renderForSupervisor() {
+        return (
+            <div>
+                <Header />
+                <div className="content-container">
+                    <section className="content-header">
+
+                        <Switch>
+                            <Route path={PATH.PROJECT_SUBMIT_URL}  render={() =>
+                                <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
+                            } />
+                            <Route path={PATH.PROJECT_URL}  render={() => <h1>Dự án</h1>} />
+                        </Switch>
+
+                    </section>
+                    <Switch>
+                        <Route path={PATH.PROJECT_SUBMIT_URL}  component={SubmitFormContainer} />
+                        <Route path={PATH.PROJECT_URL}  component={ProjectContainer} />
+                        <Route path={PATH.HOME_URL}  render={() => <Redirect to={PATH.PROJECT_URL} />} />
+                    </Switch>
+                    </div>
+            </div>
+        )
+    }
+    renderForAdmin() {
         // console.log(this.props)
         return (
             <div>
@@ -50,6 +84,9 @@ class App extends Component {
                             <Route path={PATH.PROJECT_DETAIL_URL} extact render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
+                            <Route path={PATH.FORM_SUBMIT_URL} extact render={() =>
+                                <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
+                            } />
                             <Route path={PATH.PROJECT_URL} extact render={() => <h1>Dự án</h1>} />
                             <Route path={PATH.PROJECT_DETAIL_URL } render={() => <h1>Chi tiết</h1>} />
                             <Route path={PATH.USER_URL} extact render={() => <h1>Giám sát</h1>} />
@@ -69,6 +106,19 @@ class App extends Component {
                 </div>
             </div>
         );
+    }
+
+    render() {
+        const {type} = this.state;
+        return (
+            <div>
+                {type === 'admin' ? 
+                    this.renderForAdmin() 
+                :
+                    this.renderForSupervisor()
+                }
+            </div>
+        )
     }
 }
 

@@ -24,6 +24,7 @@ class ProjectPage extends React.Component {
     }
 
     componentWillMount() {
+        this.setState({type: localStorage.getItem('type')})
         this.getProject()
         this.getDetail()
     }
@@ -73,7 +74,7 @@ class ProjectPage extends React.Component {
     onShowListView = () => {
         this.setState({ viewGridStatus: false })
     }
-    render() {
+    renderForAdmin() {
         const { viewGridStatus } = this.state;
         const { listProjects } = this.props;
         return (
@@ -120,6 +121,7 @@ class ProjectPage extends React.Component {
                         </div>
                     </section>
                     :
+
                     <div>
                         <section className="content">
                             <div className="row">
@@ -142,15 +144,70 @@ class ProjectPage extends React.Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {listProjects.map((item, index) => {
+                                                    {(listProjects || []).map((item, index) => {
+                                                        console.log(item)
                                                         return (
                                                             <tr key={index}>
                                                                 <td>{item.name}</td>
                                                                 <td>{item.supervisor.username}</td>
                                                                 <td>{moment().format("DD-MM-YYYY")}</td>
                                                                 <td>
-                                                                    <Button color={'info'}>Chi tiết</Button> &nbsp;
-                                                                    <Button color={'success'}>Báo cáo</Button>
+                                                                    <Button color={'info'}>Chi tiết</Button>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                <div className="right m-r-20">
+                    <Button color={'success'} onClick={() => this.props.createProject()}><i className="glyphicon glyphicon-plus margin-r-5"></i>Tạo dự án</Button>
+                </div>
+                    </div>}
+            </div>
+        );
+    }
+
+    renderForSupervisor() {
+        const { listProjects } = this.props;
+        return (
+            <div>
+                 <div>
+                        <section className="content">
+                            <div className="row">
+                                <div className="col-xs-12">
+                                    <div className="box">
+                                        <div className="box-header with-border">
+                                            <h3 className="box-title">
+                                                <i className="fa fa-user m-r-5"></i>
+                                                <i className="fa m-r-5"></i> Dự án</h3>
+
+                                        </div>
+                                        <div className="box-body">
+                                            <table className="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tên dự án</th>
+                                                        <th>Giám sát</th>
+                                                        <th>Ngày khởi tạo</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {(listProjects || []).map((item, index) => {
+                                                        console.log(item)
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td>{item.name}</td>
+                                                                <td>{item.supervisor.username}</td>
+                                                                <td>{moment().format("DD-MM-YYYY")}</td>
+                                                                <td>
+                                    <Link to={`${PATH.PROJECT_SUBMIT_URL}/id=${item.id}`}><Button color={'success'}>Báo cáo</Button></Link>
                                                                 </td>
                                                             </tr>
                                                         )
@@ -165,7 +222,20 @@ class ProjectPage extends React.Component {
                         </section>
                     </div>}
             </div>
-        );
+        )
+    }
+
+    render() {
+        const {type} = this.state
+        return (
+            <div>
+                {type === 'admin' ? 
+                this.renderForAdmin()
+                :
+                this.renderForSupervisor()
+                }
+            </div>
+        )
     }
 }
 

@@ -4,6 +4,7 @@ import {createStore} from 'redux';
 import appReducers from './reducers/index';
 import {Provider} from 'react-redux';
 import router from './router.js';
+import ReduxToastr from 'react-redux-toastr';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'jquery';
 // import 'popper.js/dist/umd/popper';
@@ -15,7 +16,17 @@ const store = createStore(
 );
 ReactDOM.render(
     <Provider store = {store}>
+        <div>
         {router}
+            {/* <ReduxToastr
+            timeOut={10000}
+            newestOnTop={false}
+            preventDuplicates
+            position="top-right"
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+            progressBar={false}/> */}
+        </div>
     </Provider>,
     document.getElementById('root')
 );
