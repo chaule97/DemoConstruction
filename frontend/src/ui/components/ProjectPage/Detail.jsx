@@ -1,21 +1,25 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-import Calendar from 'react-big-calendar';
+// import Calendar from 'react-big-calendar';
 import moment from 'moment';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
-const localizer = Calendar.momentLocalizer(moment);
+import EventCalendar from 'react-event-calendar';
+
+// const localizer = Calendar.momentLocalizer(moment);
+
+
 class DeatailProject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            events: [],
+            // events: [],
             activeTab: '1',
             projects: [],
             admins: [],
-            projects: []
+            // projects: []
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -26,27 +30,25 @@ class DeatailProject extends React.Component {
     }
 
     getProject = () => {
-        api.apiGet(urlApi.getListProject).then(res => 
-            {
-                if(res) {
-                    this.setState({projects : res.data})
-                }
+        api.apiGet(urlApi.getListProject).then(res => {
+            if (res) {
+                this.setState({ projects: res.data })
             }
+        }
         )
     }
 
     getDetail = () => {
         api.apiGet(urlApi.getListSubmit)
-        .then(res =>
-            {
+            .then(res => {
                 let events = res.data.map(item => ({
                     start: moment(item.date),
                     end: moment(item.date),
                     title: `${item.content} ${item.note}`
                 }))
-                this.setState({events})
+                this.setState({ events })
             }
-        )
+            )
     }
 
     toggle(tab) {
@@ -63,7 +65,7 @@ class DeatailProject extends React.Component {
 
     eventStyleGetter = () => {
         return {
-            style : {
+            style: {
                 backgroundColor: '#ff9f89',
                 borderRadius: '0px',
                 opacity: 0.8,
@@ -75,7 +77,7 @@ class DeatailProject extends React.Component {
     }
 
     render() {
-        const {projects} = this.state;
+        const { projects } = this.state;
         return (
             <section className="content">
                 <Nav tabs>
@@ -83,7 +85,7 @@ class DeatailProject extends React.Component {
                         <NavLink
                             className={classnames({ active: this.state.activeTab === '1' })}
                             onClick={() => { this.toggle('1'); }}
-                            style={{ color: 'black' , cursor: 'pointer'}}
+                            style={{ color: 'black', cursor: 'pointer' }}
                         >
                             Tổng quan
                         </NavLink>
@@ -92,7 +94,7 @@ class DeatailProject extends React.Component {
                         <NavLink
                             className={classnames({ active: this.state.activeTab === '2' })}
                             onClick={() => { this.toggle('2'); }}
-                            style={{ color: 'black' , cursor: 'pointer'}}
+                            style={{ color: 'black', cursor: 'pointer' }}
                         >
                             Chi tiết
             </NavLink>
@@ -102,7 +104,7 @@ class DeatailProject extends React.Component {
                     <TabPane tabId="1">
                         <div className="row" style={{ marginTop: '10px' }}>
                             {(projects || []).map((item, index) => {
-                                return(
+                                return (
                                     <div className="col-md-3 col-sm-6 col-xs-12">
                                         <div className="info-box">
                                             <span className="info-box-icon bg-aqua"><i className="fa  fa-cogs"></i></span>
@@ -117,13 +119,13 @@ class DeatailProject extends React.Component {
                             })}
                         </div>
                         <div className="right">
-                            <Button onClick = {() => this.props.createProject()}>Tạo dự án</Button>
+                            <Button onClick={() => this.props.createProject()}>Tạo dự án</Button>
                         </div>
                     </TabPane>
                     <TabPane tabId="2">
                         <Row style={{ marginTop: '10px' }}>
                             <Col sm="12">
-                                <Calendar
+                                {/* <Calendar
                                     localizer={localizer}
                                     defaultDate={new Date()}
                                     defaultView="month"
@@ -131,7 +133,8 @@ class DeatailProject extends React.Component {
                                     style={{ height: "100vh" }}
                                     onSelectEvent = {(event) => this.openModal(event)}
                                     eventPropGetter={(this.eventStyleGetter)}
-                                />
+                                /> */}
+                                
                             </Col>
                         </Row>
                     </TabPane>

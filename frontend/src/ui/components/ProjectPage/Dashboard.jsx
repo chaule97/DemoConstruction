@@ -7,7 +7,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
 import ViewDetailProcessModal from './ViewDetailProcessModal';
+
 const localizer = Calendar.momentLocalizer(moment);
+
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
@@ -85,23 +87,21 @@ class Dashboard extends React.Component {
 
                 <section className="content">
                     <Nav tabs>
-                        <NavItem>
+                        <NavItem className={classnames({ active: this.state.activeTab === '1' })}>
                             <NavLink
-                                className={classnames({ active: this.state.activeTab === '1' })}
                                 onClick={() => { this.toggle('1'); }}
                                 style={{ color: 'black', cursor: 'pointer' }}
                             >
                                 Tổng quan
                         </NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem className={classnames({ active: this.state.activeTab === '2' })}>
                             <NavLink
-                                className={classnames({ active: this.state.activeTab === '2' })}
                                 onClick={() => { this.toggle('2'); }}
                                 style={{ color: 'black', cursor: 'pointer' }}
                             >
                                 Chi tiết
-            </NavLink>
+                            </NavLink>
                         </NavItem>
                     </Nav>
                     <TabContent activeTab={this.state.activeTab}>
