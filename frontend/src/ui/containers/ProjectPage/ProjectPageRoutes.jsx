@@ -9,11 +9,13 @@ class ProjectPage extends Component {
     render() {
         return (
             <Switch>
-                    <Route path={PATH.PROJECT_DETAIL_URL}  component={DashboardComponent} />
                     <Route path={PATH.PROJECT_CREATE_URL}  component={CreateProjectContainer} />
                     {/* <Route path={PATH.PROJECT_DASHBOARD_URL}  component={DashboardComponent} /> */}
-                    <Route path={PATH.PROJECT_VIEW_URL}  component={ProjectPageComponent} />
-                    <Route path={PATH.PROJECT_URL} extact render={() => <Redirect to = {PATH.PROJECT_VIEW_URL} />} />
+
+                    <Route exact path={PATH.PROJECT_VIEW_URL}  component={ProjectPageComponent} />
+                    <Route exact path={PATH.PROJECT_URL+'/:id'}  component={DashboardComponent} />
+
+                    <Route path={PATH.PROJECT_URL} render={() => <Redirect to = {PATH.PROJECT_VIEW_URL} />} />
             </Switch>
         );
     }

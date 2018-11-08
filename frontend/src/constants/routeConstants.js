@@ -3,7 +3,6 @@ export const LOGIN_URL = "/login";
 
 //Project pages
 export const PROJECT_URL = "/project";
-export const PROJECT_DASHBOARD_URL = "/project/dashboard";
 export const PROJECT_DETAIL_URL = "/project/detail";
 export const PROJECT_VIEW_URL = "/project/view";
 export const PROJECT_CREATE_URL = "/project/create";
@@ -11,6 +10,7 @@ export const PROJECT_SUBMIT_URL = "/project/submit";
 // team page
 export const TEAM_URL = "/team";
 export const TEAM_ADD_URL = "/team/add";
+export const TEAM_DETAIL_URL = "/team/";
 //user page
 export const USER_URL = "/user";
 export const USER_ADD_URL = "/user/add";

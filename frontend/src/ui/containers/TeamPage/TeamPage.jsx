@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import TeamPageComponent from '../../components/TeamPage/TeamPage';
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
@@ -14,26 +14,28 @@ class TeamPage extends Component {
 
   componentWillMount() {
     api.apiGet(urlApi.getListTeam)
-    .then(res => { 
-      if(res) {
-        this.setState({teams: res.data})}
+      .then(res => {
+        if (res) {
+          this.setState({ teams: res.data })
+        }
       }
       )
-    }
+  }
 
   addTeam = () => {
     this.props.history.push('/team/add');
   }
-    render() {
-      const {teams} = this.state;
-        return (
-          <TeamPageComponent 
-          {...this.props}
-          listTeams = {teams}
-          addTeam = {() => this.addTeam()}
-          />
-        );
-    }
+
+  render() {
+    const { teams } = this.state;
+    return (
+      <TeamPageComponent
+        {...this.props}
+        listTeams={teams}
+        addTeam={() => this.addTeam()}
+      />
+    );
+  }
 }
 
 export default withRouter(TeamPage);

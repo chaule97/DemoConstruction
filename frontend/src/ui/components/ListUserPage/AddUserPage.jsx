@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AddUserPage = props => {
-        // console.log(props)
         return (
             <div>
                 <section className="content">

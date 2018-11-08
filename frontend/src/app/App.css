@@ -385,7 +385,7 @@ li.L9 {
   align-items: center;
 }
 
-.rbc-btn-group button:nth-child(n+2) {
+.rbc-toolbar span:nth-child(3) button:nth-child(n+2) {
   display: none;  
 }
 

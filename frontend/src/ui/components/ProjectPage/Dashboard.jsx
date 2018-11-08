@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
             projects: [],
             admins: [],
             openModal: false,
+            dataOfModal: []
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -40,12 +41,29 @@ class Dashboard extends React.Component {
     getDetail = () => {
         api.apiGet(urlApi.getListSubmit)
             .then(res => {
-                let events = res.data.map(item => ({
-                    start: moment(item.date),
-                    end: moment(item.date).add(1, 'day'),
-                    title: `${item.content} ${item.note}`
-                }))
-                this.setState({ events })
+                if (res.data && res.data.length > 0) {
+                    let events = res.data.reduce((acc, cur) => {
+                        if(cur.projects === +this.props.match.params.id){
+                            let index = acc.findIndex((event) => {
+                                return event.start.isSame(moment(cur.date))
+                            })
+                            if (index !== -1) {
+                                acc[index].teams.push(cur.team.name)
+                                acc[index].title = `+ ${acc[index].teams.length} Team${acc[index].teams.length > 1 ? 's' : ''}`
+                            }
+                            else {
+                                acc.push({
+                                    start: moment(cur.date),
+                                    end: moment(cur.date).add(1, 'day'),
+                                    teams: [cur.team.name],
+                                    title: `+ 1 Team`
+                                })
+                            }
+                        }
+                        return acc
+                    }, [])
+                    this.setState({ events })
+                }
             }
             )
     }
@@ -59,7 +77,7 @@ class Dashboard extends React.Component {
     }
 
     openModal = (event) => {
-        this.setState({ openModal: true })
+        this.setState({ openModal: true, dataOfModal: event.teams })
     }
     closeModal = (event) => {
         this.setState({ openModal: false })
@@ -79,8 +97,7 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        const { projects, openModal, dataOfModal = {} } = this.state;
-        // console.log(projects)
+        const { projects, openModal, dataOfModal } = this.state;
         return (
             <span>
 
@@ -132,7 +149,6 @@ class Dashboard extends React.Component {
                                         defaultDate={new Date()}
                                         defaultView="month"
                                         events={this.state.events}
-                                        style={{ height: "100vh" }}
                                         onSelectEvent={(event) => this.openModal(event)}
                                         eventPropGetter={(this.eventStyleGetter)}
                                     />

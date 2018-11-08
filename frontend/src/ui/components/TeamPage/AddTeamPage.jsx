@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AddTeamPage = props => {
-    // console.log(props)
     return (
         <div>
             <section className="content">

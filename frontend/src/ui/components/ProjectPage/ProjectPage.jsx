@@ -63,8 +63,8 @@ class ProjectPage extends React.Component {
         this.props.openModal(event)
     }
 
-    viewDashboard = () => {
-        this.props.history.push(PATH.PROJECT_DETAIL_URL)
+    viewDashboard = (id) => {
+        this.props.history.push(PATH.PROJECT_URL+'/'+id)
     }
 
     onShowGridView = () => {
@@ -86,7 +86,6 @@ class ProjectPage extends React.Component {
                     <button className={!viewGridStatus ? "btn-transparent font-25" : "btn-transparent"}
                         onClick={() => this.onShowListView()}
                     ><i className="fa fa-list"></i></button>
-
                 </div>
                 {viewGridStatus ?
                     <section className="content">
@@ -104,13 +103,13 @@ class ProjectPage extends React.Component {
                             </div>
                             {listProjects.map((item, index) => {
                                 return (
-                                    <span key={index} className="cursor-pointer" onClick={() => this.viewDashboard()}>
+                                    <span key={index} className="cursor-pointer" onClick={() => this.viewDashboard(item.id)}>
                                         <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project" style={{ paddingBottom: '10px' }}>
                                             <div className="card">
                                                 <div className="card-body">
                                                     <div className="project-content" style={{ zIndex: '10' }}>
-                                                        <h3 class="card-title">{item.name}</h3>
-                                                        <h4 class="card-subtitle mb-2 text-muted">{item.supervisor.username}</h4>
+                                                        <h3 className="card-title">{item.name}</h3>
+                                                        <h4 className="card-subtitle mb-2 text-muted">{item.supervisor.username}</h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +128,14 @@ class ProjectPage extends React.Component {
                                         <div className="box-header with-border">
                                             <h3 className="box-title">
                                                 <i className="fa fa-user m-r-5"></i>
-                                                <i className="fa m-r-5"></i> Dự án</h3>
+                                                <i className="fa m-r-5"></i> Dự án
+                                            </h3>
+                                            <div className="box-tools pull-right">
+                                                <a className="btn btn-primary btn-sm btn-head" title="Add Team"
+                                                    onClick={() => this.props.createProject()}
+                                                >
+                                                    <i className="glyphicon glyphicon-plus margin-r-5"></i>Tạo dự án</a>
+                                            </div>
                                         </div>
                                         <div className="box-body">
                                             <table className="table table-bordered table-striped">
@@ -149,7 +155,9 @@ class ProjectPage extends React.Component {
                                                                 <td>{item.supervisor.username}</td>
                                                                 <td>{moment().format("DD-MM-YYYY")}</td>
                                                                 <td>
-                                                                    <Button color={'info'}>Chi tiết</Button>
+                                                                    <Link to={PATH.PROJECT_DETAIL_URL}>
+                                                                        <Button color={'info'}>Chi tiết</Button>
+                                                                    </Link>
                                                                 </td>
                                                             </tr>
                                                         )
@@ -161,9 +169,6 @@ class ProjectPage extends React.Component {
                                 </div>
                             </div>
                         </section>
-                        <div className="right m-r-20">
-                            <Button color={'success'} onClick={() => this.props.createProject()}><i className="glyphicon glyphicon-plus margin-r-5"></i>Tạo dự án</Button>
-                        </div>
                     </div>}
             </div>
         );
@@ -182,7 +187,6 @@ class ProjectPage extends React.Component {
                                         <h3 className="box-title">
                                             <i className="fa fa-user m-r-5"></i>
                                             <i className="fa m-r-5"></i> Dự án</h3>
-
                                     </div>
                                     <div className="box-body">
                                         <table className="table table-bordered table-striped">
@@ -196,7 +200,6 @@ class ProjectPage extends React.Component {
                                             </thead>
                                             <tbody>
                                                 {(listProjects || []).map((item, index) => {
-                                                    console.log(item)
                                                     return (
                                                         <tr key={index}>
                                                             <td>{item.name}</td>

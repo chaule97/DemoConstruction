@@ -13,6 +13,9 @@ const style = {
     }
 }
 const ViewDetailProcessModal = props => {
+    const { data } = props;
+    if(!Array.isArray(data))
+        return null
     return (
         <Modal isOpen={props.openModal} style={style}>
             <div className="modal-dialog" role="document">
@@ -23,11 +26,11 @@ const ViewDetailProcessModal = props => {
                         </div>
                         <div className="modal-body">
                             <ListGroup>
-                                <ListGroupItem>Cras justo odio</ListGroupItem>
-                                <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                                <ListGroupItem>Morbi leo risus</ListGroupItem>
-                                <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                                <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                                {data && data.map((teamName, i) => {
+                                    return (
+                                        <ListGroupItem key={i}>{teamName}</ListGroupItem>
+                                    )
+                                })}
                             </ListGroup>
                         </div>
                         <div className="modal-footer">
@@ -38,7 +41,6 @@ const ViewDetailProcessModal = props => {
             </div>
         </Modal>
     );
-
 }
 
 export default ViewDetailProcessModal;
