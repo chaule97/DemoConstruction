@@ -5,6 +5,7 @@ import * as api from '../../../api/api';
 import * as PATH from '../../../constants/routeConstants';
 import urlApi from '../../../constants/urlApi';
 import moment from 'moment';
+import _ from 'lodash';
 class SubmitForm extends Component {
 
     constructor(props) {
@@ -21,7 +22,6 @@ class SubmitForm extends Component {
     componentWillMount() {
         this.getProjectDetail(this.getProjectId());
         this.getTeam();
-        console.log(this.state);
     }
     
     getProjectDetail = (id) => {
@@ -40,29 +40,12 @@ class SubmitForm extends Component {
         })
     }
 
-    changeSubmitFormValue = (key, value) => {
-        const {data} = this.state;
-        data[key] = value;
-        this.setState({data});
-    }
     getProjectId = () => {
        const id =  this.props.location.pathname.split("id=")[1];
        let {data} = this.state;
        data.projects = id;
        this.setState({data});
        return id;
-    }
-    submit = () => {
-        const {data} = this.state;
-        api.apiPost(urlApi.submitProcess, data).then(res =>
-            {
-                if(res) {
-                    // console.log(res)
-                    this.props.history.push(PATH.PROJECT_VIEW_URL);
-                }
-            }
-            // this.setState({admins: res.data.filter(item => item.is_staff === true)})
-        )
     }
 
     changeSelectedTeam = (id) => {
@@ -76,14 +59,34 @@ class SubmitForm extends Component {
         this.setState({submitValue, teams: teamAfterFilter})
     }
 
+    cancel = (item) => {
+        let {submitValue, teams} = _.cloneDeep(this.state);
+        teams.push(item.teamDataDetail);
+        teams = _.sortBy(teams, ['id']);
+        let temp =  submitValue.filter(it => it.team != item.team );
+        this.setState({submitValue: temp, teams});
+    }
+
+    changeSubmitFormValue = (id, key, value) => {
+        let {submitValue} = _.cloneDeep(this.state);
+        submitValue.map(item => item.team == id ? item[key] = value : null)
+        this.setState({submitValue});
+    }
+    
+    submit = () => {
+        const {submitValue} = this.state;
+        const projects = this.getProjectId();
+    
+        submitValue.map(item => {
+            let data = {...item, projects, date: moment().format('YYYY-MM-DD')}
+            data = _.omit(data, ['teamDataDetail'])
+            api.apiPost(urlApi.submitProcess, data)
+        })
+        this.props.history.push(PATH.PROJECT_VIEW_URL);
+    }
+
     render() {
         const {projects, teams, data, submitValue} = this.state;
-        let teamable = [];
-        // teams.map(item => {
-        //     if(item.project.id == data.projects) {
-        //         teamable.push(item);
-        //     }
-        // });
         // console.log(this.state)
         return (
           <SubmitFormComponent
@@ -91,9 +94,10 @@ class SubmitForm extends Component {
             teams = {teams}
             data = {data}
             submitValue = {submitValue}
-            changeSelectedTeam = {( value) => this.changeSelectedTeam(value)}
-            changeSubmitFormValue = {(key, value) => this.changeSubmitFormValue(key, value)}
+            changeSelectedTeam = {(id) => this.changeSelectedTeam(id)}
+            changeSubmitFormValue = {(id, key, value) => this.changeSubmitFormValue(id, key, value)}
             submit = {() => this.submit()}
+            cancel = {item => this.cancel(item)}
           />
         );
     }
