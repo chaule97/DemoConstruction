@@ -8,21 +8,22 @@ class Project(models.Model):
     address = models.CharField(max_length=15)
     construction_items = models.CharField(max_length=15)
     position = models.CharField(max_length=15)
-    supervisor = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='projects')
+    investor = models.CharField(max_length=50, null=True)
+    supervisor = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='projects',null=True)
 
     def __str__(self):
         return self.name
 
 class Team(models.Model):
     name = models.CharField(max_length=30)
-    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, related_name='team')
-
+    project = models.ForeignKey(Project, on_delete=models.DO_NOTHING, related_name='team', null=True)
+    note = models.TextField(null=True)
     def __str__(self):
         return self.name
 
 class Submit(models.Model):
-    projects = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='submits')
-    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, related_name='submits')
+    projects = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='submits',null=True)
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, related_name='submits',null=True)
     date = models.DateField(auto_now_add=True)
     task_name = models.CharField(max_length=30)
     worker_number = models.IntegerField()
