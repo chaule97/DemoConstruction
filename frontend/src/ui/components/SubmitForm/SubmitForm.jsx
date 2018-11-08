@@ -44,9 +44,9 @@ const SubmitForm = props => {
                                         </div>
                                         {(props.submitValue || []).map((item, index) => {
                                             return (
-                                                <div>
-                                                <div className="col-sm-3" key = {index}></div>
-                                                <div className="col-sm-9 submit-frame" key = {index}>
+                                                <div key = {index}>
+                                                <div className="col-sm-3" ></div>
+                                                <div className="col-sm-9 submit-frame" >
                                                     <div className="col-sm-12 text-align-center"><label>{item.teamDataDetail.name}</label></div>
                                                     <div className="form-group col-sm-12 col-md-4 col-lg-4">
                                                         <label>Công việc: <span style={{ color: "red" }}>*</span></label>
