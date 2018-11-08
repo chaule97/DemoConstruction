@@ -145,14 +145,16 @@ class ProjectPage extends React.Component {
                                                 </thead>
                                                 <tbody>
                                                     {(listProjects || []).map((item, index) => {
-                                                        console.log(item)
+                                                        // console.log(item)
                                                         return (
                                                             <tr key={index}>
                                                                 <td>{item.name}</td>
                                                                 <td>{item.supervisor.username}</td>
                                                                 <td>{moment().format("DD-MM-YYYY")}</td>
                                                                 <td>
-                                                                    <Button color={'info'}>Chi tiết</Button>
+                                                                    <Link to = {PATH.PROJECT_DETAIL_URL}>
+                                                                        <Button color={'info'}>Chi tiết</Button>
+                                                                    </Link>
                                                                 </td>
                                                             </tr>
                                                         )

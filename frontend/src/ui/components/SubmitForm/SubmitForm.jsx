@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const SubmitForm = props => {
-    console.log(props.submitValue)
+    // console.log(props.submitValue)
     return (
         <div>
             <section className="content">
