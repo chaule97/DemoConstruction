@@ -8,9 +8,9 @@ import SubmitFormContainer from '../ui/containers/SubmitForm/SubmitForm';
 import { withRouter } from "react-router";
 import Loader from '../ui/components/Loader/Loader';
 
-const ProjectContainer = React.lazy(() => import('../ui/containers/ProjectPage/ProjectPageRoutes'));
-const TeamContainer = React.lazy(() => import('../ui/containers/TeamPage/TeamPageRoutes'));
-const UserContainer = React.lazy(() => import('../ui/containers/ListUserPage/UserPageRoutes'));
+import ProjectContainer from '../ui/containers/ProjectPage/ProjectPageRoutes'
+import TeamContainer from '../ui/containers/TeamPage/TeamPageRoutes'
+import UserContainer from '../ui/containers/ListUserPage/UserPageRoutes'
 
 
 class App extends Component {
@@ -97,7 +97,6 @@ class App extends Component {
 
                     </section>
                     { /**/}
-                    <React.Suspense fallback={<Loader />}>
                         <Switch>
                             <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
                             <Route path={PATH.USER_URL} extact component={UserContainer} />
@@ -105,7 +104,6 @@ class App extends Component {
                             <Route path={PATH.FORM_SUBMIT_URL} component={SubmitFormContainer} />
                             <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL} />} />
                         </Switch>
-                    </React.Suspense>
                 </div>
             </div>
         );
