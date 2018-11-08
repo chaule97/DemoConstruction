@@ -384,3 +384,11 @@ li.L9 {
   flex-direction: column; 
   align-items: center;
 }
+
+.rbc-btn-group button:nth-child(n+2) {
+  display: none;  
+}
+
+.rbc-calendar {
+  height: 492px !important;
+}
