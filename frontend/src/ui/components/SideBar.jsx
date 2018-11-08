@@ -8,11 +8,11 @@ const SideBar = props => {
             <section className="sidebar">
                 <div className="user-panel">
                     <div className="pull-left image">
-                        <img src="dist/img/user2-160x160.jpg" className="img-circle" />
+                        <img src="dist/img/user2-160x160.jpg" alt="user" className="img-circle" />
                     </div>
                     <div className="pull-left info">
                         <p className="color-white">Tea Time Team</p>
-                        <a className="color-white" ><i className="fa fa-circle text-success"></i> Online</a>
+                        <Link to="#" className="color-white" ><i className="fa fa-circle text-success"></i> Online</Link>
                     </div>
                 </div>
                 <form action="#" method="get" className="sidebar-form">

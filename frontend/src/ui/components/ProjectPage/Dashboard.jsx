@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
@@ -18,7 +18,6 @@ class Dashboard extends React.Component {
             activeTab: '1',
             projects: [],
             admins: [],
-            projects: [],
             openModal: false,
         };
         this.toggle = this.toggle.bind(this);

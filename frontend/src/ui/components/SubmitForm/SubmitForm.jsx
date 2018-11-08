@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const SubmitForm = props => {
-    console.log(props.submitValue)
     return (
         <div>
             <section className="content">

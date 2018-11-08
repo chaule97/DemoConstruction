@@ -4,7 +4,6 @@ import {createStore} from 'redux';
 import appReducers from './reducers/index';
 import {Provider} from 'react-redux';
 import router from './router.js';
-import ReduxToastr from 'react-redux-toastr';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'jquery';
 // import 'popper.js/dist/umd/popper';

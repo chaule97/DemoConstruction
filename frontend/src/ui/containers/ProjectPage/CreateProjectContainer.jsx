@@ -13,7 +13,6 @@ class CreateProjectContainer extends Component {
     }
 
     componentWillMount() {
-        let {project} = this.state;
         api.apiGet(urlApi.getListUser).then(res =>
             {
                 const admins = res.data.filter(item => item.is_staff === true)

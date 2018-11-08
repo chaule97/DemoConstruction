@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ListUserPage = props => {
   const {listUsers} = props;
@@ -13,13 +14,13 @@ const ListUserPage = props => {
               <i className="fa fa-user m-r-5"></i>
                 <i className="fa m-r-5"></i> Quản lý giám sát</h3>
               <div className="box-tools pull-right">
-                <a className="btn btn-primary btn-sm btn-head"  title="Add User"
+                <Link to="#" className="btn btn-primary btn-sm btn-head"  title="Add User"
                   onClick = {() => props.addUser()}
                 >
-                  <i className="glyphicon glyphicon-plus margin-r-5"></i>Thêm</a>
+                  <i className="glyphicon glyphicon-plus margin-r-5"></i>Thêm</Link>
               </div>
               </div>
-                <div className="box-body">
+                <div className="box-body">  
                   <table className="table table-bordered table-striped">
                     <thead>
                       <tr>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Calendar from 'react-big-calendar';
 import moment from 'moment';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { Button } from 'reactstrap';
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from '../../../api/api';
 import urlApi from '../../../constants/urlApi';
@@ -24,7 +24,7 @@ class ProjectPage extends React.Component {
     }
 
     componentWillMount() {
-        this.setState({type: localStorage.getItem('type')})
+        this.setState({ type: localStorage.getItem('type') })
         this.getProject()
         this.getDetail()
     }
@@ -121,7 +121,6 @@ class ProjectPage extends React.Component {
                         </div>
                     </section>
                     :
-
                     <div>
                         <section className="content">
                             <div className="row">
@@ -131,7 +130,6 @@ class ProjectPage extends React.Component {
                                             <h3 className="box-title">
                                                 <i className="fa fa-user m-r-5"></i>
                                                 <i className="fa m-r-5"></i> Dự án</h3>
-
                                         </div>
                                         <div className="box-body">
                                             <table className="table table-bordered table-striped">
@@ -145,7 +143,6 @@ class ProjectPage extends React.Component {
                                                 </thead>
                                                 <tbody>
                                                     {(listProjects || []).map((item, index) => {
-                                                        console.log(item)
                                                         return (
                                                             <tr key={index}>
                                                                 <td>{item.name}</td>
@@ -157,7 +154,6 @@ class ProjectPage extends React.Component {
                                                             </tr>
                                                         )
                                                     })}
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -165,9 +161,9 @@ class ProjectPage extends React.Component {
                                 </div>
                             </div>
                         </section>
-                <div className="right m-r-20">
-                    <Button color={'success'} onClick={() => this.props.createProject()}><i className="glyphicon glyphicon-plus margin-r-5"></i>Tạo dự án</Button>
-                </div>
+                        <div className="right m-r-20">
+                            <Button color={'success'} onClick={() => this.props.createProject()}><i className="glyphicon glyphicon-plus margin-r-5"></i>Tạo dự án</Button>
+                        </div>
                     </div>}
             </div>
         );
@@ -177,62 +173,62 @@ class ProjectPage extends React.Component {
         const { listProjects } = this.props;
         return (
             <div>
-                 <div>
-                        <section className="content">
-                            <div className="row">
-                                <div className="col-xs-12">
-                                    <div className="box">
-                                        <div className="box-header with-border">
-                                            <h3 className="box-title">
-                                                <i className="fa fa-user m-r-5"></i>
-                                                <i className="fa m-r-5"></i> Dự án</h3>
+                <div>
+                    <section className="content">
+                        <div className="row">
+                            <div className="col-xs-12">
+                                <div className="box">
+                                    <div className="box-header with-border">
+                                        <h3 className="box-title">
+                                            <i className="fa fa-user m-r-5"></i>
+                                            <i className="fa m-r-5"></i> Dự án</h3>
 
-                                        </div>
-                                        <div className="box-body">
-                                            <table className="table table-bordered table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tên dự án</th>
-                                                        <th>Giám sát</th>
-                                                        <th>Ngày khởi tạo</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {(listProjects || []).map((item, index) => {
-                                                        console.log(item)
-                                                        return (
-                                                            <tr key={index}>
-                                                                <td>{item.name}</td>
-                                                                <td>{item.supervisor.username}</td>
-                                                                <td>{moment().format("DD-MM-YYYY")}</td>
-                                                                <td>
-                                    <Link to={`${PATH.PROJECT_SUBMIT_URL}/id=${item.id}`}><Button color={'success'}>Báo cáo</Button></Link>
-                                                                </td>
-                                                            </tr>
-                                                        )
-                                                    })}
+                                    </div>
+                                    <div className="box-body">
+                                        <table className="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tên dự án</th>
+                                                    <th>Giám sát</th>
+                                                    <th>Ngày khởi tạo</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {(listProjects || []).map((item, index) => {
+                                                    console.log(item)
+                                                    return (
+                                                        <tr key={index}>
+                                                            <td>{item.name}</td>
+                                                            <td>{item.supervisor.username}</td>
+                                                            <td>{moment().format("DD-MM-YYYY")}</td>
+                                                            <td>
+                                                                <Link to={`${PATH.PROJECT_SUBMIT_URL}/id=${item.id}`}><Button color={'success'}>Báo cáo</Button></Link>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })}
 
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>}
+                        </div>
+                    </section>
+                </div>}
             </div>
         )
     }
 
     render() {
-        const {type} = this.state
+        const { type } = this.state
         return (
             <div>
-                {type === 'admin' ? 
-                this.renderForAdmin()
-                :
-                this.renderForSupervisor()
+                {type === 'admin' ?
+                    this.renderForAdmin()
+                    :
+                    this.renderForSupervisor()
                 }
             </div>
         )

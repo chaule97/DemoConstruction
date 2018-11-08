@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import * as PATH from '../../../constants/routeConstants';
+import React from 'react';
+
 const Login = props => {
     console.log(props)
     return (
