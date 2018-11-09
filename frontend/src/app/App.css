@@ -409,3 +409,17 @@ li.L9 {
   border-radius: 5px;
   margin-bottom: 10px;
 }
+
+.sticky-top {
+  position: sticky;
+  top: 15px;
+  z-index: 200;
+}
+
+.rbc-month-view {
+  z-index: unset;
+}
+
+.rbc-row-content {
+  z-index: unset !important;
+}
