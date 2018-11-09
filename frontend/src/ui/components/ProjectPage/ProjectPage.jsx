@@ -17,25 +17,32 @@ class ProjectPage extends React.Component {
             events: [],
             activeTab: '1',
             admins: [],
-            projects: [],
+            listProjects: [],
             viewGridStatus: true,
         };
         this.toggle = this.toggle.bind(this);
     }
 
     componentWillMount() {
-        this.setState({ type: localStorage.getItem('type') })
+        this.setState({ type: localStorage.getItem('type'), id:  localStorage.getItem('id')})
         this.getProject()
         this.getDetail()
     }
 
     getProject = () => {
+        // const {id, type} = this.state;
+        const type = localStorage.getItem('type');
+        const id =  localStorage.getItem('id');
         api.apiGet(urlApi.getListProject).then(res => {
             if (res) {
-                this.setState({ projects: res.data })
+                if(type == 'admin') {
+                    this.setState({ listProjects: res.data })
+                } else {
+                    const listProjects = res.data.filter(item => item.supervisor.id == id)
+                    this.setState({listProjects})
+                }
             }
-        }
-        )
+        })
     }
 
     getDetail = () => {
@@ -75,8 +82,9 @@ class ProjectPage extends React.Component {
         this.setState({ viewGridStatus: false })
     }
     renderForAdmin() {
-        const { viewGridStatus } = this.state;
-        const { listProjects } = this.props;
+        const { viewGridStatus, listProjects } = this.state;
+        // const { listProjects } = this.props;
+        // console.log(listProjects)
         return (
             <div>
                 <div className="pull-right m-t-s25 m-r-20 ">
@@ -175,7 +183,7 @@ class ProjectPage extends React.Component {
     }
 
     renderForSupervisor() {
-        const { listProjects } = this.props;
+        const { listProjects } = this.state;
         return (
             <div>
                 <div>
