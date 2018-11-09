@@ -10,7 +10,7 @@ const AddUserPage = props => {
                     <div className="box-header with-border">
                     <h3 className="box-title">
                     <i className="fa fa-users m-r-5"></i>
-                      <i className="fa m-r-5"></i> Thêm</h3>
+                      <i className="fa m-r-5"></i>{props.type == 'edit' ? 'Sửa' : 'Thêm'}</h3>
                     
                     </div>
                       <div className="box-body">
@@ -30,13 +30,14 @@ const AddUserPage = props => {
                                         onChange = {(e) => props.changeDataValue('email', e.target.value)}
                                     />
                                 </div>
+                                {props.type != 'edit' &&
                                 <div className="form-group col-lg-6">
                                     <label>Mật khẩu: <span style={{color: "red"}}>*</span></label>
                                     <input type="password" autoComplete="off" className="form-control"
                                         value = {props.data.password}
                                         onChange = {(e) => props.changeDataValue('password', e.target.value)}
                                     />
-                                </div>
+                                </div>}
                                 <div className="form-group col-lg-6">
                                     <label> Tên đầy đủ: <span style={{color: "red"}}>*</span></label>
                                     <input type="text" autoComplete="off" className="form-control"
@@ -49,7 +50,7 @@ const AddUserPage = props => {
                             <div className="form-group col-lg-12">
                                 <button className="btn btn-success pull-right"
                                     onClick = {() => props.createUser()}
-                                >Thêm</button>
+                                >{props.type == 'edit' ? 'Sửa' : 'Thêm'}</button>
                             </div>
                       </div>
                     </div>

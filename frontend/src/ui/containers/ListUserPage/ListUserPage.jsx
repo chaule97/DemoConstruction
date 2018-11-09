@@ -22,8 +22,8 @@ class ListUserPage extends Component {
   addUser = () => {
     this.props.history.push('/user/add');
   }
-  editUser = (item) => {
-    this.props.history.push('/user/add');
+  editUser = (id) => {
+    this.props.history.push('/user/edit/id=' + id);
   }
     render() {
       const {users} = this.state;

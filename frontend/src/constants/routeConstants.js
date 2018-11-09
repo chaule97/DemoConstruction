@@ -15,6 +15,7 @@ export const TEAM_EDIT_URL = "/team/edit";
 //user page
 export const USER_URL = "/user";
 export const USER_ADD_URL = "/user/add";
+export const USER_EDIT_URL = "/user/edit";
 //Submit Form
 export const FORM_SUBMIT_URL = "/form/submit";
 
