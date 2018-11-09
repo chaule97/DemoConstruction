@@ -68,28 +68,31 @@ class App extends Component {
                 <div className="content-wrapper">
                     <section className="content-header">
                         <Switch>
-                            <Route path={PATH.TEAM_ADD_URL} extact render={() =>
+                            <Route path={PATH.TEAM_ADD_URL} render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.USER_ADD_URL} extact render={() =>
+                            <Route path={PATH.USER_ADD_URL} render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.PROJECT_CREATE_URL} extact render={() =>
+                            <Route path={PATH.USER_EDIT_URL} render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.PROJECT_DETAIL_URL} extact render={() =>
+                            <Route path={PATH.PROJECT_DETAIL_URL} render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.TEAM_DETAIL_URL} render={() =>
+                            <Route path={PATH.TEAM_URL} exact render={() => <h1>Nhóm</h1>} />
+                            <Route path={PATH.TEAM_DETAIL_URL} exact render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.FORM_SUBMIT_URL} extact render={() =>
+                            <Route path={PATH.FORM_SUBMIT_URL} render={() =>
                                 <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
                             } />
-                            <Route path={PATH.PROJECT_URL} extact render={() => <h1>Dự án</h1>} />
+                            <Route path={PATH.PROJECT_VIEW_URL} exact render={() => <h1>Dự án</h1>} />
+                            <Route path={PATH.PROJECT_URL} render={() =>
+                                <h1 className="cursor-pointer link-back" onClick={() => this.props.history.goBack()}> <i className="fa fa-angle-double-left"></i> Back</h1>
+                            } />
                             <Route path={PATH.PROJECT_DETAIL_URL} render={() => <h1>Chi tiết</h1>} />
-                            <Route path={PATH.USER_URL} extact render={() => <h1>Giám sát</h1>} />
-                            <Route path={PATH.TEAM_URL} extact render={() => <h1>Nhóm</h1>} />
+                            <Route path={PATH.USER_URL} render={() => <h1>Giám sát</h1>} />
                             <Route path={PATH.TEAM_DETAIL_URL} render={() => <h1>Chi tiết</h1>} />
                             <Route path={PATH.FORM_SUBMIT_URL} render={() => <h1>Báo cáo</h1>} />
                         </Switch>

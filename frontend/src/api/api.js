@@ -28,6 +28,15 @@ export const apiPut = (url, data) => {
     })
 }
 
+export const apiPatch = (url, data) => {
+  return axios.patch(url, data).then((response) => {
+    return (response)
+  })
+    .catch((error) => {
+      return error
+    })
+}
+
 export const apiDelete = (url) => {
   return axios.delete(url).then((response) => {
     return (response)

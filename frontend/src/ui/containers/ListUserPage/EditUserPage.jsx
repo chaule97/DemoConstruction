@@ -10,7 +10,8 @@ class EditUserPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {}
+            data: {},
+            changeValue: {},
         }
     }
 
@@ -38,14 +39,15 @@ class EditUserPage extends Component {
     }
 
     changeDataValue = (key, value) => {
-        let {data} = this.state;
+        let {data, changeValue} = this.state;
         data[key] = value;
-        this.setState({data})
+        changeValue[key] = value;
+        this.setState({data, changeValue})
     }
 
     update = () => {
-        const {userId, data} = this.state;
-        api.apiPut(urlApi.getListUser + userId + '/', data).then(res => {
+        const {userId, changeValue} = this.state;
+        api.apiPatch(urlApi.getListUser + userId + '/', changeValue).then(res => {
             if(res) {
                 this.props.history.push(PATH.USER_URL);
             }

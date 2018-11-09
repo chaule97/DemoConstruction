@@ -17,17 +17,10 @@ const AddUserPage = props => {
                       <form>
                             <div>
                                 <div className="form-group col-lg-6">
-                                    <label>Tên giám sát: <span style={{color: "red"}}>*</span></label>
+                                    <label>Tên tài khoản: <span style={{color: "red"}}>*</span></label>
                                     <input type="text" autoComplete="off" className="form-control"
                                         value = {props.data.username}
                                         onChange = {(e) => props.changeDataValue('username', e.target.value)}
-                                    />
-                                </div>
-                                <div className="form-group col-lg-6">
-                                    <label>Email: <span style={{color: "red"}}>*</span></label>
-                                    <input type="email" autoComplete="off" className="form-control"
-                                        value = {props.data.email}
-                                        onChange = {(e) => props.changeDataValue('email', e.target.value)}
                                     />
                                 </div>
                                 {props.type != 'edit' &&
@@ -43,6 +36,13 @@ const AddUserPage = props => {
                                     <input type="text" autoComplete="off" className="form-control"
                                         value = {props.data.last_name}
                                         onChange = {(e) => props.changeDataValue('last_name', e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group col-lg-6">
+                                    <label>Email: <span style={{color: "red"}}>*</span></label>
+                                    <input type="email" autoComplete="off" className="form-control"
+                                        value = {props.data.email}
+                                        onChange = {(e) => props.changeDataValue('email', e.target.value)}
                                     />
                                 </div>
                             </div>
