@@ -30,7 +30,7 @@ class TeamPage extends Component {
   }
 
   delete = (id) => {
-    api.apiDelete(urlApi.getListTeam + id + '/')
+    api.apiDelete(urlApi.getListTeam + id)
       .then(res => {
         if (res) {
           this.getTeam()

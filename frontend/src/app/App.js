@@ -19,7 +19,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         }
     }
 
@@ -30,7 +29,6 @@ class App extends Component {
 
     getLoginStatus = () => {
         const status = localStorage.getItem('login');
-        // console.log(status)
         if (status) {
             const type = localStorage.getItem('type');
             this.setState({ type })
@@ -98,14 +96,14 @@ class App extends Component {
 
                     </section>
                     { /**/}
-                        <Switch>
-                            <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
-                            <Route path={PATH.USER_URL} extact component={UserContainer} />
-                            <Route path={PATH.TEAM_EDIT_URL} extact component={EditTeamContainer} />
-                            <Route path={PATH.TEAM_URL} extact component={TeamContainer} />
-                            <Route path={PATH.FORM_SUBMIT_URL} component={SubmitFormContainer} />
-                            <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL} />} />
-                        </Switch>
+                    <Switch>
+                        <Route path={PATH.PROJECT_URL} extact component={ProjectContainer} />
+                        <Route path={PATH.USER_URL} extact component={UserContainer} />
+                        <Route path={PATH.TEAM_EDIT_URL} extact component={EditTeamContainer} />
+                        <Route path={PATH.TEAM_URL} extact component={TeamContainer} />
+                        <Route path={PATH.FORM_SUBMIT_URL} component={SubmitFormContainer} />
+                        <Route path={PATH.HOME_URL} extact render={() => <Redirect to={PATH.PROJECT_URL} />} />
+                    </Switch>
                 </div>
             </div>
         );
