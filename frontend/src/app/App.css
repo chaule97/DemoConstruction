@@ -33,7 +33,7 @@
 /*
  * Documentation specific stylesheet
  */
- .content-wrapper p {
+.content-wrapper p {
   padding: 0 10px;
   font-size: 16px;
   position: relative;
@@ -44,7 +44,7 @@
   z-index: 30;
 }
 .nth-2-center > tbody > tr > td:last-of-type {
-  text-align: center!important;
+  text-align: center !important;
 }
 .content {
   font-size: 16px;
@@ -65,7 +65,7 @@ ul {
 }
 .page-header {
   /*border-bottom: 1px solid #ddd;        */
-  margin: 20px 0 10px 0!important;
+  margin: 20px 0 10px 0 !important;
   position: relative;
   z-index: 1;
   font-size: 30px;
@@ -79,7 +79,7 @@ ul {
 }
 .page-header span::before,
 .page-header a::before {
-  content: '#';
+  content: "#";
   font-size: 25px;
   margin-right: 10px;
   color: #3c8dbc;
@@ -98,7 +98,7 @@ ul {
   font-size: 18px;
   font-weight: 400;
 }
-.eg{
+.eg {
   position: absolute;
   top: 0;
   left: 0;
@@ -130,7 +130,7 @@ pre {
 
 .sidebar {
   margin-top: 0;
-  padding-top: 0!important;
+  padding-top: 0 !important;
 }
 .box .main-header {
   z-index: 1000;
@@ -141,24 +141,25 @@ pre {
   background: transparent;
 }
 p {
-  padding: 0!important;
+  padding: 0 !important;
 }
 /* Hemisu Light */
 /* Original theme - http://noahfrederick.com/vim-color-scheme-hemisu/ */
 pre.prettyprint {
   background: white;
-  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco,
+    Consolas, monospace;
   font-size: 12px;
   line-height: 1.5;
-  border: 1px solid #dedede!important;
+  border: 1px solid #dedede !important;
   padding: 10px;
   max-height: 300px;
   width: auto;
-  overflow: auto!important;
+  overflow: auto !important;
 }
 pre.prettyprint > code {
   width: auto;
-  overflow: auto!important;
+  overflow: auto !important;
 }
 
 .pln {
@@ -246,7 +247,9 @@ pre.prettyprint > code {
     color: #004444;
   }
 
-  .pun, .opn, .clo {
+  .pun,
+  .opn,
+  .clo {
     color: #444400;
   }
 
@@ -304,7 +307,6 @@ li.L9 {
   background: #1e282c;
 }
 
-
 .color-white {
   color: white !important;
 }
@@ -313,7 +315,7 @@ li.L9 {
   background-color: #1a355b !important;
 }
 
-.skin-blue .main-header .navbar .nav>li>a {
+.skin-blue .main-header .navbar .nav > li > a {
   color: #fff !important;
 }
 
@@ -332,7 +334,7 @@ li.L9 {
 .m-t-s25 {
   margin-top: -25px;
 }
-.m-r-20  {
+.m-r-20 {
   margin-right: 20px;
 }
 
@@ -345,48 +347,48 @@ li.L9 {
 .btn-transparent:hover {
   color: #6f54c3;
 }
-.font-25{
+.font-25 {
   color: #6f54c3;
 }
-.add-project{
+.add-project {
   position: relative;
 }
 .card {
-  height: 200px; 
-  border-radius: 5px; 
+  height: 200px;
+  border-radius: 5px;
   background-color: white;
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .icon-add {
-  padding: 10px; 
-  position: absolute; 
-  top: 33%; 
-  left: 40%; 
+  padding: 10px;
   display: flex;
-  flex-direction: column; 
+  height: 100%;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
-.icon-add i{
+.icon-add i {
   font-size: 2em;
   color: black;
 }
 .card:hover {
-  height: 200px; 
-  border-radius: 5px; 
+  height: 200px;
+  border-radius: 5px;
   background-color: #f5f5f5;
 }
 .project-content {
-  padding: 10px; 
-  position: absolute; 
+  padding: 10px;
+  position: absolute;
   padding: 38px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
 }
 
-.rbc-toolbar span:nth-child(3) button:nth-child(n+2) {
-  display: none;  
+.rbc-toolbar span:nth-child(3) button:nth-child(n + 2) {
+  display: none;
 }
 
 .rbc-calendar {
@@ -401,7 +403,7 @@ li.L9 {
   color: red;
 }
 .fixed {
-  position:fixed;
+  position: fixed;
   z-index: 999;
 }
 .submit-frame {
@@ -414,6 +416,10 @@ li.L9 {
   position: sticky;
   top: 15px;
   z-index: 200;
+}
+
+.border-red {
+  border: 1px solid #f00;
 }
 
 .rbc-month-view {

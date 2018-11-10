@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button } from 'reactstrap';
-import * as PATH from '../../../constants/routeConstants';
-import * as api from '../../../api/api';
-import urlApi from '../../../constants/urlApi';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import { Button } from "reactstrap";
+import * as PATH from "../../../constants/routeConstants";
+import * as api from "../../../api/api";
+import urlApi from "../../../constants/urlApi";
 
 class TeamPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewGridStatus: true,
+      viewGridStatus: true
     };
   }
 
   onShowGridView = () => {
-    this.setState({ viewGridStatus: true })
-  }
+    this.setState({ viewGridStatus: true });
+  };
 
   onShowListView = () => {
-    this.setState({ viewGridStatus: false })
-  }
+    this.setState({ viewGridStatus: false });
+  };
 
-  viewTeamDetail = (id) => {
-    this.props.history.push(PATH.TEAM_URL + '/' + id)
-  }
+  viewTeamDetail = id => {
+    this.props.history.push(PATH.TEAM_URL + "/" + id);
+  };
 
   render() {
     const { listTeams } = this.props;
@@ -31,64 +31,104 @@ class TeamPage extends Component {
     return (
       <div>
         <div className="pull-right m-t-s25 m-r-20 ">
-          <button className={viewGridStatus ? "btn-transparent font-25" : "btn-transparent"}
+          <button
+            className={
+              viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
+            }
             onClick={() => this.onShowGridView()}
-          ><i className="fa fa-th-large"></i></button>
-          <button className={!viewGridStatus ? "btn-transparent font-25" : "btn-transparent"}
+          >
+            <i className="fa fa-th-large" />
+          </button>
+          <button
+            className={
+              !viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
+            }
             onClick={() => this.onShowListView()}
-          ><i className="fa fa-list"></i></button>
+          >
+            <i className="fa fa-list" />
+          </button>
         </div>
-        {viewGridStatus ?
+        {viewGridStatus ? (
           <section className="content">
             <br />
             <div className="row">
-              <div onClick={() => this.props.addTeam()} className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project" style={{ cursor: 'pointer' }}>
+              <div
+                onClick={() => this.props.addTeam()}
+                className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project"
+                style={{ cursor: "pointer" }}
+              >
                 <div className="card">
-                  <div className="card-body">
-                    <div className="icon-add" style={{ zIndex: '10', left: '32%' }}>
-                      <i className="glyphicon glyphicon-plus"></i>
-                      <span style={{ paddingTop: '5px' }}>Thêm nhóm</span>
+                  <div className="card-body" style={{ height: "100%" }}>
+                    <div className="icon-add">
+                      <i className="glyphicon glyphicon-plus" />
+                      <span style={{ paddingTop: "5px" }}>Thêm nhóm</span>
                     </div>
                   </div>
                 </div>
               </div>
               {(listTeams || []).map((item, index) => {
                 return (
-                  <span key={index} className="cursor-pointer"  >
-                    <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project" style={{ paddingBottom: '10px' }}>
+                  <span key={index} className="cursor-pointer">
+                    <div
+                      className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project"
+                      style={{ paddingBottom: "10px" }}
+                    >
                       <div className="card">
                         <div className="card-body">
-                          <div className="pull-right" style={{ zIndex: '50' }}>
-                            <Link className="btn btn-success" to={`${PATH.TEAM_EDIT_URL}/id=${item.id}`}>Sửa</Link>&nbsp;&nbsp;&nbsp;
-                            <Button color="danger" onClick={() => this.props.delete(item.id)}>X</Button>
+                          {/*<div className="pull-right" style={{ zIndex: "50" }}>
+                            <Link
+                              className="btn btn-success"
+                              to={`${PATH.TEAM_EDIT_URL}/id=${item.id}`}
+                            >
+                              Sửa
+                            </Link>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button
+                              color="danger"
+                              onClick={() => this.props.delete(item.id)}
+                            >
+                              X
+                            </Button>
                           </div>
-                          <div className="project" style={{ padding: '30px' }} onClick={() => this.viewTeamDetail(item.id)} >
+                          */}
+                          <div
+                            className="project"
+                            style={{ padding: "30px" }}
+                            onClick={() => this.viewTeamDetail(item.id)}
+                          >
                             <h3 className="card-title">{item.name}</h3>
-                            <h4 className="card-subtitle mb-2 text-muted">{item.note}</h4>
+                            <h4 className="card-subtitle mb-2 text-muted">
+                              {item.note}
+                            </h4>
                           </div>
                         </div>
                       </div>
                     </div>
                   </span>
-                )
+                );
               })}
             </div>
           </section>
-          :
+        ) : (
           <section className="content">
             <div className="row">
               <div className="col-xs-12">
                 <div className="box">
                   <div className="box-header with-border">
                     <h3 className="box-title">
-                      <i className="fa fa-users m-r-5"></i>
-                      <i className="fa m-r-5"></i>&nbsp;Quản lý nhóm
+                      <i className="fa fa-users m-r-5" />
+                      <i className="fa m-r-5" />
+                      &nbsp;Quản lý nhóm
                     </h3>
                     <div className="box-tools pull-right">
-                      <a className="btn btn-primary btn-sm btn-head" title="Add Team"
+                      <a
+                        className="btn btn-primary btn-sm btn-head"
+                        title="Add Team"
                         onClick={() => this.props.addTeam()}
                       >
-                        <i className="glyphicon glyphicon-plus margin-r-5"></i>Thêm nhóm</a>
+                        <i className="glyphicon glyphicon-plus margin-r-5" />
+                        Thêm nhóm
+                      </a>
                     </div>
                   </div>
                   <div className="box-body">
@@ -100,6 +140,7 @@ class TeamPage extends Component {
                           <th>Tên dự án</th>
                           <th>Mô tả</th>
                           <th>Chỉnh sửa</th>
+                          <th />
                         </tr>
                       </thead>
                       <tbody>
@@ -111,10 +152,31 @@ class TeamPage extends Component {
                               <td>{(item.project || {}).name}</td>
                               <td>{item.note}</td>
                               <td>
-                                <Link className="btn btn-success" to={`${PATH.TEAM_EDIT_URL}/id=${item.id}`}><i className="fa fa-edit"></i></Link>&nbsp;
-                                <button type="button" className="btn btn-danger" onClick={() => this.props.delete(item.id)}><i className="fa fa-trash"></i></button>
+                                <Link
+                                  className="btn btn-success"
+                                  to={`${PATH.TEAM_EDIT_URL}/id=${item.id}`}
+                                >
+                                  <i className="fa fa-edit" />
+                                </Link>
+                                &nbsp;
+                                <button
+                                  type="button"
+                                  className="btn btn-danger"
+                                  onClick={() => this.props.delete(item.id)}
+                                >
+                                  <i className="fa fa-trash" />
+                                </button>
                               </td>
-                            </tr>)
+                              <td>
+                                <Link
+                                  className="btn btn-info"
+                                  to={`${PATH.TEAM_URL}/${item.id}`}
+                                >
+                                  Chi tiết
+                                </Link>
+                              </td>
+                            </tr>
+                          );
                         })}
                       </tbody>
                     </table>
@@ -123,7 +185,7 @@ class TeamPage extends Component {
               </div>
             </div>
           </section>
-        }
+        )}
       </div>
     );
   }

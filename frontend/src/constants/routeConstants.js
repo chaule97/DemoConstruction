@@ -1,5 +1,6 @@
 export const HOME_URL = "/";
 export const LOGIN_URL = "/login";
+export const ADMIN_LOGIN_URL = "/admin/login";
 
 //Project pages
 export const PROJECT_URL = "/project";
