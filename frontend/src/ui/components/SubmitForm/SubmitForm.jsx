@@ -1,7 +1,6 @@
 import React from "react";
 import cx from "classnames";
 const SubmitForm = props => {
-  console.log(props.submitValue);
   return (
     <div>
       <section className="content">

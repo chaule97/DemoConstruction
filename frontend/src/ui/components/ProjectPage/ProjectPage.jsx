@@ -198,7 +198,7 @@ class ProjectPage extends React.Component {
                                   {moment(item.created_at).format("DD-MM-YYYY")}
                                 </td>
                                 <td>
-                                  <Link to={PATH.PROJECT_URL+'/'+item.id}>
+                                  <Link to={PATH.PROJECT_URL + "/" + item.id}>
                                     <Button color={"info"}>Chi tiết</Button>
                                   </Link>
                                 </td>
@@ -252,9 +252,7 @@ class ProjectPage extends React.Component {
                               <td>{moment().format("DD-MM-YYYY")}</td>
                               <td>
                                 <Link
-                                  to={`${PATH.PROJECT_SUBMIT_URL}/id=${
-                                    item.id
-                                  }`}
+                                  to={`${PATH.PROJECT_URL}/${item.id}/submit`}
                                 >
                                   <Button color={"success"}>Báo cáo</Button>
                                 </Link>

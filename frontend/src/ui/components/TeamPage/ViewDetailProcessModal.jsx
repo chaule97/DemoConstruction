@@ -15,8 +15,8 @@ const style = {
   }
 };
 const ViewDetailProcessModal = props => {
-  const { data, currentDate } = props;
-  if (!Array.isArray(data) || !props.projects) return null;
+  const { data } = props;
+  if (!Array.isArray(data)) return null;
   return (
     <Modal isOpen={props.openModal} style={style}>
       <div className="modal-dialog" role="document">
@@ -37,17 +37,15 @@ const ViewDetailProcessModal = props => {
                 </thead>
                 <tbody>
                   {data &&
-                    data.map((team, i) => {
+                    data.map((project, i) => {
                       return (
                         <tr key={i}>
-                          <td>{team.name}</td>
+                          <td>{project.name}</td>
                           <td>
                             <Link
                               to={`${PATH.PROJECT_URL}/${
-                                props.projects
-                              }/detail?current=${
-                                team.id
-                              }&currentDate=${currentDate}`}
+                                project.id
+                              }`}
                             >
                               Chi tiết
                             </Link>

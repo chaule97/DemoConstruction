@@ -25,6 +25,8 @@ class App extends Component {
 
   getLoginStatus = () => {
     const status = localStorage.getItem("login");
+
+    console.log(status);
     if (status) {
       const type = localStorage.getItem("type");
       this.setState({ type });

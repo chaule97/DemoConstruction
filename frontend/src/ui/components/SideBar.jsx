@@ -15,7 +15,7 @@ const SideBar = props => {
             />
           </div>
           <div className="pull-left info">
-            <p className="color-white">Tea Time Team</p>
+            <p style={{ fontSize: '1.5em' }} className="color-white">Tea Time Team</p>
             <Link to="#" className="color-white">
               <i className="fa fa-circle text-success" /> Online
             </Link>

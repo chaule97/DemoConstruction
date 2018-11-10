@@ -21,54 +21,61 @@ class SubmitForm extends Component {
   }
 
   componentWillMount() {
-    this.getProjectDetail(this.getProjectId());
-    this.getTeam();
-  }
-
-  getProjectDetail = id => {
-    api.apiGet(urlApi.getListProject + id).then(res => {
-      if (res) {
-        let submits = res.data.submits.filter(submit => {
-          return submit.date == moment().format("YYYY-MM-DD");
-        });
-        res.data.submits = submits;
-        this.setState({ projects: res.data });
-      }
-    });
-  };
-
-  getTeam = () => {
-    api.apiGet(urlApi.getListTeam).then(res => {
-      if (res) {
-        res.data = res.data.map(team => {
+    Promise.all([
+      this.getTeam(),
+      this.getProjectDetail(this.getProjectId())
+    ]).then(([teamData, projectsData]) => {
+      if (teamData) {
+        teamData.data = teamData.data.map(team => {
           team.submits = team.submits.filter(submit => {
             return submit.date == moment().format("YYYY-MM-DD");
           });
           return team;
         });
-        this.setState({ teams: res.data }, () => {
-          let submitValue = this.state.submitValue.concat([]);
-          let teams = this.state.teams.concat([]);
-          teams.forEach(team => {
-            if (team.submits.length > 0) {
-              let { projects, ...rest } = team.submits[0];
-              delete team.projects;
-              submitValue.push({ ...rest, teamDataDetail: team });
-            }
-          });
-          let teamAfterFilter = teams.filter(
-            item =>
-              submitValue.findIndex(submit => +submit.team == item.id) == -1
-          );
-
-          this.setState({ submitValue, teams: teamAfterFilter });
+        this.setState({ teams: teamData.data }, () => {
+          if (projectsData) {
+            let submits = projectsData.data.submits.filter(submit => {
+              return submit.date == moment().format("YYYY-MM-DD");
+            });
+            projectsData.data.submits = submits;
+            this.setState({ projects: projectsData.data }, () => {
+              let { projects } = this.state;
+              let teams = this.state.teams.concat([]);
+              let submitValue = this.state.submitValue.concat([]);
+              projects.submits.forEach(submit => {
+                let { team, ...rest } = submit;
+                submitValue.push({ ...rest, teamDataDetail: team });
+                teams = teams.filter(team => team.id != submit.team.id);
+              });
+              //teams.forEach(team => {
+              //  if (team.submits.length > 0) {
+              //    let { projects, ...rest } = team.submits[0];
+              //    delete team.projects;
+              //    submitValue.push({ ...rest, teamDataDetail: team });
+              //  }
+              //});
+              //let teamAfterFilter = teams.filter(
+              //  item =>
+              //    submitValue.findIndex(submit => +submit.team == item.id) == -1
+              //);
+              this.setState({ submitValue, teams });
+            });
+          }
         });
       }
     });
+  }
+
+  getProjectDetail = id => {
+    return api.apiGet(urlApi.getListProject + id);
+  };
+
+  getTeam = () => {
+    return api.apiGet(urlApi.getListTeam);
   };
 
   getProjectId = () => {
-    const id = this.props.location.pathname.split("id=")[1];
+    const id = this.props.match.params.id;
     let { data } = this.state;
     data.projects = id;
     this.setState({ data });

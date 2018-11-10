@@ -18,7 +18,7 @@ import ViewDetailProcessModal from "./ViewDetailProcessModal";
 
 const localizer = Calendar.momentLocalizer(moment);
 
-class Dashboard extends React.Component {
+class SubmitDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,11 +47,14 @@ class Dashboard extends React.Component {
 
   getDetail = () => {
     api.apiGet(urlApi.getListSubmit).then(res => {
-      let currentClickTeam = +this.props.location.search.slice(9);
+      let currentClickTeam = +this.props.location.search.split("&")[0].slice(9);
+      let currentDate = this.props.location.search.split("&")[1].slice(12);
       if (res.data && res.data.length > 0) {
         let events = res.data.reduce((acc, cur, index) => {
+          console.log(cur.projects, +this.props.match.params.id);
           if (cur.projects === +this.props.match.params.id) {
-            if (cur.date == moment().format("YYYY-MM-DD")) {
+            console.log(cur.date, currentDate);
+            if (cur.date == currentDate) {
               acc.push(cur);
               if (currentClickTeam == cur.team.id)
                 this.setState({ activeTab: `${acc.length}` });
@@ -186,4 +189,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default SubmitDetail;
