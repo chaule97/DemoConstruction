@@ -4,7 +4,7 @@ import { HashRouter as Router, Link } from "react-router-dom";
 
 const SideBar = props => {
   return (
-    <aside className="main-sidebar">
+    <aside className="main-sidebar" style={{ height: '133%' }}>
       <section className="sidebar">
         <div className="user-panel">
           <div className="pull-left image">
@@ -45,7 +45,7 @@ const SideBar = props => {
           <ul className="sidebar-menu" data-widget="tree">
             <li>
               <Link to={PATH.PROJECT_VIEW_URL}>
-                <i className="fa fa-codepen" /> DỰ ÁN
+                <i className="fab fa-codepen" /> &nbsp;&nbsp;DỰ ÁN
               </Link>
             </li>
             {/* <ul className="treeview-menu">
