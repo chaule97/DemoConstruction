@@ -41,13 +41,26 @@ const SubmitForm = props => {
                           <div className="col-sm-9 submit-frame">
                             <div className="col-sm-12 text-align-center">
                               <label>{item.teamDataDetail.name}</label>
+                              {props.errors[+item.team] && (
+                                <div className="alert alert-danger">
+                                  Các input phải khác rỗng
+                                </div>
+                              )}
                             </div>
                             <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>Số lượng công nhân:</label>
+                              <label>
+                                Số lượng công nhân:
+                                <span style={{ color: "red" }}>*</span>
+                              </label>
                               <input
                                 type="number"
+                                min="0"
                                 autoComplete="off"
-                                className="form-control"
+                                className={cx(`form-control`, {
+                                  "border-red":
+                                    props.errors[+item.team] &&
+                                    props.errors[+item.team].worker_number
+                                })}
                                 value={item.worker_number}
                                 onChange={e =>
                                   props.changeSubmitFormValue(
@@ -59,11 +72,19 @@ const SubmitForm = props => {
                               />
                             </div>
                             <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>Tiến độ đạt được: </label>
+                              <label>
+                                Tiến độ đạt được:
+                                <span style={{ color: "red" }}>*</span>
+                              </label>
                               <input
                                 type="number"
+                                min="0"
                                 autoComplete="off"
-                                className="form-control"
+                                className={cx(`form-control`, {
+                                  "border-red":
+                                    props.errors[+item.team] &&
+                                    props.errors[+item.team].process
+                                })}
                                 value={item.process}
                                 onChange={e =>
                                   props.changeSubmitFormValue(
@@ -82,7 +103,11 @@ const SubmitForm = props => {
                               <textarea
                                 rows="3"
                                 autoComplete="off"
-                                className="form-control"
+                                className={cx(`form-control`, {
+                                  "border-red":
+                                    props.errors[+item.team] &&
+                                    props.errors[+item.team].task_name
+                                })}
                                 value={item.task_name}
                                 onChange={e =>
                                   props.changeSubmitFormValue(
@@ -101,7 +126,11 @@ const SubmitForm = props => {
                               <textarea
                                 rows="3"
                                 autoComplete="off"
-                                className="form-control"
+                                className={cx(`form-control`, {
+                                  "border-red":
+                                    props.errors[+item.team] &&
+                                    props.errors[+item.team].content
+                                })}
                                 value={item.content}
                                 onChange={e =>
                                   props.changeSubmitFormValue(
@@ -120,7 +149,11 @@ const SubmitForm = props => {
                               <textarea
                                 rows="2"
                                 autoComplete="off"
-                                className="form-control"
+                                className={cx(`form-control`, {
+                                  "border-red":
+                                    props.errors[+item.team] &&
+                                    props.errors[+item.team].proposed_materials
+                                })}
                                 value={item.proposed_materials}
                                 onChange={e =>
                                   props.changeSubmitFormValue(
@@ -139,7 +172,11 @@ const SubmitForm = props => {
                               <textarea
                                 rows="3"
                                 autoComplete="off"
-                                className="form-control"
+                                className={cx(`form-control`, {
+                                  "border-red":
+                                    props.errors[+item.team] &&
+                                    props.errors[+item.team].job_tomorrow
+                                })}
                                 value={item.job_tomorrow}
                                 onChange={e =>
                                   props.changeSubmitFormValue(

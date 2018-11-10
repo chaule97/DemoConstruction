@@ -15,7 +15,8 @@ class SubmitForm extends Component {
       teamable: [],
       submitValue: [],
       data: {},
-      deleteSubmitId: {}
+      deleteSubmitId: {},
+      errors: []
     };
   }
 
@@ -119,21 +120,51 @@ class SubmitForm extends Component {
 
   submit = () => {
     const { submitValue, projects, deleteSubmitId } = this.state;
-
+    let { errors } = this.state;
+    errors = {};
+    let errFlag = false;
     submitValue.map(item => {
       let data = {
         ...item,
         projects: projects.id,
         date: moment().format("YYYY-MM-DD")
       };
+
+      let temp = {};
+      if (!data.worker_number) {
+        temp.worker_number = true;
+      }
+      if (!data.process) {
+        temp.process = true;
+      }
+      if (!data.task_name || data.task_name.trim() == "") {
+        temp.task_name = true;
+      }
+      if (!data.content || data.content.trim() == "") {
+        temp.content = true;
+      }
+      if (!data.proposed_materials || data.proposed_materials.trim() == "") {
+        temp.proposed_materials = true;
+      }
+      if (!data.job_tomorrow || data.job_tomorrow.trim() == "") {
+        temp.job_tomorrow = true;
+      }
+      if (Object.keys(temp).length > 0) {
+        errFlag = true;
+        errors[+data.team] = temp;
+        this.setState({ errors });
+      }
+
       data = _.omit(data, ["teamDataDetail"]);
       let length = projects.submits.filter(
         submit => submit.date == data.date && submit.team.id == data.team
       ).length;
-      if (length == 0) {
-        api.apiPost(urlApi.submitProcess, data);
-      } else {
-        api.apiPut(urlApi.submitProcess + item.id + "/", data);
+      if (!errFlag) {
+        if (length == 0) {
+          api.apiPost(urlApi.submitProcess, data);
+        } else {
+          api.apiPut(urlApi.submitProcess + item.id + "/", data);
+        }
       }
     });
     if (Object.keys(deleteSubmitId).length > 0) {
@@ -141,17 +172,18 @@ class SubmitForm extends Component {
         api.apiDelete(urlApi.submitProcess + key + "/");
       });
     }
-    this.props.history.push(PATH.PROJECT_VIEW_URL);
+    if (!errFlag) this.props.history.push(PATH.PROJECT_VIEW_URL);
   };
 
   render() {
-    const { projects, teams, data, submitValue } = this.state;
+    const { projects, teams, data, submitValue, errors } = this.state;
     // console.log(this.state)
     return (
       <SubmitFormComponent
         projects={projects}
         teams={teams}
         data={data}
+        errors={errors}
         submitValue={submitValue}
         changeSelectedTeam={id => this.changeSelectedTeam(id)}
         changeSubmitFormValue={(id, key, value) =>

@@ -198,7 +198,7 @@ class ProjectPage extends React.Component {
                                   {moment(item.created_at).format("DD-MM-YYYY")}
                                 </td>
                                 <td>
-                                  <Link to={PATH.PROJECT_DETAIL_URL}>
+                                  <Link to={PATH.PROJECT_URL+'/'+item.id}>
                                     <Button color={"info"}>Chi tiết</Button>
                                   </Link>
                                 </td>

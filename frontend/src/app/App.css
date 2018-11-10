@@ -387,7 +387,7 @@ li.L9 {
   align-items: center;
 }
 
-.rbc-toolbar span:nth-child(3) button:nth-child(n + 2) {
+.rbc-toolbar span:nth-child(3) button {
   display: none;
 }
 
@@ -428,4 +428,11 @@ li.L9 {
 
 .rbc-row-content {
   z-index: unset !important;
+}
+.rbc-day-bg {
+  background-color: #fff;
+}
+.rbc-day-bg.rbc-today {
+  background-color: #fff;
+  border: 1px solid !important;
 }
