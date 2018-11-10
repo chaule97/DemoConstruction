@@ -429,3 +429,105 @@ li.L9 {
 .rbc-row-content {
   z-index: unset !important;
 }
+
+.view-block {
+  text-align: center;
+  border-right: 1px solid grey;
+  padding: 20px;
+}
+
+.view-dashboard .blocks:nth-last-child(1) .view-block{
+  text-align: center;
+  border-right: none;
+  padding: 20px;
+}
+
+.blocks {
+  padding: 20px;
+}
+
+.view-dashboard {
+  background-color: white;
+}
+
+.sec2 {
+  margin-top: 10px;
+}
+
+.sec3 {
+  margin-top: 10px;
+}
+
+.view-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.border-right {
+  border: 1px solid grey;
+}
+
+.border-right i {
+  padding: 5px;
+}
+
+.title-icon .border-right:nth-child(2) {
+  border-left: none;
+}
+
+.chart {
+  width: var(--size);
+  height: var(--size);
+  margin: 1em auto;
+  border-radius: 50%;
+  background-image: conic-gradient(lightseagreen var(--value), lightgrey var(--value));
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - var(--bord));
+  height: calc(100% - var(--bord));
+  background: white;
+  border-radius: inherit;
+}
+
+p {
+  position: relative;
+  z-index: 1;
+  font-size: 2em;
+}
+
+.x-60 {
+  --value: 60%;
+}
+
+.x-80 {
+  --value: 80%;
+}
+
+.x-40 {
+  --value: 40%;
+}
+
+.x-20 {
+  --value: 20%;
+}
+
+:root {
+  --size: 100px;
+  --bord: 10px;
+}
+
+.chart-bgr {
+  background-color: white;
+  text-align: center;
+}
