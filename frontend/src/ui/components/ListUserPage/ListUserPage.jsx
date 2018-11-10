@@ -47,7 +47,7 @@ const ListUserPage = props => {
                             </td>
                           <td>
                           <div className="btn-group">
-                            <button type="button" className="btn btn-success" onClick = {() => props.editUser(item)}><i className="fa fa-edit"></i></button>
+                            <button type="button" className="btn btn-success" onClick = {() => props.editUser(item.id)}><i className="fa fa-edit"></i></button>
                             <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i></button>
                           </div>
                           </td>
