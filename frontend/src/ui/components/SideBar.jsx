@@ -4,7 +4,7 @@ import { HashRouter as Router, Link } from "react-router-dom";
 
 const SideBar = props => {
   return (
-    <aside className="main-sidebar" style={{ height: '133%' }}>
+    <aside className="main-sidebar">
       <section className="sidebar">
         <div className="user-panel">
           <div className="pull-left image">

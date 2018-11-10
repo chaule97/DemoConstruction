@@ -78,7 +78,7 @@ class App extends Component {
       <div>
         <Header />
         <SideBar />
-        <div className="content-wrapper">
+        <div className="content-wrapper" style={{overflow: 'auto', maxHeight: '607px'}}>
           <section className="content-header">
             <Switch>
               <Route
