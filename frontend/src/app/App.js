@@ -172,7 +172,7 @@ class App extends Component {
                 extact
                 render={() => <h1>Giám sát</h1>}
               />
-              <Route path={PATH.TEAM_URL} extact render={() => <h1>Nhóm</h1>} />
+              <Route path={PATH.TEAM_URL} exact render={() => <h1>Nhóm</h1>} />
               <Route
                 path={PATH.TEAM_DETAIL_URL}
                 render={() => <h1>Chi tiết</h1>}

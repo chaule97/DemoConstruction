@@ -52,7 +52,6 @@ class Dashboard extends React.Component {
     getDetail = () => {
         api.apiGet(urlApi.getListTeam + '/' + this.props.match.params.id)
             .then(res => {
-                console.log('2', res)
                 if (res.data && res.data.submits.length > 0) {
                     let events = res.data.submits.reduce((acc, cur) => {
                         let index = acc.findIndex((event) => {

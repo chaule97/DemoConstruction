@@ -429,7 +429,7 @@ li.L9 {
 .rbc-row-content {
   z-index: unset !important;
 }
-.rbc-day-bg {
+.rbc-day-bg:not(.rbc-off-range-bg) {
   background-color: #fff;
 }
 .rbc-day-bg.rbc-today {

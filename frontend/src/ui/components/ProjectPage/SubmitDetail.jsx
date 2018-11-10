@@ -51,9 +51,7 @@ class SubmitDetail extends React.Component {
       let currentDate = this.props.location.search.split("&")[1].slice(12);
       if (res.data && res.data.length > 0) {
         let events = res.data.reduce((acc, cur, index) => {
-          console.log(cur.projects, +this.props.match.params.id);
           if (cur.projects === +this.props.match.params.id) {
-            console.log(cur.date, currentDate);
             if (cur.date == currentDate) {
               acc.push(cur);
               if (currentClickTeam == cur.team.id)
@@ -124,7 +122,6 @@ class SubmitDetail extends React.Component {
 
           <TabContent activeTab={this.state.activeTab}>
             {events.map((event, index) => {
-              console.log(event);
               return (
                 <TabPane key={index} tabId={`${index + 1}`}>
                   <div className="container">

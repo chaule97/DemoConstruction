@@ -26,7 +26,7 @@ class Login extends Component {
     }
   }
 
-  login = () => {
+  login = (e) => {
     const { data } = this.state;
     if (_.isEmpty(data.username) || _.isEmpty(data.password)) {
       this.setState({ isEmpty: true });
