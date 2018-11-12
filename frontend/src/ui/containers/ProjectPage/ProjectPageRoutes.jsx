@@ -10,10 +10,11 @@ class ProjectPage extends Component {
   render() {
     return (
       <Switch>
-        <Route
+        {/* <Route
           path={PATH.PROJECT_CREATE_URL}
           component={CreateProjectContainer}
         />
+        */}
         {/* <Route path={PATH.PROJECT_DASHBOARD_URL}  component={DashboardComponent} /> */}
 
         <Route

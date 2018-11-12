@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Button } from "reactstrap";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+
 import * as PATH from "../../../constants/routeConstants";
 import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
@@ -30,7 +32,10 @@ class TeamPage extends Component {
     const { viewGridStatus } = this.state;
     return (
       <div>
-        <div className="pull-right m-t-s25 m-r-20 ">
+        <Breadcrumb>
+          <BreadcrumbItem active>ĐỘI</BreadcrumbItem>
+        </Breadcrumb>
+        <div className="pull-right" style={{ paddingRight: "25px" }}>
           <button
             className={
               viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
@@ -48,6 +53,12 @@ class TeamPage extends Component {
             <i className="fa fa-list" />
           </button>
         </div>
+        {this.props.successNotify && (
+          <div className="alert alert-success">Thêm thành công</div>
+        )}
+        {this.props.errNotify && (
+          <div className="alert alert-error">Lỗi khi thêm</div>
+        )}
         {viewGridStatus ? (
           <section className="content">
             <br />
@@ -73,7 +84,10 @@ class TeamPage extends Component {
                       className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project"
                       style={{ paddingBottom: "10px" }}
                     >
-                      <div className="card">
+                      <div
+                        className="card"
+                        onClick={() => this.viewTeamDetail(item.id)}
+                      >
                         <div className="card-body">
                           {/*<div className="pull-right" style={{ zIndex: "50" }}>
                             <Link
@@ -91,11 +105,7 @@ class TeamPage extends Component {
                             </Button>
                           </div>
                           */}
-                          <div
-                            className="project"
-                            style={{ padding: "30px" }}
-                            onClick={() => this.viewTeamDetail(item.id)}
-                          >
+                          <div className="project" style={{ padding: "30px" }}>
                             <h3 className="card-title">{item.name}</h3>
                             <h4 className="card-subtitle mb-2 text-muted">
                               {item.note}
@@ -137,9 +147,7 @@ class TeamPage extends Component {
                         <tr>
                           <th>#</th>
                           <th>Tên nhóm</th>
-                          <th>Tên dự án</th>
                           <th>Mô tả</th>
-                          <th>Chỉnh sửa</th>
                           <th />
                         </tr>
                       </thead>
@@ -149,24 +157,7 @@ class TeamPage extends Component {
                             <tr key={index}>
                               <td>{item.id}</td>
                               <td>{item.name}</td>
-                              <td>{(item.project || {}).name}</td>
                               <td>{item.note}</td>
-                              <td>
-                                <Link
-                                  className="btn btn-success"
-                                  to={`${PATH.TEAM_EDIT_URL}/id=${item.id}`}
-                                >
-                                  <i className="fa fa-edit" />
-                                </Link>
-                                &nbsp;
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                  onClick={() => this.props.delete(item.id)}
-                                >
-                                  <i className="fa fa-trash" />
-                                </button>
-                              </td>
                               <td>
                                 <Link
                                   className="btn btn-info"

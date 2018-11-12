@@ -33,6 +33,11 @@
 /*
  * Documentation specific stylesheet
  */
+.content-wrapper {
+  overflow: auto;
+  max-height: 607px;
+  min-height: 888px;
+}
 .content-wrapper p {
   padding: 0 10px;
   font-size: 16px;
@@ -326,6 +331,9 @@ li.L9 {
 .content-header .cursor-pointer:hover {
   color: #00a65a;
 }
+.content-header {
+  padding-left: 25px;
+}
 
 .right {
   float: right !important;
@@ -443,7 +451,7 @@ li.L9 {
   padding: 20px;
 }
 
-.view-dashboard .blocks:nth-last-child(1) .view-block{
+.view-dashboard .blocks:nth-last-child(1) .view-block {
   text-align: center;
   border-right: none;
   padding: 20px;
@@ -488,7 +496,10 @@ li.L9 {
   height: var(--size);
   margin: 1em auto;
   border-radius: 50%;
-  background-image: conic-gradient(lightseagreen var(--value), lightgrey var(--value));
+  background-image: conic-gradient(
+    lightseagreen var(--value),
+    lightgrey var(--value)
+  );
   position: relative;
   display: flex;
   justify-content: center;
@@ -537,4 +548,49 @@ p {
 .chart-bgr {
   background-color: white;
   text-align: center;
+}
+
+.sidebar-menu > li.active {
+  border-bottom: 1px solid white;
+}
+
+.breadcrumb {
+}
+.breadcrumb-item a,
+.active.breadcrumb-item {
+  font-size: 21px;
+}
+.fade {
+  opacity: 1;
+  transition: opacity 0.15s linear;
+}
+.modal-dialog {
+  height: 100%;
+  top: 40%;
+}
+
+.border-0 {
+  border: 0;
+}
+
+.react-datepicker__day,
+.react-datepicker__day-name {
+  width: 2.7rem !important;
+  font-size: 13px;
+}
+.react-datepicker__current-month {
+  font-size: 13px !important;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  width: 100%;
+}
+.alert.alert-success {
+  background-color: rgba(0, 168, 93, 0.5) !important;
+  color: black !important;
+}
+
+.bg-white {
+  background-color: white;
 }

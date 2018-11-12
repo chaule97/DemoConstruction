@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const CreateProject = props => {
+const EditProject = props => {
   const { errors } = props;
   return (
     <div>
@@ -16,7 +16,7 @@ const CreateProject = props => {
               <div className="box-header with-border">
                 <h3 className="box-title">
                   <i className="fa fa-users m-r-5" />
-                  <i className="fa m-r-5" /> Thêm dự án
+                  <i className="fa m-r-5" /> Cập nhật thông tin dự án
                 </h3>
               </div>
               <div className="box-body">
@@ -148,7 +148,9 @@ const CreateProject = props => {
                       <label>
                         Giám sát: <span style={{ color: "red" }}>*</span>
                       </label>
+
                       <select
+                        disabled
                         className={cx("form-control", {
                           "border-red": errors.indexOf("supervisor") !== -1
                         })}
@@ -159,14 +161,9 @@ const CreateProject = props => {
                           )
                         }
                       >
-                        <option value="">-- Chọn giám sát --</option>
-                        {(props.listSupervisor || []).map((item, index) => {
-                          return (
-                            <option key={index} value={item.id}>
-                              {item.username}
-                            </option>
-                          );
-                        })}
+                        <option value={props.supervisor.id} defaultValue>
+                          {props.supervisor.username}
+                        </option>
                       </select>
                     </div>
                     <div className="form-group col-lg-6">
@@ -189,9 +186,9 @@ const CreateProject = props => {
                 <div className="form-group col-lg-12">
                   <button
                     className="btn btn-success pull-right"
-                    onClick={() => props.createProject()}
+                    onClick={() => props.editProject()}
                   >
-                    Thêm
+                    Cập nhật
                   </button>
                 </div>
               </div>
@@ -202,4 +199,4 @@ const CreateProject = props => {
     </div>
   );
 };
-export default CreateProject;
+export default EditProject;

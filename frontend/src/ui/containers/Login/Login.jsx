@@ -26,12 +26,16 @@ class Login extends Component {
     }
   }
 
-  login = (e) => {
+  login = e => {
     const { data } = this.state;
     if (_.isEmpty(data.username) || _.isEmpty(data.password)) {
       this.setState({ isEmpty: true });
     } else {
-      apiPost(urlApi.login, data).then(res => {
+      let loginUrl;
+      if (window.location.hash.indexOf("admin") != -1)
+        loginUrl = urlApi.adminLogin;
+      else loginUrl = urlApi.login;
+      apiPost(loginUrl, data).then(res => {
         if (res.data.access) {
           this.setState({ failLogin: false });
           localStorage.setItem("login", true);

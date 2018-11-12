@@ -25,8 +25,6 @@ class App extends Component {
 
   getLoginStatus = () => {
     const status = localStorage.getItem("login");
-
-    console.log(status);
     if (status) {
       const type = localStorage.getItem("type");
       this.setState({ type });
@@ -78,7 +76,10 @@ class App extends Component {
       <div>
         <Header />
         <SideBar />
-        <div className="content-wrapper" style={{overflow: 'auto', maxHeight: '607px'}}>
+        <div
+          className="content-wrapper"
+          style={{ overflow: "auto", maxHeight: "607px" }}
+        >
           <section className="content-header">
             <Switch>
               <Route
@@ -134,18 +135,6 @@ class App extends Component {
                 )}
               />
               <Route
-                path={PATH.TEAM_DETAIL_URL}
-                render={() => (
-                  <h1
-                    className="cursor-pointer link-back"
-                    onClick={() => this.props.history.goBack()}
-                  >
-                    {" "}
-                    <i className="fa fa-angle-double-left" /> Back
-                  </h1>
-                )}
-              />
-              <Route
                 path={PATH.FORM_SUBMIT_URL}
                 extact
                 render={() => (
@@ -159,11 +148,6 @@ class App extends Component {
                 )}
               />
               <Route
-                path={PATH.PROJECT_URL}
-                extact
-                render={() => <h1>Dự án</h1>}
-              />
-              <Route
                 path={PATH.PROJECT_DETAIL_URL}
                 render={() => <h1>Chi tiết</h1>}
               />
@@ -171,11 +155,6 @@ class App extends Component {
                 path={PATH.USER_URL}
                 extact
                 render={() => <h1>Giám sát</h1>}
-              />
-              <Route path={PATH.TEAM_URL} exact render={() => <h1>Nhóm</h1>} />
-              <Route
-                path={PATH.TEAM_DETAIL_URL}
-                render={() => <h1>Chi tiết</h1>}
               />
               <Route
                 path={PATH.FORM_SUBMIT_URL}

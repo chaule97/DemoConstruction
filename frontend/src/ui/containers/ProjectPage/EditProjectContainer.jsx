@@ -1,28 +1,16 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import moment from "moment";
-import CreateProjectComponent from "../../components/ProjectPage/CreateProject";
+import EditProjectComponent from "../../components/ProjectPage/EditProject";
 import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
-class CreateProjectContainer extends Component {
+class EditProjectContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      supervisors: [],
-      project: {},
       errors: [],
-      completeNotify: false,
-      errNotify: false
+      project: {}
     };
-  }
-
-  componentWillMount() {
-    api.apiGet(urlApi.getSupervisors).then(res => {
-      const supervisors = res.data;
-      // project.admin = admins[0].id;
-      // this.setState({project})
-      this.setState({ supervisors });
-    });
   }
 
   changeProjectDetailValue = (key, value) => {
@@ -31,9 +19,14 @@ class CreateProjectContainer extends Component {
     this.setState({ project });
   };
 
-  createProject = event => {
+  componentWillReceiveProps(nextProps) {
+    this.setState({ project: nextProps.project });
+  }
+
+  editProject = event => {
     const data = this.state.project;
     let { errors } = this.state;
+    let projectId = this.props.match.params.id;
     errors = [];
 
     if (!data.address || data.address.trim() == "") {
@@ -54,22 +47,17 @@ class CreateProjectContainer extends Component {
     if (!data.position || data.position.trim() == "") {
       errors.push("ended_at");
     }
-    if (!data.supervisor || data.supervisor.trim() == "") {
-      errors.push("supervisor");
-    }
     if (errors.length > 0) {
       this.setState({ errors });
       return;
     } else {
       data.ended_at = moment(data.ended_at).format("YYYY-MM-DD");
-      api.apiPost(urlApi.createProject, data).then(
+      data.supervisor = data.supervisor.id;
+      api.apiPut(urlApi.createProject + projectId + "/", data).then(
         res => {
           if (res) {
-            this.props.onComplete(res, true);
-          } else {
-            this.props.onComplete(res, false);
+            console.log(res);
           }
-          this.props.toggle();
         }
         // this.setState({admins: res.data.filter(item => item.is_staff === true)})
       );
@@ -77,20 +65,23 @@ class CreateProjectContainer extends Component {
   };
 
   render() {
-    const { supervisors, project, errors } = this.state;
+    const { errors, project } = this.state;
+
     // console.log(this.state)
+
+    if (!project.supervisor) return null;
     return (
-      <CreateProjectComponent
+      <EditProjectComponent
         project={project}
         errors={errors}
-        listSupervisor={supervisors}
+        supervisor={project.supervisor}
         changeProjectDetailValue={(key, value) =>
           this.changeProjectDetailValue(key, value)
         }
-        createProject={() => this.createProject()}
+        editProject={() => this.editProject()}
       />
     );
   }
 }
 
-export default withRouter(CreateProjectContainer);
+export default withRouter(EditProjectContainer);

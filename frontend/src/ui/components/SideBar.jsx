@@ -1,6 +1,7 @@
 import React from "react";
 import * as PATH from "../../constants/routeConstants";
 import { HashRouter as Router, Link } from "react-router-dom";
+import cx from "classnames";
 
 const SideBar = props => {
   return (
@@ -15,35 +16,18 @@ const SideBar = props => {
             />
           </div>
           <div className="pull-left info">
-            <p style={{ fontSize: '1.5em' }} className="color-white">Tea Time Team</p>
-            <Link to="#" className="color-white">
-              <i className="fa fa-circle text-success" /> Online
-            </Link>
+            <p style={{ fontSize: "1.5em" }} className="color-white">
+              Tea Time Team
+            </p>
           </div>
         </div>
-        <form action="#" method="get" className="sidebar-form">
-          <div className="input-group">
-            <input
-              type="text"
-              name="q"
-              className="form-control"
-              placeholder="Search..."
-            />
-            <span className="input-group-btn">
-              <button
-                type="submit"
-                name="search"
-                id="search-btn"
-                className="btn btn-flat"
-              >
-                <i className="fa fa-search" />
-              </button>
-            </span>
-          </div>
-        </form>
         <Router>
           <ul className="sidebar-menu" data-widget="tree">
-            <li>
+            <li
+              className={cx({
+                active: window.location.hash.indexOf("project") != -1
+              })}
+            >
               <Link to={PATH.PROJECT_VIEW_URL}>
                 <i className="fab fa-codepen" /> &nbsp;&nbsp;DỰ ÁN
               </Link>
@@ -65,12 +49,20 @@ const SideBar = props => {
                                 </Link>
                                 </li>
                             </ul> */}
-            <li>
+            <li
+              className={cx({
+                active: window.location.hash.indexOf("team") != -1
+              })}
+            >
               <Link to={PATH.TEAM_URL}>
                 <i className="fa fa-users" /> NHÓM
               </Link>
             </li>
-            <li>
+            <li
+              className={cx({
+                active: window.location.hash.indexOf("user") != -1
+              })}
+            >
               <Link to={PATH.USER_URL}>
                 <i className="fa fa-user" /> GIÁM SÁT
               </Link>

@@ -15,7 +15,10 @@ const Login = props => {
       <div className="login-box-body">
         <p className="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
 
-        <form onSubmit={e=>{props.login(e)}}>
+        <form onSubmit={e => {
+          e.preventDefault()
+          props.login(e)
+        }}>
           <div className="form-group has-feedback">
             <input
               type="text"
@@ -59,7 +62,6 @@ const Login = props => {
             <div className="col-xs-4">
               <button
                 className="btn btn-primary btn-block btn-flat color-white"
-                type='submit'
               >
                 Đăng nhập
             </button>

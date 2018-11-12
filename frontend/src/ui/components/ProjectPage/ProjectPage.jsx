@@ -7,18 +7,19 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
 import * as PATH from "../../../constants/routeConstants";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
 const localizer = Calendar.momentLocalizer(moment);
 class ProjectPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
       activeTab: "1",
       admins: [],
       projects: [],
       viewGridStatus: true,
-      projects: []
+      projects: [],
+      breadCrumb: [{ active: true, value: "DỰ ÁN", link: "/project/view" }]
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -26,7 +27,7 @@ class ProjectPage extends React.Component {
   componentWillMount() {
     this.setState({ type: localStorage.getItem("type") });
     this.getProject();
-    this.getDetail();
+    //this.getDetail();
   }
 
   getProject = () => {
@@ -43,17 +44,6 @@ class ProjectPage extends React.Component {
         }
         this.setState({ projects: data });
       }
-    });
-  };
-
-  getDetail = () => {
-    api.apiGet(urlApi.getListSubmit).then(res => {
-      let events = res.data.map(item => ({
-        start: moment(item.date),
-        end: moment(item.date),
-        title: `${item.content} ${item.note}`
-      }));
-      this.setState({ events });
     });
   };
 
@@ -80,28 +70,43 @@ class ProjectPage extends React.Component {
   onShowListView = () => {
     this.setState({ viewGridStatus: false });
   };
+
   renderForAdmin() {
-    const { viewGridStatus } = this.state;
+    const { viewGridStatus, breadCrumb } = this.state;
     const { listProjects } = this.props;
+
     return (
       <div>
-        <div className="pull-right m-t-s25 m-r-20 ">
-          <button
-            className={
-              viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
-            }
-            onClick={() => this.onShowGridView()}
-          >
-            <i className="fa fa-th-large" />
-          </button>
-          <button
-            className={
-              !viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
-            }
-            onClick={() => this.onShowListView()}
-          >
-            <i className="fa fa-list" />
-          </button>
+        <div className="d-flex justify-content-between">
+          <Breadcrumb>
+            <BreadcrumbItem active>DỰ ÁN</BreadcrumbItem>
+          </Breadcrumb>
+          <div className="pull-right" style={{ paddingRight: "25px" }}>
+            <button
+              className={
+                viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
+              }
+              onClick={() => this.onShowGridView()}
+            >
+              <i className="fa fa-th-large" />
+            </button>
+            <button
+              className={
+                !viewGridStatus ? "btn-transparent font-25" : "btn-transparent"
+              }
+              onClick={() => this.onShowListView()}
+            >
+              <i className="fa fa-list" />
+            </button>
+          </div>
+        </div>
+        <div>
+          {this.props.successNotify && (
+            <div className="alert alert-success">Thêm thành công</div>
+          )}
+          {this.props.errNotify && (
+            <div className="alert alert-error">Lỗi khi thêm</div>
+          )}
         </div>
         {viewGridStatus ? (
           <section className="content">
@@ -163,7 +168,8 @@ class ProjectPage extends React.Component {
                     <div className="box-header with-border">
                       <h3 className="box-title">
                         <i className="fa fa-user m-r-5" />
-                        <i className="fa m-r-5" /> Dự án
+                        <i className="fa m-r-5" />
+                        Dự án
                       </h3>
                       <div className="box-tools pull-right">
                         <a

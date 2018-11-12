@@ -1,14 +1,15 @@
 import React from "react";
-import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Row,
-  Col
-} from "reactstrap";
 import classnames from "classnames";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Table
+} from "reactstrap";
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -79,7 +80,12 @@ class SubmitDetail extends React.Component {
   closeModal = event => {
     this.setState({ openModal: false });
   };
-
+  calcTotalWorker = teams => {
+    let total = teams.reduce((acc, cur) => {
+      return acc + cur.worker_number;
+    }, 0);
+    return total;
+  };
   eventStyleGetter = () => {
     return {
       style: {
@@ -94,92 +100,47 @@ class SubmitDetail extends React.Component {
   };
 
   render() {
-    const { projects, openModal, dataOfModal, events } = this.state;
+    const { events } = this.state;
+    let totalWorker = this.calcTotalWorker(events);
     return (
       <span>
         <section className="content">
-          <Nav tabs>
-            {events.map((event, index) => {
-              return (
-                <NavItem
-                  key={"tab" + index}
-                  className={classnames({
-                    active: this.state.activeTab === `${index + 1}`
-                  })}
-                >
-                  <NavLink
-                    onClick={() => {
-                      this.toggle(`${index + 1}`);
-                    }}
-                    style={{ color: "black", cursor: "pointer" }}
-                  >
-                    {event.team.name}
-                  </NavLink>
-                </NavItem>
-              );
-            })}
-          </Nav>
-
-          <TabContent activeTab={this.state.activeTab}>
-            {events.map((event, index) => {
-              return (
-                <TabPane key={index} tabId={`${index + 1}`}>
-                  <div className="container">
-                    <div className="row" style={{ marginTop: "10px" }}>
-                      <div className="form-group col-12 col-md-6">
-                        <label>Số lượng công nhân: </label>
-                        <input
-                          className="form-control"
-                          disabled
-                          value={event.worker_number}
-                        />
-                      </div>
-                      <div className="form-group col-12 col-md-6">
-                        <label>Tiến độ đạt được: </label>
-                        <input
-                          className="form-control"
-                          disabled
-                          value={event.process}
-                        />
-                      </div>
-                      <div className="form-group col-12 col-md-6">
-                        <label>Công việc: </label>
-                        <input
-                          className="form-control"
-                          disabled
-                          value={event.task_name}
-                        />
-                      </div>
-                      <div className="form-group col-12 col-md-6">
-                        <label>Ghi chú: </label>
-                        <input
-                          className="form-control"
-                          disabled
-                          value={event.content}
-                        />
-                      </div>
-                      <div className="form-group col-12 col-md-6">
-                        <label>Đề xuất vật tư: </label>
-                        <input
-                          className="form-control"
-                          disabled
-                          value={event.task_name}
-                        />
-                      </div>
-                      <div className="form-group col-12 col-md-6">
-                        <label>Các công việc cần chuẩn bị: </label>
-                        <input
-                          className="form-control"
-                          disabled
-                          value={event.job_tomorrow}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </TabPane>
-              );
-            })}
-          </TabContent>
+          <Table responsive bordered className="bg-white">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tên đội</th>
+                <th>Số lượng công nhân</th>
+                <th>Tiến độ đạt được</th>
+                <th>Công việc</th>
+                <th>Ghi chú</th>
+                <th>Đề xuất vật tư</th>
+                <th>Các công việc cần chuẩn bị</th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.map((event, index) => {
+                return (
+                  <tr key={`event_${index}`}>
+                    <td>{index + 1}</td>
+                    <td>{event.team.name}</td>
+                    <td>{event.worker_number}</td>
+                    <td>{event.process}</td>
+                    <td>{event.task_name}</td>
+                    <td>{event.content}</td>
+                    <td>{event.proposed_materials}</td>
+                    <td>{event.job_tomorrow}</td>
+                  </tr>
+                );
+              })}
+              <tr>
+                <td colSpan="2">
+                  <strong>Tổng cộng</strong>
+                </td>
+                <td colSpan="6">{totalWorker}</td>
+              </tr>
+            </tbody>
+          </Table>
         </section>
       </span>
     );

@@ -33,177 +33,180 @@ const SubmitForm = props => {
                         })}
                       </select>
                     </div>
-                    {(props.submitValue || []).map((item, index) => {
-                      return (
-                        <div key={index}>
-                          <div className="col-sm-3" />
-                          <div className="col-sm-9 submit-frame">
-                            <div className="col-sm-12 text-align-center">
-                              <label>{item.teamDataDetail.name}</label>
-                              {props.errors[+item.team] && (
-                                <div className="alert alert-danger">
-                                  Các input phải khác rỗng
-                                </div>
-                              )}
-                            </div>
-                            <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>
-                                Số lượng công nhân:
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <input
-                                type="number"
-                                min="0"
-                                autoComplete="off"
-                                className={cx(`form-control`, {
-                                  "border-red":
-                                    props.errors[+item.team] &&
-                                    props.errors[+item.team].worker_number
-                                })}
-                                value={item.worker_number}
-                                onChange={e =>
-                                  props.changeSubmitFormValue(
-                                    item.team,
-                                    "worker_number",
-                                    Number(e.target.value)
-                                  )
-                                }
-                              />
-                            </div>
-                            <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>
-                                Tiến độ đạt được:
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <input
-                                type="number"
-                                min="0"
-                                autoComplete="off"
-                                className={cx(`form-control`, {
-                                  "border-red":
-                                    props.errors[+item.team] &&
-                                    props.errors[+item.team].process
-                                })}
-                                value={item.process}
-                                onChange={e =>
-                                  props.changeSubmitFormValue(
-                                    item.team,
-                                    "process",
-                                    Number(e.target.value)
-                                  )
-                                }
-                              />
-                            </div>
-                            <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>
-                                Công việc:{" "}
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <textarea
-                                rows="3"
-                                autoComplete="off"
-                                className={cx(`form-control`, {
-                                  "border-red":
-                                    props.errors[+item.team] &&
-                                    props.errors[+item.team].task_name
-                                })}
-                                value={item.task_name}
-                                onChange={e =>
-                                  props.changeSubmitFormValue(
-                                    item.team,
-                                    "task_name",
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </div>
-                            <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>
-                                Ghi chú, đề xuất:{" "}
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <textarea
-                                rows="3"
-                                autoComplete="off"
-                                className={cx(`form-control`, {
-                                  "border-red":
-                                    props.errors[+item.team] &&
-                                    props.errors[+item.team].content
-                                })}
-                                value={item.content}
-                                onChange={e =>
-                                  props.changeSubmitFormValue(
-                                    item.team,
-                                    "content",
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </div>
-                            <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>
-                                Đề xuất vật tư:{" "}
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <textarea
-                                rows="2"
-                                autoComplete="off"
-                                className={cx(`form-control`, {
-                                  "border-red":
-                                    props.errors[+item.team] &&
-                                    props.errors[+item.team].proposed_materials
-                                })}
-                                value={item.proposed_materials}
-                                onChange={e =>
-                                  props.changeSubmitFormValue(
-                                    item.team,
-                                    "proposed_materials",
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </div>
-                            <div className="form-group col-sm-12 col-md-6 col-lg-6">
-                              <label>
-                                Các công việc cần chuẩn bị:{" "}
-                                <span style={{ color: "red" }}>*</span>
-                              </label>
-                              <textarea
-                                rows="3"
-                                autoComplete="off"
-                                className={cx(`form-control`, {
-                                  "border-red":
-                                    props.errors[+item.team] &&
-                                    props.errors[+item.team].job_tomorrow
-                                })}
-                                value={item.job_tomorrow}
-                                onChange={e =>
-                                  props.changeSubmitFormValue(
-                                    item.team,
-                                    "job_tomorrow",
-                                    e.target.value
-                                  )
-                                }
-                              />
-                            </div>
-                            <div
-                              className="form-group col-sm-12 col-md-6 col-lg-6"
-                              style={{
-                                display: "flex",
-                                justifyContent: "flex-end"
-                              }}
-                            >
-                              <button
-                                className="btn btn-danger text-right"
-                                onClick={() => props.cancel(item)}
+                    <div className="col-12 col-md-8 col-lg-10">
+                      {(props.submitValue || []).map((item, index) => {
+                        return (
+                          <div key={index}>
+                            <div className="col-sm-12 submit-frame">
+                              <div className="col-sm-12 text-align-center">
+                                <label>{item.teamDataDetail.name}</label>
+                                {props.errors[+item.team] && (
+                                  <div className="alert alert-danger">
+                                    Các input phải khác rỗng
+                                  </div>
+                                )}
+                              </div>
+                              <div className="form-group col-sm-12 col-md-6 col-lg-6">
+                                <label>
+                                  Số lượng công nhân:
+                                  <span style={{ color: "red" }}>*</span>
+                                </label>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  autoComplete="off"
+                                  className={cx(`form-control`, {
+                                    "border-red":
+                                      props.errors[+item.team] &&
+                                      props.errors[+item.team].worker_number
+                                  })}
+                                  value={item.worker_number}
+                                  onChange={e =>
+                                    props.changeSubmitFormValue(
+                                      item.team,
+                                      "worker_number",
+                                      Number(e.target.value)
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-sm-12 col-md-6 col-lg-6">
+                                <label>
+                                  Tiến độ đạt được:
+                                  <span style={{ color: "red" }}>*</span>
+                                </label>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  autoComplete="off"
+                                  className={cx(`form-control`, {
+                                    "border-red":
+                                      props.errors[+item.team] &&
+                                      props.errors[+item.team].process
+                                  })}
+                                  value={item.process}
+                                  onChange={e =>
+                                    props.changeSubmitFormValue(
+                                      item.team,
+                                      "process",
+                                      Number(e.target.value)
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-sm-12 col-md-6 col-lg-6">
+                                <label>
+                                  Công việc:{" "}
+                                  <span style={{ color: "red" }}>*</span>
+                                </label>
+                                <textarea
+                                  rows="3"
+                                  autoComplete="off"
+                                  className={cx(`form-control`, {
+                                    "border-red":
+                                      props.errors[+item.team] &&
+                                      props.errors[+item.team].task_name
+                                  })}
+                                  value={item.task_name}
+                                  onChange={e =>
+                                    props.changeSubmitFormValue(
+                                      item.team,
+                                      "task_name",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-sm-12 col-md-6 col-lg-6">
+                                <label>
+                                  Ghi chú, đề xuất:{" "}
+                                  <span style={{ color: "red" }}>*</span>
+                                </label>
+                                <textarea
+                                  rows="3"
+                                  autoComplete="off"
+                                  className={cx(`form-control`, {
+                                    "border-red":
+                                      props.errors[+item.team] &&
+                                      props.errors[+item.team].content
+                                  })}
+                                  value={item.content}
+                                  onChange={e =>
+                                    props.changeSubmitFormValue(
+                                      item.team,
+                                      "content",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-sm-12 col-md-6 col-lg-6">
+                                <label>
+                                  Đề xuất vật tư:{" "}
+                                  <span style={{ color: "red" }}>*</span>
+                                </label>
+                                <textarea
+                                  rows="2"
+                                  autoComplete="off"
+                                  className={cx(`form-control`, {
+                                    "border-red":
+                                      props.errors[+item.team] &&
+                                      props.errors[+item.team]
+                                        .proposed_materials
+                                  })}
+                                  value={item.proposed_materials}
+                                  onChange={e =>
+                                    props.changeSubmitFormValue(
+                                      item.team,
+                                      "proposed_materials",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div className="form-group col-sm-12 col-md-6 col-lg-6">
+                                <label>
+                                  Các công việc cần chuẩn bị:{" "}
+                                  <span style={{ color: "red" }}>*</span>
+                                </label>
+                                <textarea
+                                  rows="3"
+                                  autoComplete="off"
+                                  className={cx(`form-control`, {
+                                    "border-red":
+                                      props.errors[+item.team] &&
+                                      props.errors[+item.team].job_tomorrow
+                                  })}
+                                  value={item.job_tomorrow}
+                                  onChange={e =>
+                                    props.changeSubmitFormValue(
+                                      item.team,
+                                      "job_tomorrow",
+                                      e.target.value
+                                    )
+                                  }
+                                />
+                              </div>
+                              <div
+                                className="form-group col-sm-12 col-md-6 col-lg-6"
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "flex-end"
+                                }}
                               >
-                                Hủy
-                              </button>
+                                <button
+                                  type="button"
+                                  className="btn btn-danger text-right"
+                                  onClick={() => props.cancel(item)}
+                                >
+                                  Hủy
+                                </button>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
                 </form>
                 <div className="form-group col-lg-12">
