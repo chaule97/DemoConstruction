@@ -110,7 +110,7 @@ const CreateProject = props => {
                       <input
                         type="text"
                         className={cx("form-control", {
-                          "border-red": errors.indexOf("address") !== -1
+                          "border-red": errors.indexOf("position") !== -1
                         })}
                         value={props.project.position}
                         onChange={e =>

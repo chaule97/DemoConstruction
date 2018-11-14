@@ -9,7 +9,7 @@ class CreateProjectContainer extends Component {
     super(props);
     this.state = {
       supervisors: [],
-      project: {},
+      project: { ended_at: moment().format("YYYY-MM-DD") },
       errors: [],
       completeNotify: false,
       errNotify: false
@@ -51,7 +51,7 @@ class CreateProjectContainer extends Component {
     if (!data.name || data.name.trim() == "") {
       errors.push("name");
     }
-    if (!data.position || data.position.trim() == "") {
+    if (!data.ended_at || data.ended_at.trim() == "") {
       errors.push("ended_at");
     }
     if (!data.supervisor || data.supervisor.trim() == "") {

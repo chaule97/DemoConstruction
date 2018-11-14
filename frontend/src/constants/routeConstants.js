@@ -1,6 +1,7 @@
 export const HOME_URL = "/";
 export const LOGIN_URL = "/login";
 export const ADMIN_LOGIN_URL = "/admin/login";
+export const LOGOUT_URL = "/logout";
 
 //Project pages
 export const PROJECT_URL = "/project";
@@ -16,7 +17,7 @@ export const TEAM_EDIT_URL = "/team/edit";
 //user page
 export const USER_URL = "/user";
 export const USER_ADD_URL = "/user/add";
-export const USER_EDIT_URL = "/user/edit";
+export const USER_EDIT_URL = "/user/:id/edit";
 //Submit Form
 export const FORM_SUBMIT_URL = "/form/submit";
 

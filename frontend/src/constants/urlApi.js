@@ -12,5 +12,6 @@ export default {
   submitProcess: serverUrl + "/api/submit/",
   getListSubmit: serverUrl + "/api/submit/",
   login: serverUrl + "/api/login/",
+  logout: serverUrl + "/api/logout/",
   adminLogin: serverUrl + "/api/admin/login/"
 };

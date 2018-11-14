@@ -403,6 +403,17 @@ li.L9 {
   height: 492px !important;
 }
 
+.rbc-event {
+  margin-top: -36px !important;
+  height: 100px !important;
+  background-color: transparent !important;
+}
+.rbc-event-content {
+  text-align: center;
+  font-size: 19px;
+  font-weight: bold;
+}
+
 .text-align-center {
   text-align: center;
 }
@@ -448,7 +459,7 @@ li.L9 {
 .view-block {
   text-align: center;
   border-right: 1px solid grey;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .view-dashboard .blocks:nth-last-child(1) .view-block {
@@ -458,7 +469,7 @@ li.L9 {
 }
 
 .blocks {
-  padding: 20px;
+  padding: 20px 20px 20px 0;
 }
 
 .view-dashboard {

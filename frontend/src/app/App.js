@@ -12,6 +12,7 @@ import ProjectContainer from "../ui/containers/ProjectPage/ProjectPageRoutes";
 import TeamContainer from "../ui/containers/TeamPage/TeamPageRoutes";
 import EditTeamContainer from "../ui/containers/TeamPage/EditTeamPage";
 import UserContainer from "../ui/containers/ListUserPage/UserPageRoutes";
+import EditUserPage from "../ui/containers/ListUserPage/EditUserPage";
 
 class App extends Component {
   constructor(props) {
@@ -180,6 +181,7 @@ class App extends Component {
               path={PATH.FORM_SUBMIT_URL}
               component={SubmitFormContainer}
             />
+            <Route path={PATH.USER_EDIT_URL} component={EditUserPage} />
             <Route
               path={PATH.HOME_URL}
               extact

@@ -102,7 +102,8 @@ class SubmitForm extends Component {
   };
 
   cancel = item => {
-    let { submitValue, teams } = _.cloneDeep(this.state);
+    let submitValue = this.state.submitValue.concat([]);
+    let teams = this.state.teams.concat([]);
     teams.push(item.teamDataDetail);
     teams = _.sortBy(teams, ["id"]);
     let temp = submitValue.filter(it => {
@@ -120,6 +121,7 @@ class SubmitForm extends Component {
   };
 
   changeSubmitFormValue = (id, key, value) => {
+    console.log(id, key, value);
     let { submitValue } = _.cloneDeep(this.state);
     submitValue.map(item => (item.team == id ? (item[key] = value) : null));
     this.setState({ submitValue });

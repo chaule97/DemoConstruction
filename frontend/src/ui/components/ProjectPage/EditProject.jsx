@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const EditProject = props => {
-  const { errors } = props;
+  const { errors, success } = props;
   return (
     <div>
       <section className="content">
@@ -24,6 +24,13 @@ const EditProject = props => {
                   <div className="container-fluid">
                     <div className="alert alert-danger">
                       Tất cả các Input đều phải khác rỗng
+                    </div>
+                  </div>
+                )}
+                {success && (
+                  <div className="container-fluid">
+                    <div className="alert alert-success">
+                      Cập nhật thành công
                     </div>
                   </div>
                 )}
@@ -110,7 +117,7 @@ const EditProject = props => {
                       <input
                         type="text"
                         className={cx("form-control", {
-                          "border-red": errors.indexOf("address") !== -1
+                          "border-red": errors.indexOf("position") !== -1
                         })}
                         value={props.project.position}
                         onChange={e =>
@@ -171,7 +178,7 @@ const EditProject = props => {
                         Ngày khởi tạo: <span style={{ color: "red" }}>*</span>
                       </label>
                       <span className="form-control border-0 ">
-                        {moment().format("DD-MM-YYYY")}
+                        {moment(props.project.created_at).format("DD-MM-YYYY")}
                       </span>
                     </div>
                     {/* <div className="form-group col-lg-6">

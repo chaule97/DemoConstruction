@@ -11,7 +11,11 @@ class ListUserPage extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.getSupervisors();
+  }
+
+  getSupervisors() {
     api
       .apiGet(urlApi.getSupervisors)
       .then(res => this.setState({ supervisors: res.data }));
@@ -20,8 +24,11 @@ class ListUserPage extends Component {
   addUser = () => {
     this.props.history.push("/user/add");
   };
-  editUser = item => {
-    this.props.history.push("/user/add");
+  deleteUser = id => {
+    api.apiDelete(urlApi.getListUser + id + "/").then(res => {
+      console.log(res);
+      this.getSupervisors();
+    });
   };
   render() {
     const { supervisors } = this.state;
@@ -30,7 +37,7 @@ class ListUserPage extends Component {
         {...this.props}
         listUsers={supervisors}
         addUser={() => this.addUser()}
-        editUser={item => this.editUser(item)}
+        deleteUser={this.deleteUser}
       />
     );
   }

@@ -1,47 +1,90 @@
-import axios from 'axios';
+import axios from "axios";
 // const instance  = axios.create({
-
+import Cookies from "js-cookie";
 // })
-export const apiGet = (url) => {
-  return axios.get(url).then((response) => {
-    return (response)
+export const apiGet = url => {
+  return fetch(url, {
+    method: "GET",
+    credentials: "include"
   })
-    .catch((error) => {
-      return {}
+    .then(response => {
+      return response.json();
     })
-}
+    .then(res => ({ data: res }))
+    .catch(error => {
+      return {};
+    });
+};
 export const apiPost = (url, data) => {
-  return axios.post(url, data).then((response) => {
-    return (response)
+  return fetch(url, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+      "X-CSRFToken": Cookies.get("csrftoken")
+    },
+    body: JSON.stringify(data)
   })
-    .catch((error) => {
-      return error
+    .then(response => {
+      return response.json();
     })
-}
+    .then(res => ({ data: res }))
+    .catch(error => {
+      return error;
+    });
+};
 
 export const apiPut = (url, data) => {
-  return axios.put(url, data).then((response) => {
-    return (response)
+  return fetch(url, {
+    method: "PUT",
+    credentials: "include",
+    body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
+      "X-CSRFToken": Cookies.get("csrftoken")
+    }
   })
-    .catch((error) => {
-      return error
+    .then(response => {
+      return response.json();
     })
-}
+    .then(res => ({ data: res }))
+    .catch(error => {
+      return error;
+    });
+};
 
 export const apiPatch = (url, data) => {
-  return axios.patch(url, data).then((response) => {
-    return (response)
+  return fetch(url, {
+    method: "PATCH",
+    credentials: "include",
+    body: JSON.stringify(data),
+    headers: {
+      "content-type": "application/json",
+      "X-CSRFToken": Cookies.get("csrftoken")
+    }
   })
-    .catch((error) => {
-      return error
+    .then(response => {
+      return response.json();
     })
-}
+    .then(res => ({ data: res }))
+    .catch(error => {
+      return error;
+    });
+};
 
-export const apiDelete = (url) => {
-  return axios.delete(url).then((response) => {
-    return (response)
+export const apiDelete = url => {
+  return fetch(url, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      "X-CSRFToken": Cookies.get("csrftoken")
+    }
   })
-    .catch((error) => {
-      return error
+    .then(response => {
+      return response.json();
     })
-}
+    .then(res => ({ data: res }))
+    .catch(error => {
+      return error;
+    });
+};

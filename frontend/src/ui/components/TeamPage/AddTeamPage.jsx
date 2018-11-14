@@ -43,7 +43,7 @@ const AddTeamPage = props => {
                     <div className="form-group col-lg-6">
                       <label>Mô tả:</label>
                       <textarea
-                        rows="4"
+                        rows="1"
                         autoComplete="off"
                         className={cx(`form-control`, {
                           "border-red": props.errors.indexOf("note") != -1

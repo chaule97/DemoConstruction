@@ -24,9 +24,10 @@ class View extends Component {
 
   componentWillMount() {
     this.setState({ type: localStorage.getItem("type") });
-    api
-      .apiGet(urlApi.getListProject)
-      .then(res => this.setState({ projects: res.data }));
+    api.apiGet(urlApi.getListProject).then(res => {
+      console.log(res);
+      this.setState({ projects: res.data });
+    });
   }
   componentWillUnmount() {
     clearTimeout(this.notify);

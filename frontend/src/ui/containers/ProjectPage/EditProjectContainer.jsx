@@ -4,13 +4,23 @@ import moment from "moment";
 import EditProjectComponent from "../../components/ProjectPage/EditProject";
 import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
+
 class EditProjectContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       errors: [],
-      project: {}
+      project: {},
+      success: false
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ project: nextProps.project });
+  }
+
+  componentWillUnmout() {
+    clearTimeout(this.notifyErr);
   }
 
   changeProjectDetailValue = (key, value) => {
@@ -18,10 +28,6 @@ class EditProjectContainer extends Component {
     project[key] = value;
     this.setState({ project });
   };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ project: nextProps.project });
-  }
 
   editProject = event => {
     const data = this.state.project;
@@ -44,11 +50,14 @@ class EditProjectContainer extends Component {
     if (!data.name || data.name.trim() == "") {
       errors.push("name");
     }
-    if (!data.position || data.position.trim() == "") {
+    if (!data.ended_at || data.ended_at.trim() == "") {
       errors.push("ended_at");
     }
     if (errors.length > 0) {
       this.setState({ errors });
+      this.notifyErr = setTimeout(() => {
+        this.setState({ errors: [] });
+      }, 3000);
       return;
     } else {
       data.ended_at = moment(data.ended_at).format("YYYY-MM-DD");
@@ -56,7 +65,10 @@ class EditProjectContainer extends Component {
       api.apiPut(urlApi.createProject + projectId + "/", data).then(
         res => {
           if (res) {
-            console.log(res);
+            this.setState({ success: true });
+            this.notifySuccess = setTimeout(() => {
+              this.setState({ success: false });
+            }, 3000);
           }
         }
         // this.setState({admins: res.data.filter(item => item.is_staff === true)})
@@ -65,7 +77,7 @@ class EditProjectContainer extends Component {
   };
 
   render() {
-    const { errors, project } = this.state;
+    const { errors, project, success } = this.state;
 
     // console.log(this.state)
 
@@ -74,6 +86,7 @@ class EditProjectContainer extends Component {
       <EditProjectComponent
         project={project}
         errors={errors}
+        success={success}
         supervisor={project.supervisor}
         changeProjectDetailValue={(key, value) =>
           this.changeProjectDetailValue(key, value)

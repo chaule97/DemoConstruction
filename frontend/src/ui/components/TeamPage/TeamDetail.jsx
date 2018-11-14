@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       events: [],
-      activeTab: "1",
+      activeTab: "2",
       team: [],
       admins: [],
       openModal: false,
@@ -58,10 +58,12 @@ class Dashboard extends React.Component {
 
   getDetail = () => {
     api.apiGet(urlApi.getListTeam + this.props.match.params.id).then(res => {
-      if (res.data && res.data.submits.length > 0) {
+      if (res.data) {
         let { submits, ...rest } = res.data;
         this.setState({ team: rest });
-        let events = submits.reduce((acc, cur) => {
+      }
+      if (res.data && res.data.submits.length > 0) {
+        let events = res.data.submits.reduce((acc, cur) => {
           let index = acc.findIndex(event => {
             return event.start.isSame(moment(cur.date));
           });
@@ -134,7 +136,7 @@ class Dashboard extends React.Component {
         </h4>
         <section className="content">
           <Nav tabs>
-            <NavItem
+            {/*<NavItem
               className={classnames({ active: this.state.activeTab === "1" })}
             >
               <NavLink
@@ -145,7 +147,7 @@ class Dashboard extends React.Component {
               >
                 Tổng quan
               </NavLink>
-            </NavItem>
+            </NavItem>*/}
             <NavItem
               className={classnames({ active: this.state.activeTab === "2" })}
             >
@@ -160,7 +162,7 @@ class Dashboard extends React.Component {
             </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
-            <TabPane tabId="1">
+            {/*<TabPane tabId="1">
               <section className="sec1">
                 <div className="view-dashboard">
                   <div className="row">
@@ -278,7 +280,7 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
               </section>
-            </TabPane>
+            </TabPane>*/}
             <TabPane tabId="2">
               <Row style={{ marginTop: "10px" }}>
                 <Col sm="12">

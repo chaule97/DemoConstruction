@@ -34,7 +34,7 @@ const SubmitForm = props => {
                       </select>
                     </div>
                     <div className="col-12 col-md-8 col-lg-10">
-                      {(props.submitValue || []).map((item, index) => {
+                      {props.submitValue.map((item, index) => {
                         return (
                           <div key={index}>
                             <div className="col-sm-12 submit-frame">
