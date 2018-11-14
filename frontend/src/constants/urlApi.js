@@ -1,5 +1,5 @@
-//const serverUrl = "http://nhokproxmen.pythonanywhere.com";
-const serverUrl = "http://localhost:8000";
+const serverUrl = "http://nhokproxmen.pythonanywhere.com";
+//const serverUrl = "http://localhost:8000";
 
 export default {
   getListUser: serverUrl + "/api/user/",
