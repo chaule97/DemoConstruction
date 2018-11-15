@@ -24,7 +24,7 @@ const ViewDetailProcessModal = props => {
           <form>
             <div className="modal-header">
               <h4 className="modal-title" id="myModalLabel">
-                {"Số nhóm đã báo cáo:"}
+                {"Danh sách dự án"}
               </h4>
             </div>
             <div className="modal-body">
@@ -43,6 +43,7 @@ const ViewDetailProcessModal = props => {
                           <td>{team.name}</td>
                           <td>
                             <Link
+                              className="btn btn-primary"
                               to={`${PATH.PROJECT_URL}/${
                                 props.projects
                               }/detail?current=${

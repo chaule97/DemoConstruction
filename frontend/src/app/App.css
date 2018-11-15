@@ -605,3 +605,28 @@ p {
 .bg-white {
   background-color: white;
 }
+
+.border-in-progress {
+  border-top: 4px solid blue;
+}
+.border-in-progress.list {
+  border-left: 4px solid blue;
+}
+
+.border-ended {
+  border-top: 4px solid red;
+}
+
+.border-ended.list {
+  border-left: 4px solid red;
+}
+
+.sec2 {
+  display: none;
+}
+
+@media (min-width: 986px) {
+  .sec2 {
+    display: block;
+  }
+}

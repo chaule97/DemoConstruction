@@ -2,7 +2,7 @@ import React from "react";
 import * as PATH from "../../constants/routeConstants";
 import { HashRouter as Router, Link } from "react-router-dom";
 import cx from "classnames";
-
+import ReactExport from "react-data-export";
 const SideBar = props => {
   return (
     <aside className="main-sidebar">

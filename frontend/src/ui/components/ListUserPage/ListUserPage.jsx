@@ -61,9 +61,6 @@ const ListUserPage = props => {
                               >
                                 <i className="fa fa-edit" />
                               </Link>
-                              <button type="button" className="btn btn-danger" onClick={()=>{props.deleteUser(item.id)}}>
-                                <i className="fa fa-trash" />
-                              </button>
                             </div>
                           </td>
                         </tr>

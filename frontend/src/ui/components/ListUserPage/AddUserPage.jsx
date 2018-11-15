@@ -6,6 +6,8 @@ const AddUserPage = props => {
   const {
     errors,
     errors_password,
+    email_error,
+    userName_error,
     afterChange_error,
     successNotify,
     successNotify_password,
@@ -33,6 +35,21 @@ const AddUserPage = props => {
                     </div>
                   </div>
                 )}
+                {email_error > 0 && (
+                  <div className="container-fluid">
+                    <div className="alert alert-danger">
+                      Email phải có dạng abc@gmail.com
+                    </div>
+                  </div>
+                )}
+                {userName_error > 0 && (
+                  <div className="container-fluid">
+                    <div className="alert alert-danger">
+                      Tên đăng nhập phải bắt đầu bằng chữ cái, không có dấu cách
+                      ở giữa các từ và không có dấu
+                    </div>
+                  </div>
+                )}
                 {successNotify && (
                   <div className="container-fluid">
                     <div className="alert alert-success">
@@ -56,7 +73,8 @@ const AddUserPage = props => {
                       <input
                         type="text"
                         className={cx("form-control", {
-                          "border-red": errors.indexOf("username") !== -1
+                          "border-red":
+                            errors.indexOf("username") !== -1 || userName_error
                         })}
                         value={props.data.username}
                         onChange={e =>
@@ -90,7 +108,8 @@ const AddUserPage = props => {
                         type="email"
                         autoComplete="off"
                         className={cx("form-control", {
-                          "border-red": errors.indexOf("email") !== -1
+                          "border-red":
+                            errors.indexOf("email") !== -1 || email_error
                         })}
                         value={props.data.email}
                         onChange={e =>

@@ -16,6 +16,8 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
 import ViewDetailProcessModal from "./ViewDetailProcessModal";
+import { Link, withRouter } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -25,7 +27,7 @@ class SubmitDetail extends React.Component {
     this.state = {
       events: [],
       activeTab: 0,
-      projects: [],
+      project: {},
       admins: [],
       openModal: false,
       dataOfModal: []
@@ -39,9 +41,10 @@ class SubmitDetail extends React.Component {
   }
 
   getProject = () => {
-    api.apiGet(urlApi.getListProject).then(res => {
+    let projectId = this.props.match.params.id;
+    api.apiGet(urlApi.getListProject + projectId).then(res => {
       if (res) {
-        this.setState({ projects: res.data });
+        this.setState({ project: res.data });
       }
     });
   };
@@ -100,10 +103,25 @@ class SubmitDetail extends React.Component {
   };
 
   render() {
-    const { events } = this.state;
+    const { events, project } = this.state;
     let totalWorker = this.calcTotalWorker(events);
     return (
       <span>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/project">DỰ ÁN</Link>
+          </BreadcrumbItem>
+          {project.name && (
+            <BreadcrumbItem active>{project.name.toUpperCase()}</BreadcrumbItem>
+          )}
+        </Breadcrumb>
+        <h4
+          className="cursor-pointer link-back content-header"
+          onClick={() => this.props.history.goBack()}
+        >
+          {" "}
+          <i className="fa fa-angle-double-left" /> Back
+        </h4>
         <section className="content">
           <Table responsive bordered className="bg-white">
             <thead>
@@ -147,4 +165,4 @@ class SubmitDetail extends React.Component {
   }
 }
 
-export default SubmitDetail;
+export default withRouter(SubmitDetail);

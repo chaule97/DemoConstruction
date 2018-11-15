@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CreateProject = props => {
-  const { errors } = props;
+  const { errors, ended_at_err } = props;
   return (
     <div>
       <section className="content">
@@ -24,6 +24,13 @@ const CreateProject = props => {
                   <div className="container-fluid">
                     <div className="alert alert-danger">
                       Tất cả các Input đều phải khác rỗng
+                    </div>
+                  </div>
+                )}
+                {ended_at_err && (
+                  <div className="container-fluid">
+                    <div className="alert alert-danger">
+                      Ngày kết thúc phải sau ngày khởi tạo
                     </div>
                   </div>
                 )}
@@ -129,7 +136,8 @@ const CreateProject = props => {
                       <DatePicker
                         dateFormat="DD/MM/YYYY"
                         className={cx("form-control", {
-                          "border-red": errors.indexOf("ended_at") !== -1
+                          "border-red":
+                            errors.indexOf("ended_at") !== -1 || ended_at_err
                         })}
                         type="date"
                         name="ended_at"

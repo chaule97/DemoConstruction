@@ -11,6 +11,7 @@ class CreateProjectContainer extends Component {
       supervisors: [],
       project: { ended_at: moment().format("YYYY-MM-DD") },
       errors: [],
+      ended_at_err: false,
       completeNotify: false,
       errNotify: false
     };
@@ -33,9 +34,9 @@ class CreateProjectContainer extends Component {
 
   createProject = event => {
     const data = this.state.project;
-    let { errors } = this.state;
+    let { errors, ended_at_err } = this.state;
     errors = [];
-
+    ended_at_err = false;
     if (!data.address || data.address.trim() == "") {
       errors.push("address");
     }
@@ -57,8 +58,16 @@ class CreateProjectContainer extends Component {
     if (!data.supervisor || data.supervisor.trim() == "") {
       errors.push("supervisor");
     }
-    if (errors.length > 0) {
-      this.setState({ errors });
+    if (
+      data.ended_at &&
+      moment(moment(data.ended_at).format("YYYY-MM-DD")).isSameOrBefore(
+        moment()
+      )
+    ) {
+      ended_at_err = true;
+    }
+    this.setState({ errors, ended_at_err });
+    if (errors.length > 0 || ended_at_err) {
       return;
     } else {
       data.ended_at = moment(data.ended_at).format("YYYY-MM-DD");
@@ -77,13 +86,14 @@ class CreateProjectContainer extends Component {
   };
 
   render() {
-    const { supervisors, project, errors } = this.state;
+    const { supervisors, project, errors, ended_at_err } = this.state;
     // console.log(this.state)
     return (
       <CreateProjectComponent
         project={project}
         errors={errors}
         listSupervisor={supervisors}
+        ended_at_err={ended_at_err}
         changeProjectDetailValue={(key, value) =>
           this.changeProjectDetailValue(key, value)
         }

@@ -1,6 +1,8 @@
-const serverUrl = "http://nhokproxmen.pythonanywhere.com";
-//const serverUrl = "http://localhost:8000";
-
+//const serverUrl = "http://nhokproxmen.pythonanywhere.com";
+//const serverUrl = "http://localhost:8002";
+const serverUrl = window.location.host.includes('localhost')
+	? 'http://localhost:8002'
+	: `${window.location.protocol}//${window.location.host}`
 export default {
   getListUser: serverUrl + "/api/user/",
   getSupervisors: serverUrl + "/api/supervisors/",

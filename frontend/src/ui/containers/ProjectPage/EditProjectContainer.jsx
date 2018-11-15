@@ -11,7 +11,8 @@ class EditProjectContainer extends Component {
     this.state = {
       errors: [],
       project: {},
-      success: false
+      success: false,
+      ended_at_err: false
     };
   }
 
@@ -21,6 +22,7 @@ class EditProjectContainer extends Component {
 
   componentWillUnmout() {
     clearTimeout(this.notifyErr);
+    clearTimeout(this.notifyEnded_at_err);
   }
 
   changeProjectDetailValue = (key, value) => {
@@ -31,9 +33,10 @@ class EditProjectContainer extends Component {
 
   editProject = event => {
     const data = this.state.project;
-    let { errors } = this.state;
+    let { errors, ended_at_err } = this.state;
     let projectId = this.props.match.params.id;
     errors = [];
+    ended_at_err = false;
 
     if (!data.address || data.address.trim() == "") {
       errors.push("address");
@@ -53,10 +56,24 @@ class EditProjectContainer extends Component {
     if (!data.ended_at || data.ended_at.trim() == "") {
       errors.push("ended_at");
     }
+    if (
+      data.ended_at &&
+      moment(moment(data.ended_at).format("YYYY-MM-DD")).isSameOrBefore(
+        moment()
+      )
+    ) {
+      ended_at_err = true;
+    }
     if (errors.length > 0) {
       this.setState({ errors });
       this.notifyErr = setTimeout(() => {
         this.setState({ errors: [] });
+      }, 3000);
+      return;
+    } else if (ended_at_err) {
+      this.setState({ ended_at_err });
+      this.notifyEnded_at_err = setTimeout(() => {
+        this.setState({ ended_at_err: false });
       }, 3000);
       return;
     } else {
@@ -77,7 +94,7 @@ class EditProjectContainer extends Component {
   };
 
   render() {
-    const { errors, project, success } = this.state;
+    const { errors, ended_at_err, project, success } = this.state;
 
     // console.log(this.state)
 
@@ -87,6 +104,7 @@ class EditProjectContainer extends Component {
         project={project}
         errors={errors}
         success={success}
+        ended_at_err={ended_at_err}
         supervisor={project.supervisor}
         changeProjectDetailValue={(key, value) =>
           this.changeProjectDetailValue(key, value)

@@ -8,6 +8,8 @@ import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
 import * as PATH from "../../../constants/routeConstants";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import cx from "classnames";
+import Pagination from "react-js-pagination";
 
 const localizer = Calendar.momentLocalizer(moment);
 class ProjectPage extends React.Component {
@@ -19,12 +21,14 @@ class ProjectPage extends React.Component {
       projects: [],
       viewGridStatus: true,
       projects: [],
-      breadCrumb: [{ active: true, value: "DỰ ÁN", link: "/project/view" }]
+      breadCrumb: [{ active: true, value: "DỰ ÁN", link: "/project/view" }],
+      activePage: 1,
+      itemPerPage: 200
     };
     this.toggle = this.toggle.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({ type: localStorage.getItem("type") });
     this.getProject();
     //this.getDetail();
@@ -71,10 +75,22 @@ class ProjectPage extends React.Component {
     this.setState({ viewGridStatus: false });
   };
 
+  handlePageChange = page => {
+    this.setState({ activePage: page });
+  };
+  handleSlicePage = (arr, toPage) => {
+    const { itemPerPage } = this.state;
+    return arr.slice(
+      (toPage - 1) * itemPerPage,
+      (toPage - 1) * itemPerPage + itemPerPage
+    );
+  };
+
   renderForAdmin() {
-    const { viewGridStatus, breadCrumb } = this.state;
+    const { viewGridStatus, breadCrumb, activePage, itemPerPage } = this.state;
     const { listProjects } = this.props;
 
+    const renderListProject = this.handleSlicePage(listProjects, activePage);
     return (
       <div>
         <div className="d-flex justify-content-between">
@@ -126,7 +142,7 @@ class ProjectPage extends React.Component {
                   </div>
                 </div>
               </div>
-              {listProjects.map((item, index) => {
+              {renderListProject.map((item, index) => {
                 return (
                   <span
                     key={index}
@@ -137,7 +153,16 @@ class ProjectPage extends React.Component {
                       className="col-lg-3 col-md-3 col-sm-4 col-xs-12 add-project"
                       style={{ paddingBottom: "10px" }}
                     >
-                      <div className="card">
+                      <div
+                        className={cx("card", {
+                          "border-ended": moment(
+                            moment().format("YYYY-MM-DD")
+                          ).isAfter(moment(item.ended_at)),
+                          "border-in-progress": moment(
+                            moment().format("YYYY-MM-DD")
+                          ).isSameOrBefore(moment(item.ended_at))
+                        })}
+                      >
                         <div className="card-body">
                           <div
                             className="project-content"
@@ -157,6 +182,16 @@ class ProjectPage extends React.Component {
                   </span>
                 );
               })}
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={itemPerPage}
+                totalItemsCount={listProjects.length}
+                pageRangeDisplayed={5}
+                onChange={this.handlePageChange}
+              />
             </div>
           </section>
         ) : (
@@ -194,10 +229,21 @@ class ProjectPage extends React.Component {
                           </tr>
                         </thead>
                         <tbody>
-                          {(listProjects || []).map((item, index) => {
+                          {renderListProject.map((item, index) => {
                             return (
                               <tr key={index}>
-                                <td>{item.name}</td>
+                                <td
+                                  className={cx({
+                                    "border-ended list": moment(
+                                      moment().format("YYYY-MM-DD")
+                                    ).isAfter(moment(item.ended_at)),
+                                    "border-in-progress list": moment(
+                                      moment().format("YYYY-MM-DD")
+                                    ).isSameOrBefore(moment(item.ended_at))
+                                  })}
+                                >
+                                  {item.name}
+                                </td>
                                 <td>{item.supervisor.username}</td>
                                 <td>{item.address}</td>
                                 <td>
@@ -205,7 +251,13 @@ class ProjectPage extends React.Component {
                                 </td>
                                 <td>
                                   <Link to={PATH.PROJECT_URL + "/" + item.id}>
-                                    <Button color={"info"}>Chi tiết</Button>
+                                    {moment(
+                                      moment().format("YYYY-MM-DD")
+                                    ).isAfter(moment(item.ended_at)) ? (
+                                      <Button color={"danger"}>Chi tiết</Button>
+                                    ) : (
+                                      <Button color={"info"}>Chi tiết</Button>
+                                    )}
                                   </Link>
                                 </td>
                               </tr>
@@ -213,6 +265,16 @@ class ProjectPage extends React.Component {
                           })}
                         </tbody>
                       </table>
+
+                      <div className="pull-right">
+                        <Pagination
+                          activePage={activePage}
+                          itemsCountPerPage={itemPerPage}
+                          totalItemsCount={listProjects.length}
+                          pageRangeDisplayed={5}
+                          onChange={this.handlePageChange}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

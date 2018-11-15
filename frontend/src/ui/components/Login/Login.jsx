@@ -9,16 +9,18 @@ const Login = props => {
             <b>Management</b> Admin
           </a>
         ) : (
-            <b>Supervisor</b>
-          )}
+          <b>Supervisor</b>
+        )}
       </div>
       <div className="login-box-body">
         <p className="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
 
-        <form onSubmit={e => {
-          e.preventDefault()
-          props.login(e)
-        }}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            props.login(e);
+          }}
+        >
           <div className="form-group has-feedback">
             <input
               type="text"
@@ -50,21 +52,11 @@ const Login = props => {
             )}
           </div>
           <div className="row">
-            <div className="col-xs-8">
-              <div className="checkbox icheck">
-                <input type="checkbox" style={{ marginLeft: 0, marginRight: '8px', position: 'unset' }} />
-                <span>
-                  Ghi nhớ tài khoản
-              </span>
-
-              </div>
-            </div>
+            <div className="col-xs-8" />
             <div className="col-xs-4">
-              <button
-                className="btn btn-primary btn-block btn-flat color-white"
-              >
+              <button className="btn btn-primary btn-block btn-flat color-white">
                 Đăng nhập
-            </button>
+              </button>
             </div>
           </div>
         </form>

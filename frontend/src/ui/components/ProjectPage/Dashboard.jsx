@@ -18,6 +18,7 @@ import ViewDetailProcessModal from "./ViewDetailProcessModal";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import * as PATH from "../../../constants/routeConstants";
+import ExportExcel from "../../containers/ProjectPage/ExportExcel";
 import {
   LineChart,
   Line,
@@ -27,6 +28,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
+
 import EditProjectContainer from "../../containers/ProjectPage/EditProjectContainer";
 
 const localizer = Calendar.momentLocalizer(moment);
@@ -40,14 +42,32 @@ class Dashboard extends React.Component {
       projects: {},
       admins: [],
       openModal: false,
-      dataOfModal: []
+      dataOfModal: [],
+      lineChartWidth: 1100
     };
     this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
     this.getProject();
+    window.addEventListener("resize", this.updateDimension);
   }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimension);
+  }
+  updateDimension = () => {
+    const { innerWidth } = window;
+    const { legendVert } = this.state;
+    if (innerWidth < 1366) {
+      this.setState({
+        lineChartWidth: 900
+      });
+    } else {
+      this.setState({
+        lineChartWidth: 1100
+      });
+    }
+  };
 
   getProject = () => {
     let projectId = this.props.match.params.id;
@@ -138,6 +158,7 @@ class Dashboard extends React.Component {
 
     return { totalTeam, startDuration, endDuration };
   };
+
   calcDataLineChar = () => {
     let data = [];
 
@@ -186,7 +207,13 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    const { projects, openModal, dataOfModal, currentDate } = this.state;
+    const {
+      projects,
+      openModal,
+      dataOfModal,
+      currentDate,
+      lineChartWidth
+    } = this.state;
     const projectId = this.props.match.params.id;
     let dataCircleChart = this.calcDashBoard();
     let dataLineChart = this.calcDataLineChar();
@@ -248,6 +275,18 @@ class Dashboard extends React.Component {
                 Thông tin
               </NavLink>
             </NavItem>
+            <NavItem
+              className={classnames({ active: this.state.activeTab === "4" })}
+            >
+              <NavLink
+                onClick={() => {
+                  this.toggle("4");
+                }}
+                style={{ color: "black", cursor: "pointer" }}
+              >
+                Xuất báo cáo
+              </NavLink>
+            </NavItem>
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
@@ -293,14 +332,14 @@ class Dashboard extends React.Component {
                   </div>
                 </div>
               </section>
-              <section className="sec2">
+              <section className="sec2 d-none d-lg-block">
                 <div className="view-dashboard">
                   <div className="view-title">
                     <p>Tháng {moment().month() + 1}</p>
                   </div>
                   <hr style={{ marginTop: "-5px" }} />
                   <LineChart
-                    width={1050}
+                    width={lineChartWidth}
                     height={300}
                     data={dataLineChart}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -343,6 +382,13 @@ class Dashboard extends React.Component {
               <Row style={{ marginTop: "10px" }}>
                 <Col sm="12">
                   <EditProjectContainer project={projects} />
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="4">
+              <Row style={{ marginTop: "10px" }}>
+                <Col sm="12">
+                  <ExportExcel projects={projects} />
                 </Col>
               </Row>
             </TabPane>

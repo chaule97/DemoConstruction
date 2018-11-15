@@ -9,6 +9,8 @@ class AddUserPage extends Component {
     this.state = {
       data: {},
       errors: [],
+      email_error: false,
+      userName_error: false,
       createNotify: false
     };
   }
@@ -21,11 +23,16 @@ class AddUserPage extends Component {
     data[key] = value;
     this.setState({ data });
   };
-
+  validateEmail = email => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
   createUser = () => {
     const { data } = this.state;
-    let { errors } = this.state;
+    let { errors, email_error, userName_error } = this.state;
     errors = [];
+    email_error = false;
+    userName_error = false;
     this.setState({ createNotify: false });
     if (!data.username || data.username.trim() == "") {
       errors.push("username");
@@ -39,9 +46,17 @@ class AddUserPage extends Component {
     if (!data.password || data.password.trim() == "") {
       errors.push("password");
     }
-
-    if (errors.length > 0) {
-      this.setState({ errors });
+    if (data.email && !this.validateEmail(data.email)) {
+      email_error = true;
+    }
+    if (
+      data.username &&
+      (/\s/.test(data.username) || /^(\d|_)+\w+$/.test(data.username))
+    ) {
+      userName_error = true;
+    }
+    this.setState({ errors, email_error, userName_error });
+    if (errors.length > 0 || userName_error || email_error) {
       return;
     } else {
       api.apiPost(urlApi.createUser, data).then(res => {
@@ -54,7 +69,13 @@ class AddUserPage extends Component {
   };
 
   render() {
-    const { data, errors, createNotify } = this.state;
+    const {
+      data,
+      errors,
+      createNotify,
+      email_error,
+      userName_error
+    } = this.state;
     // console.log(data)
     return (
       <AddUserPageComponent
@@ -62,6 +83,8 @@ class AddUserPage extends Component {
         data={data}
         goBack={() => this.goBack()}
         errors={errors}
+        email_error={email_error}
+        userName_error={userName_error}
         createNotify={createNotify}
         createUser={this.createUser}
       />
