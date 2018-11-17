@@ -9,11 +9,7 @@ const SideBar = props => {
       <section className="sidebar">
         <div className="user-panel">
           <div className="pull-left image">
-            <img
-              src="dist/img/user2-160x160.jpg"
-              alt="user"
-              className="img-circle"
-            />
+            <img src="dist/img/avatar6.png" alt="user" className="img-circle" />
           </div>
           <div className="pull-left info">
             <p style={{ fontSize: "1.5em" }} className="color-white">

@@ -1,75 +1,6 @@
 import React from "react";
 import moment from "moment";
-import ReactExport from "react-data-export";
-
-const ExcelFile = ReactExport.ExcelFile;
-const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
-
-const dataSet1 = [
-  {
-    name: "Johson",
-    amount: 30000,
-    sex: "M",
-    is_married: true
-  },
-  {
-    name: "Monika",
-    amount: 355000,
-    sex: "F",
-    is_married: false
-  },
-  {
-    name: "John",
-    amount: 250000,
-    sex: "M",
-    is_married: false
-  },
-  {
-    name: "Josef",
-    amount: 450500,
-    sex: "M",
-    is_married: true
-  }
-];
-
-var dataSet2 = [
-  {
-    name: "Johnson",
-    total: 25,
-    remainig: 16
-  },
-  {
-    name: "Josef",
-    total: 25,
-    remainig: 7
-  }
-];
-
-class Download extends React.Component {
-  render() {
-    return (
-      <ExcelFile
-        element={<button className="btn btn-primary">Xuất báo cáo</button>}
-      >
-        <ExcelSheet data={dataSet1} name="Employees">
-          <ExcelColumn label="Name" value="name" />
-          <ExcelColumn label="Wallet Money" value="amount" />
-          <ExcelColumn label="Gender" value="sex" />
-          <ExcelColumn
-            label="Marital Status"
-            value={col => (col.is_married ? "Married" : "Single")}
-          />
-        </ExcelSheet>
-        <ExcelSheet data={dataSet2} name="Leaves">
-          <ExcelColumn label="Name" value="name" />
-          <ExcelColumn label="Total Leaves" value="total" />
-          <ExcelColumn label="Remaining Leaves" value="remaining" />
-        </ExcelSheet>
-      </ExcelFile>
-    );
-  }
-}
+import urlApi from "../../../constants/urlApi";
 
 export default class ExportExcel extends React.Component {
   state = {
@@ -82,8 +13,8 @@ export default class ExportExcel extends React.Component {
       this.calcDashBoard(newProps.projects.submits);
   }
   calcMonthNum(created_at, ended_at) {
-    let start = moment(created_at).month();
-    let end = moment(ended_at).month();
+    let start = moment(created_at);
+    let end = moment(ended_at).isAfter(moment()) ? moment() : moment(ended_at);
     return { start, end };
   }
 
@@ -91,37 +22,41 @@ export default class ExportExcel extends React.Component {
     let totalTeam = {};
     if (submits) {
       submits.forEach(submit => {
-        if (!totalTeam[moment(submit.date).month()])
-          totalTeam[moment(submit.date).month()] = 1;
-        else {
-          totalTeam[moment(submit.date).month()] += 1;
+        if (!totalTeam[moment(submit.date).month()]) {
+          totalTeam[moment(submit.date).month()] = {};
+          totalTeam[moment(submit.date).month()][submit.team.id] = true;
+        } else {
+          if (!totalTeam[moment(submit.date).month()][submit.team.id]) {
+            totalTeam[moment(submit.date).month()][submit.team.id] = true;
+          }
         }
       });
     }
 
     this.setState({ teamNumInMonth: totalTeam });
   };
+
   generateOptionMonth = (start, end) => {
     let options = [];
     options.push(<option key={"month_129312"}>Chọn tháng</option>);
-    while (start <= end) {
+    while (start.isSameOrBefore(end)) {
       options.push(
-        <option value={start} key={"month_" + start}>
-          Tháng {start + 1}
+        <option value={start.month()} key={"month_" + start}>
+          Tháng {start.month() + 1}
         </option>
       );
-      start += 1;
+      start.add(1, "month");
     }
     return options;
   };
 
   handleChangeMonth = month => {
-    console.log(month);
     this.setState({ selectingMonth: month });
   };
 
   render() {
-    const { submits, created_at, ended_at } = this.props.projects;
+    const { projects } = this.props;
+    const { created_at, ended_at } = this.props.projects;
     const { teamNumInMonth, selectingMonth } = this.state;
     let { start, end } = this.calcMonthNum(created_at, ended_at);
     return (
@@ -143,12 +78,21 @@ export default class ExportExcel extends React.Component {
                   <input
                     disabled
                     className="form-control"
-                    value={teamNumInMonth[selectingMonth]}
+                    value={Object.keys(teamNumInMonth[selectingMonth]).length}
                   />
                 </div>
               </div>
               <div className="box-footer">
-                <Download />
+                <a
+                  className="btn btn-primary"
+                  href={
+                    urlApi.exportReport +
+                    `?id=${projects.id}&month=${+selectingMonth + 1}`
+                  }
+                  download
+                >
+                  Xuất báo cáo
+                </a>
               </div>
             </div>
           </div>
