@@ -16,6 +16,7 @@ export default {
   getListSubmit: serverUrl + "/api/submit/",
   login: serverUrl + "/api/login/",
   logout: serverUrl + "/api/logout/",
+  me: serverUrl + "/api/me/",
   adminLogin: serverUrl + "/api/admin/login/",
   exportReport: serverUrl + "/api/report/"
 };

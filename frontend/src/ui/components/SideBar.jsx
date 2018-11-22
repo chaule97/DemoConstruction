@@ -13,7 +13,7 @@ const SideBar = props => {
           </div>
           <div className="pull-left info">
             <p style={{ fontSize: "1.5em" }} className="color-white">
-              Tea Time Team
+              CTY CAT VANG
             </p>
           </div>
         </div>

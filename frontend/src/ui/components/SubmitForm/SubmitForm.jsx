@@ -1,6 +1,7 @@
 import React from "react";
 import cx from "classnames";
 const SubmitForm = props => {
+  const { timeRangeError } = props;
   return (
     <div>
       <section className="content">
@@ -32,6 +33,15 @@ const SubmitForm = props => {
                           );
                         })}
                       </select>
+
+                      {timeRangeError && (
+                        <div
+                          className="alert alert-danger"
+                          style={{ marginTop: "16px" }}
+                        >
+                          Không thể báo cáo từ 00:00:00 AM tới 05:00:00 AM
+                        </div>
+                      )}
                     </div>
                     <div className="col-12 col-md-8 col-lg-10">
                       {props.submitValue.map((item, index) => {

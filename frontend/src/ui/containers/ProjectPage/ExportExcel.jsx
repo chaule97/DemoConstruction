@@ -78,7 +78,11 @@ export default class ExportExcel extends React.Component {
                   <input
                     disabled
                     className="form-control"
-                    value={Object.keys(teamNumInMonth[selectingMonth]).length}
+                    value={
+                      teamNumInMonth[selectingMonth]
+                        ? Object.keys(teamNumInMonth[selectingMonth]).length
+                        : 0
+                    }
                   />
                 </div>
               </div>

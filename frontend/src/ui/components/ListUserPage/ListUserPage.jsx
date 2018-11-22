@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Pagination from "react-js-pagination";
 
 const ListUserPage = props => {
-  const { listUsers } = props;
+  const {
+    listUsers,
+    activePage,
+    itemPerPage,
+    renderList,
+    filterName,
+    onChangeValue
+  } = props;
   return (
     <div>
       <section className="content">
@@ -11,8 +19,13 @@ const ListUserPage = props => {
             <div className="box">
               <div className="box-header with-border">
                 <h3 className="box-title">
-                  <i className="fa fa-user m-r-5" />
-                  <i className="fa m-r-5" /> Quản lý giám sát
+                  <input
+                    type="text"
+                    value={filterName}
+                    onChange={onChangeValue}
+                    className="form-control"
+                    placeholder="Lọc theo họ tên"
+                  />
                 </h3>
                 <div className="box-tools pull-right">
                   <Link
@@ -38,7 +51,7 @@ const ListUserPage = props => {
                     </tr>
                   </thead>
                   <tbody>
-                    {(listUsers || []).map((item, index) => {
+                    {(renderList || []).map((item, index) => {
                       return (
                         <tr key={index}>
                           <td>{item.username}</td>
@@ -73,6 +86,15 @@ const ListUserPage = props => {
           </div>
         </div>
       </section>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Pagination
+          activePage={activePage}
+          itemsCountPerPage={itemPerPage}
+          totalItemsCount={listUsers.length}
+          pageRangeDisplayed={5}
+          onChange={props.handlePageChange}
+        />
+      </div>
     </div>
   );
 };

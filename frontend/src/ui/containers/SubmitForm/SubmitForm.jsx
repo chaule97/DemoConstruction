@@ -6,6 +6,8 @@ import * as PATH from "../../../constants/routeConstants";
 import urlApi from "../../../constants/urlApi";
 import moment from "moment";
 import _ from "lodash";
+
+
 class SubmitForm extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,8 @@ class SubmitForm extends Component {
       submitValue: [],
       data: {},
       deleteSubmitId: {},
-      errors: []
+      errors: [],
+      timeRangeError: false
     };
   }
 
@@ -128,8 +131,23 @@ class SubmitForm extends Component {
   };
 
   submit = () => {
-    const { submitValue, projects, deleteSubmitId } = this.state;
+    const {
+      submitValue,
+      projects,
+      deleteSubmitId,
+      timeRangeError
+    } = this.state;
     let { errors } = this.state;
+    this.setState({ timeRangeError: false });
+
+    if (
+      moment().isBefore(moment("05:00:00", "HH:mm:ss")) &&
+      moment().isAfter(moment("00:00:00", "HH:mm:ss"))
+    ) {
+      this.setState({ timeRangeError: true });
+      return;
+    }
+
     errors = {};
     let errFlag = false;
     submitValue.map(item => {
@@ -185,10 +203,18 @@ class SubmitForm extends Component {
   };
 
   render() {
-    const { projects, teams, data, submitValue, errors } = this.state;
+    const {
+      projects,
+      teams,
+      data,
+      submitValue,
+      errors,
+      timeRangeError
+    } = this.state;
     // console.log(this.state)
     return (
       <SubmitFormComponent
+        timeRangeError={timeRangeError}
         projects={projects}
         teams={teams}
         data={data}
