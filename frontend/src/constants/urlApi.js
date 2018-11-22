@@ -3,7 +3,7 @@
 const serverUrl = window.location.host.includes("localhost")
   ? "http://localhost:8002"
   : `${window.location.protocol}//${window.location.host}`;
-//const serverUrl = "http://digtal.synology.me";
+// const serverUrl = "http://digtal.synology.me";
 export default {
   getListUser: serverUrl + "/api/user/",
   getSupervisors: serverUrl + "/api/supervisors/",

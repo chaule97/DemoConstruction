@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import TeamPageComponent from "../../components/TeamPage/TeamPage";
+import LastTeamSubmit from '../../components/TeamPage/LastTeamSubmit';
 import * as api from "../../../api/api";
 import urlApi from "../../../constants/urlApi";
 import AddTeamPage from "./AddTeamPage";
@@ -10,6 +11,7 @@ class TeamPage extends Component {
     super(props);
     this.state = {
       teams: [],
+      subTeams: [],
       openCreateModal: false,
       errorNotify: false,
       successNotify: false
@@ -18,12 +20,29 @@ class TeamPage extends Component {
 
   componentWillMount() {
     this.getTeam();
+    this.getSubmit();
   }
 
   getTeam = () => {
     api.apiGet(urlApi.getListTeam).then(res => {
       if (res) {
         this.setState({ teams: res.data });
+      }
+    });
+  };
+
+  getSubmit = () => {
+    api.apiGet(urlApi.getListSubmit).then(res => {
+      if (res) {
+        let subTeams = res.data.reduce(
+          (acc, curSubmit) => {
+            if (!acc[curSubmit.date]) acc[curSubmit.date] = {}
+            acc[curSubmit.date][curSubmit.team.id] = curSubmit.team
+            return acc;
+          }, {}
+        )
+        console.log('2', subTeams)
+        this.setState({ subTeams })
       }
     });
   };
@@ -62,7 +81,7 @@ class TeamPage extends Component {
     }
   };
   render() {
-    const { teams, errorNotify, successNotify } = this.state;
+    const { teams, errorNotify, successNotify, subTeams } = this.state;
     return (
       <span>
         <Modal isOpen={this.state.openCreateModal} toggle={this.toggle}>
@@ -80,6 +99,7 @@ class TeamPage extends Component {
           listTeams={teams}
           addTeam={() => this.addTeam()}
           delete={id => this.delete(id)}
+          subTeams={subTeams}
         />
       </span>
     );
